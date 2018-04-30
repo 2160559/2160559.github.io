@@ -2238,14 +2238,9 @@
 
 	input[type="checkbox"],
 	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
 		display: block;
 		float: left;
-		margin-right: -2rem;
-		opacity: 0;
+		opacity: 1;
 		width: 1rem;
 		z-index: -1;
 	}
@@ -2272,7 +2267,6 @@
 				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
-				text-transform: none !important;
 			}
 
 			input[type="checkbox"] + label:before,
@@ -3387,6 +3381,10 @@
 				color: #18bfef !important;
 			}
 
+			#header .logo img {
+				max-height: 2em;
+			}
+
 		@media screen and (max-width: 980px) {
 
 			#header {
@@ -3749,6 +3747,10 @@
 				width: 100%;
 			}
 
+		}
+
+		#main p {
+			text-align: center;
 		}
 
 /* Footer */
