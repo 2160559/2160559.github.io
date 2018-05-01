@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Validate the form</title>
+
+    <link rel="stylesheet" href="./css/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/validation.css" />
+    <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/livevalidation_standalone.js"></script>
+    
+</head>
+
+<body>
+    <h1>Validate the form</h1>
+
+	<form>
+		<div>
+			<label for="nick-input">Nick:</label><br /> <input type="text"
+				id="nick-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="surname-input">Surname:</label><br /> <input type="text"
+				id="surname-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="pass-input">Password:</label><br /> <input type="text"
+				id="pass-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="confpass-input">Confirm password:</label><br /> <input
+				type="text" id="confpass-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="number-input">Enter number between 1 and 30:</label><br />
+			<input type="text" id="number-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="mail-input">E-mail:</label><br /> <input type="text"
+				id="mail-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="accept-input">Accept:</label> <input type="checkbox"
+				id="accept-input" value="1" class="checkbox" /><br />
+			<br />
+		</div>
+
+		<input type="button" id="submit-input" value="Submit" />
+	</form>
+
+	<script type="text/javascript" src="./js/main.js"></script>
+</body>
+</html>

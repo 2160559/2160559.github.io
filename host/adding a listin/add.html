@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Your Warm Home</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-loading">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<a href="index.html" class="logo"><img src="images/logo2.png"></a>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul class="links">
+				<li><a href="index.html">Login</a></li>
+				<li class="active"><a href="signup.html">Add a listing</a></li>
+			</ul>
+		</nav>
+
+
+		<!-- Main -->
+		<!-- Features to be added:
+		-Remember me
+		-See/ Hide Password
+		-Forgot Password?
+		-Don't have an account? Sign up -->
+		<div id="main">			
+			<section>
+				<h2>Add a listing</h2>
+				<form method="post" action="#">
+					<div class="field">
+						<label for="lisstype">So is it a house or a room?</label>
+						<input type="radio" name="listtype" />House&nbsp;&nbsp;
+                        <br>
+                        <input type="radio" name="listtype" />Room
+					</div>
+					<div class="field">
+						<label for="numbeds" onclick='createTable()'>Number of beds</label>
+						 <select id="numbeds1">
+                            <option value="1">1</option>
+
+
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+
+                         </select>
+                        <div>
+                       <table id="myTable" border="1"> 
+                        </table><form> 
+                        <input type="button" onclick="createTable()" value="Create the table"> 
+                        </form>
+                            </div>
+					</div>
+			
+					<ul class="actions">
+						<li><input type="submit" value="Next >>" /></li>
+					</ul>
+				</form>
+			</section>
+		</div>
+
+		<!-- Copyright -->
+		<div id="copyright">
+			<ul><li>&copy; Untitled</li><li>Design: <a href=""></a></li></ul>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>
