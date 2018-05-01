@@ -1,0 +1,34 @@
+body {
+	font-size: 14px;
+}
+
+h1 {
+	text-align: center;
+	text-shadow: 0 1px 0 #eee;
+	font-size: 16px;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	border: 1px solid #bbb;
+	background-image: linear-gradient(#ddd,#bbb);
+	padding: 10px;
+}
+
+label {
+	margin-top: 10px;
+}
+
+form {
+	margin: 8px;
+}
+
+input[type=text], input[type=button] {
+	margin-top: .5em;
+	margin-bottom: .2em;
+	border-radius: .3em;
+	width: 94%;
+	padding: .3em;
+}
+
+div {
+	margin-bottom: .5em;
+}
