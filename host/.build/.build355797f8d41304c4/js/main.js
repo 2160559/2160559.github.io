@@ -47,12 +47,12 @@ window.onload = init;
 $(document).unload( unregister );
 
 var validate = function(){	
-    
 	var nick = new LiveValidation('nick-input', { validMessage: "Valid!"});
-	nick.add(Validate.Format, {pattern: /^[a-zA-Z]{7,15}$/});
+
+	nick.add(Validate.Format, {pattern: /^[a-zA-Z][0-9a-zA-Z]{7,15}$/});
 	
-	var surname = new LiveValidation('nick-input', { validMessage: "Valid!"});
-	surname.add(Validate.Format, {pattern: /^[a-zA-Z]{7,15}$/});
+	var surname = new LiveValidation('surname-input', { validMessage: "Valid!"});
+	surname.add(Validate.Length, {minimum: 3, maximum: 25});
 
 	var confpass = new LiveValidation('confpass-input', { validMessage: "Valid!"});
 	confpass.add(Validate.Confirmation, { match: 'pass-input' });
