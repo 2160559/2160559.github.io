@@ -1,5 +1,13 @@
 var backEventListener = null;
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'block';
+    }
+    else document.getElementById('ifYes').style.display= 'none';
 
+}
+    
+    
 var unregister = function() {
     if ( backEventListener !== null ) {
         document.removeEventListener( 'tizenhwkey', backEventListener );
@@ -7,22 +15,34 @@ var unregister = function() {
         window.tizen.application.getCurrentApplication().exit();
     }
 }
-function createTable()
-{
-var rn = document.getElementById('numbeds1');
-window.alert(rn);
-cn = 2;
-  
- for(var r=0;r<parseInt(rn,10);r++)
-  {
-   var x=document.getElementById('myTable').insertRow(r);
-   for(var c=0;c<parseInt(cn,10);c++)  
-    {
-     var y=  x.insertCell(c);
-     y.innerHTML="Row-"+r+" Column-"+c; 
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(16.38418084926152,120.59318745595851);
+    var myOptions = {
+      zoom: 18,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-   }
-}
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    
+    var marker = new google.maps.Marker({
+        position: myLatlng, 
+        map: map,
+        draggable:true
+    });
+    google.maps.event.addListener(
+        marker,
+        'drag',
+        function() {
+            document.getElementById('lat').value = marker.position.lat();
+            document.getElementById('lng').value = marker.position.lng();
+        }
+    );
+  }
+  
+
+
+ 
+
 //Initialize function
 var init = function () {
 	console.log("init() called");

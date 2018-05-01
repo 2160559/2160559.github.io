@@ -38,32 +38,61 @@
 				<form method="post" action="#">
 					<div class="field">
 						<label for="lisstype">So is it a house or a room?</label>
-						<input type="radio" name="listtype" />House&nbsp;&nbsp;
+						
+                  
+                        <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> 
+                        House&nbsp;&nbsp;
                         <br>
-                        <input type="radio" name="listtype" />Room
+                        <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck">Room
 					</div>
-					<div class="field">
-						<label for="numbeds" onclick='createTable()'>Number of beds</label>
-						 <select id="numbeds1">
+                    <div class="field">
+                    	<div id="ifYes" style="display:none">
+						<label for="numrooms" >Number of rooms</label>
+						 <select id="numrooms1" >
                             <option value="1">1</option>
 
 
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-
+                             
                          </select>
-                        <div>
-                       <table id="myTable" border="1"> 
-                        </table><form> 
-                        <input type="button" onclick="createTable()" value="Create the table"> 
-                        </form>
-                            </div>
+                        </div>
 					</div>
-			
-					<ul class="actions">
-						<li><input type="submit" value="Next >>" /></li>
-					</ul>
+					<div class="field">
+						<label for="numbeds" >Number of beds</label>
+						 <select id="numbeds1" >
+                            <option value="1">1</option>
+
+
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                             
+                         </select>
+                  
+					</div>
+                    <div class="field">
+						<label for="numcr" >Number of comfort rooms</label>
+						 <select id="numcr1" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                             
+                         </select>
+                  
+					</div>
+                     	<div class="field">
+                            
+						<label for="rmsq">Specify room area in square meters.</label>
+						<input type="number" name="roomsq" id="roomsq" />
+					</div>
+			         
+                    <div class="field">
+		              <button onclick="location.href='listadd.html'" type="button">
+                        Next>></button>
+                    </div>
 				</form>
 			</section>
 		</div>
