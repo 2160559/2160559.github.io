@@ -2238,14 +2238,10 @@
 
 	input[type="checkbox"],
 	input[type="radio"] {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
+
 		display: block;
 		float: left;
-		margin-right: -2rem;
-		opacity: 0;
+		opacity: 1;
 		width: 1rem;
 		z-index: -1;
 	}
@@ -3424,6 +3420,10 @@
 			#header .logo:hover {
 				border-color: #18bfef !important;
 				color: #18bfef !important;
+			}
+
+			#header .logo > img {
+				max-height: 3em;
 			}
 
 		@media screen and (max-width: 980px) {
