@@ -9,6 +9,13 @@
 
 /* Reset */
 
+input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
 		padding: 0;
@@ -2238,9 +2245,14 @@
 
 	input[type="checkbox"],
 	input[type="radio"] {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
 		display: block;
 		float: left;
-		opacity: 1;
+		margin-right: -2rem;
+		opacity: 0;
 		width: 1rem;
 		z-index: -1;
 	}
@@ -2267,6 +2279,7 @@
 				font-family: FontAwesome;
 				font-style: normal;
 				font-weight: normal;
+				text-transform: none !important;
 			}
 
 			input[type="checkbox"] + label:before,
@@ -2384,7 +2397,7 @@
 	}
 
 	input[type="date"] {
-	  height: 1.8rem;
+	  height: 1.2rem;
 	  margin: 0 auto;
 	  font-family: "Merriweather", Helvetica, sans-serif;
 	  font-size: 16px;	
@@ -2397,17 +2410,17 @@
 	  color: #212931;
 	  
 	  
-	  :-webkit-clear-button {
+	  ::-webkit-clear-button {
 	    font-size: 15px;
 	    height: 30px;
 	    position: relative;
-	    right: 5px;
-	    margin-right: 4px;
+	    right: 20px;
+	    margin-right: 10px;
 	  }
-	  :-webkit-inner-spin-button {
+	  ::-webkit-inner-spin-button {
 	    height: 18px;
 	  }
-	  :-webkit-calendar-picker-indicator {
+	  ::-webkit-calendar-picker-indicator {
 	    font-size: 18px;  
 	        
 	    :hover {
@@ -3419,10 +3432,6 @@
 				color: #18bfef !important;
 			}
 
-			#header .logo img {
-				max-height: 2em;
-			}
-
 		@media screen and (max-width: 980px) {
 
 			#header {
@@ -3785,10 +3794,6 @@
 				width: 100%;
 			}
 
-		}
-
-		#main p {
-			text-align: center;
 		}
 
 /* Footer */

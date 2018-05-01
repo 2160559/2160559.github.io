@@ -1,64 +1,55 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>Service Provider Registration</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Service Provide Registration</title>
 
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/formhack.css">
-
-</head>
-<body>
-
-	<div class="container">
-		<form class="registration" id="registration">
-			<h1>Service Provider Registration</h1>
-            
-        
-            <label for="firstname">
-				<span>First name</span>
-
-				<input type="text" id="firstname"  minlength="1" required>
-
-				
-			</label>
-            
-            
-            <label for="lastname">
-				<span>Last name</span>
-
-				<input type="text" id="lastname"  minlength="1" required>
-            
-				
-			</label>
-            
-            
-            <label>
-            <span>Gender:</span> &nbsp;&nbsp;
-            <input type="radio" name="gender" />Male&nbsp;&nbsp;
-            <input type="radio" name="gender" />Female
-            </label>
-            
-            <label for="inputdob">Date Of Birth</label><input type="date">
-          
-            <hr>
-            <label>
-        
-            House number
-            <select name="houseno">
-            <option selected="" value="1">1</option>
-            <option value="2"> 2</option>
-            <option value="3"> 3</option>
+    <link rel="stylesheet" href="./css/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/validation.css" />
+    <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/livevalidation_standalone.js"></script>
     
-            </select>
-            Street
-            <input type="text" id="street"  minlength="1" required>
-                
-            Barangay 
+</head>
+
+<body>
+    <h1>Service Provide Registration</h1>
+
+	<form>
+		<div>
+			<label for="nick-input">First name</label><br />
+            <input type="text" id="nick-input" value=""  class="LV_valid_field" />
+            <br />
+		</div>
+
+		<div>
+			<label for="surname-input">Last name</label><br /> 
+            <input type="text" id="surname-input" value="" class="LV_valid_field" /><br />
+		</div>
+        <div>
+        <label for="gend">Gender:</label>
+            <input type="radio" name="gender" />Male&nbsp;&nbsp;
+                       
+            <input type="radio" name="gender" />Female
+            <br/>
+        Birthdate: <input type="date" name="birthdate" id="date">
+        </div>
+        <hr>
+        <div>
+                    <label for="houseno">House number</label>
+                    <select id="houseno1">
+                    
+                  
+                    </select>
+        </div>
+        <div>
+          <label for="st">Street</label>
+          <input type="text" id="street"  minlength="1" required>
+        </div>
+        <div>
+            <label for="barang">Barangay </label>
             <select name="brgy">
             <option selected="" value="Bakakeng North">Bakakeng North</option>
                 
@@ -68,8 +59,23 @@
             <option value="Gibraltar">Gibraltar</option>
     
             </select>
-                
-            Region
+        
+        
+        </div>
+         <div>
+         <label for="cty">City</label>
+            <select name="region">
+            <option selected="" value="bgo">Baguio</option>
+            <option value="Albay">Albay</option>
+            <option value="Pasay">Pasay</option>
+            <option value="Tondo">Tondo</option>
+    
+            </select>
+        
+        
+        </div>
+        <div>
+         <label for="reg">Region</label>
             <select name="region">
             <option selected="" value="CAR">CAR</option>
             <option value="r1">Region 1</option>
@@ -77,83 +83,47 @@
             <option value="r3">Region 3</option>
     
             </select>
-            Country
-            <select name="ctry">
-            <option selected="" value="PH">Philippines</option>
-            <option value="AF">Afghanistan</option>
-            <option value="AX">Åland Islands</option>
-            <option value="AL">Albania</option>
-            <option value="DZ">Algeria</option>
-            <option value="AS">American Samoa</option>
-            <option value="AD">Andorra</option>
-            <option value="AO">Angola</option>
-            <option value="AI">Anguilla</option>
-            <option value="AQ">Antarctica</option>
-            <option value="AG">Antigua and Barbuda</option>
-            <option value="AR">Argentina</option>
-            <option value="AM">Armenia</option>
-    
-            </select>
-       
-            </label>
-            <hr>
-            <label for="contactno">
-				<span>Contact Number</span>
+        
+        
+        </div>
+        <div>
+			<label for="number-input">Enter phone number</label><br />
+			<input type="text" id="number-input" value="+63" class="LV_valid_field" /><br />
+		</div>
+         
+        <hr>
+        
+		<div>
+			<label for="mail-input">E-mail:</label><br /> 
+            <input type="text"
+				id="mail-input" value="" class="LV_valid_field" /><br />
+		</div>
+		<div>
+			<label for="pass-input">Password:</label><br /> <input type="password"
+				id="pass-input" value="" class="LV_valid_field" /><br />
+		</div>
 
-				<input type="number" id="contactno" placeholder="+639359250700" minlength="1" required >
-                	<ul class="input-requirements">
-					<li>Must be 12 characters long and starts with +63</li>
-					<li>Only letters numbers and '+' are allowed</li>
-				</ul>
-				
-			</label>
-            <label for="email">
-				<span>Email address</span>
+		<div>
+			<label for="confpass-input">Confirm password:</label><br /> <input
+				type="password" id="confpass-input" value="" class="LV_valid_field" /><br />
+		</div>
 
-				<input type="email" id="email"  minlength="1" required>
+		
 
-				
-			</label>
-            <hr>
-            
-            
-			<label for="username">
-				<span>Username</span>
+        <div >
+            <label for="busi">Business Permit</label><br/>
+			<input type="file" name="pic"  accept="image/*">
+            <input type="submit" value="upload">
+        </div>
+		<div>
+				<label for="agree" ><input type="checkbox" value="agree">
+						I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></label>
+			<br />
+		</div>
 
-				<input type="text" id="username" minlength="3" required>
+		<input type="button" id="submit-input" value="Submit" />
+	</form>
 
-				<ul class="input-requirements">
-					<li>At least 3 characters long</li>
-					<li>Must only contain letters and numbers (no special characters)</li>
-				</ul>
-			</label>
-
-			<label for="password">
-				<span>Password</span>
-
-				<input type="password" id="password" maxlength="100" minlength="8" required>
-
-				<ul class="input-requirements">
-					<li>At least 8 characters long (and less than 100 characters)</li>
-					<li>Contains at least 1 number</li>
-					<li>Contains at least 1 lowercase letter</li>
-					<li>Contains at least 1 uppercase letter</li>
-					<li>Contains a special character (e.g. @ !)</li>
-				</ul>
-			</label>
-
-			<label for="password_repeat">
-				<span>Confirm Password</span>
-				<input type="password" id="password_repeat" maxlength="100" minlength="8" required>
-			</label>
-
-			<br>
-
-			<input type="submit">
-
-		</form>
-	</div>
-
-    <script src="script.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>

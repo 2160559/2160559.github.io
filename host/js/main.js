@@ -48,21 +48,37 @@ $(document).unload( unregister );
 
 var validate = function(){	
     
-	var nick = new LiveValidation('nick-input', { validMessage: "Valid!"});
-	nick.add(Validate.Format, {pattern: /^[a-zA-Z]{7,15}$/});
-	
-	var surname = new LiveValidation('nick-input', { validMessage: "Valid!"});
-	surname.add(Validate.Format, {pattern: /^[a-zA-Z]{7,15}$/});
+	var nick = new LiveValidation('nick-input', { validMessage: ""});
 
-	var confpass = new LiveValidation('confpass-input', { validMessage: "Valid!"});
+	nick.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
+	
+	var surname = new LiveValidation('surname-input', { validMessage: ""});
+	surname.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
+
+	var confpass = new LiveValidation('confpass-input', { validMessage: ""});
 	confpass.add(Validate.Confirmation, { match: 'pass-input' });
 	
-	var specnumber = new LiveValidation('number-input', { validMessage: "Valid!"});
-	specnumber.add(Validate.Numericality, { minimum: 1, maximum: 30, onlyInteger: true });
+	var specnumber = new LiveValidation('number-input', { validMessage: ""});
+	specnumber.add(Validate.Cpno);
 	
-	var email = new LiveValidation('mail-input', { validMessage: "Valid!"});
+	var email = new LiveValidation('mail-input', { validMessage: ""});
 	email.add(Validate.Email);
 	
 	var acceptance = new LiveValidation('accept-input', { validMessage: "OK!"});
 	acceptance.add(Validate.Acceptance);
 };
+var select = document.getElementById("houseno1"); 
+var options = [];
+
+for(var y = 1; y <= 100; y++){
+    options.push(y);
+
+}
+for(var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = el;
+    select.appendChild(el);
+}
+
