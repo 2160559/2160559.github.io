@@ -9,6 +9,13 @@
 
 /* Reset */
 
+#uppics{
+    
+    
+    width:100%;
+    min-height: auto;
+}
+
 input[type=file] {
   font-size: 100px;
   position: absolute;

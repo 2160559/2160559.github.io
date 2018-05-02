@@ -2397,31 +2397,34 @@
 	  border-radius: 1px;
 	  padding: 0 3px;
 	  color: #212931;
-	  
-	  :-webkit-clear-button {
+    }
+	  input[type="date"]::-webkit-clear-button {
 	    font-size: 18px;
 	    height: 30px;
 	    position: relative;
 	    right: 5px;
 	    margin-right: 4px;
 	  }
-	  :-webkit-inner-spin-button {
-	    height: 10px;
-	  }
-	  :-webkit-calendar-picker-indicator {
+        
+	  input[type=date]::-webkit-inner-spin-button,
+      input[type=date]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+      }
+	  
+      input[type=date]::-webkit-calendar-picker-indicator {
 	    font-size: 18px;
-	    
+      }
 	        
-	    :hover {
+      input[type=date]::hover {
 	      background-color: lighten(#2f2f2f,40%);
 	      color: darken(#fff, 10%);
 	      cursor: pointer;
 	    }
-	    :active {
+	    input[type=date]::active {
 	      color: blue;
 	    }
-	  }
-	}
+	  
+	
 
 
 /* Icon */
@@ -2616,7 +2619,7 @@
 				display: inline-block;
 				padding: 0 1rem 0 0;
 				vertical-align: middle;
-			}
+            }
 
 				ul.actions li:last-child {
 					padding-right: 0;
