@@ -30,41 +30,25 @@
 		<div id="main">		
              
 			<section>
-                <div id="map_canvas" style="width:1000px;height:500px;"></div>
-                <input type="text" style="display: none" id="lat">
-                <input type="text" style="display: none" id="lng">
-                <h2>Address Map and Check in/out</h2>
-                <div class="field">
-               
-                </div>
+                
+                <h2>Photos and Description</h2>
 				
 
 				<form method="post" action="#">
-                    
-                    <table style="width:100%">
-                      <tr>
-                        <th >Check in</th>
-                        <th style="padding-right:160px"><input type="time" name="cin"></th> 
-                       
-                      </tr>
-                        <tr>
-                        <th>Check out</th>
-                        <th style="padding-right:160px"><input type="time" name="cout"></th> 
-                       
-                      </tr>
-                        
+                <iframe id="uppics" src="../jQuery-File-Upload-master/jQuery-File-Upload-master/index.html"  seamless="seamless" frameborder="0" >
+                </iframe>
+                       <div class="field">
+                           Tell us about your place
                            
-                        
-                    
-                    </table>
-                     <div class="field">
-			         Check out specifies the time that the guests should leave the place.
+                    <textarea></textarea>
                     </div>
+                  
+				</form>
+                
                     <div class="field">
 		              <button onclick="location.href='listadd.html'" type="button">
                         Next>></button>
                     </div>
-				</form>
 			</section>
 		</div>
 
