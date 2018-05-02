@@ -3142,7 +3142,7 @@
 		cursor: default;
 		text-align: center;
 		z-index: 1;
-		min-height: 100vh;
+		min-height: 90vh;
 	}
 
 		#intro input, #intro select, #intro textarea {
@@ -3463,7 +3463,7 @@
 		background: rgba(255, 255, 255, 0.175);
 		height: 4rem;
 		line-height: 4rem;
-		margin: -4rem auto 0 auto;
+		margin:1rem auto 0 auto;
 		overflow: hidden;
 		padding: 0 2rem 0 0;
 		position: relative;
