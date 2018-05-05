@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Service Provide Registration</title>
+
+    <link rel="stylesheet" href="./css/jquery.mobile-1.3.2.min.css"/>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/validation.css" />
+    <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/livevalidation_standalone.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</head>
+
+<body>
+    <h1>Service Provide Registration</h1>
+
+	<form>
+		<div>
+			<label for="nick-input">First name</label><br />
+            <input type="text" id="nick-input" value=""  class="LV_valid_field" />
+            <br />
+		</div>
+
+		<div>
+			<label for="surname-input">Last name</label><br /> 
+            <input type="text" id="surname-input" value="" class="LV_valid_field" /><br />
+		</div>
+       
+        <div>
+        <label for="gend">Gender:</label>
+            <input type="radio" name="gender" />Male&nbsp;&nbsp;
+                       
+            <input type="radio" name="gender" />Female
+            <br/>
+        Birthdate: <input type="date" name="birthdate" id="date">
+        </div>
+        <hr>
+        <h2>Address </h2>
+        
+        <div>
+        Region:
+        <select name="Region"  onchange="val()" id="Region" >
+        <option>Select Region</option>
+        <option value="CAR"  id="A" class="CAR-provinces">CAR</option>
+            
+        <option value="R1"   class="R1-provinces">
+            Region 1</option>
+        </select>
+
+        <br>
+        Province:
+    <select name="Provinces" id="Provinces" onchange="val2()"  >
+        <option>Select Province </option>
+
+        </select>
+
+        <div class="hideme R1-provinces">
+        <select id="r1-prov"></select>
+        </div>
+        
+        <div class="hideme CAR-provinces">
+        <select id="car-prov">
+       
+        </select>
+        </div>
+        <br>
+        Municipality/City:
+        
+        <select id="city" >
+          <option>Select Municipality/City</option>
+            
+    
+        </select>
+        
+        
+        </div>
+      
+        
+        
+       
+        <div>
+            <label for="barang">Barangay </label>
+            <select name="brgy">
+            <option selected="" value="Bakakeng North">Bakakeng North</option>
+                
+
+            <option value="General Luna, Upper">General Luna, Upper</option>
+            <option value="General Luna, Lower">General Luna, Lower</option>
+            <option value="Gibraltar">Gibraltar</option>
+    
+            </select>
+        
+        
+        </div>
+         <div>
+          <label for="st">Street</label>
+          <input type="text" id="street"  minlength="1" required>
+        </div>
+        <div>
+          <label for="houseno">House number</label>
+          <select id="houseno1">
+                    
+                  
+          </select>
+        </div>
+       
+
+ 
+ 
+        <div>
+			<label for="number-input">Enter phone number</label><br />
+			<input type="text" id="number-input" value="+63" class="LV_valid_field" /><br />
+		</div>
+         
+        <hr>
+        
+		<div>
+			<label for="mail-input">E-mail:</label><br /> 
+            <input type="text"
+				id="mail-input" value="" class="LV_valid_field" /><br />
+		</div>
+		<div>
+			<label for="pass-input">Password:</label><br /> <input type="password"
+				id="pass-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		<div>
+			<label for="confpass-input">Confirm password:</label><br /> <input
+				type="password" id="confpass-input" value="" class="LV_valid_field" /><br />
+		</div>
+
+		
+
+        <div >
+            <label for="busi">Business Permit</label><br/>
+			<input type="file" name="pic"  accept="image/*">
+            <input type="submit" value="upload">
+        </div>
+		<div>
+				<label for="agree" ><input type="checkbox" value="agree">
+						I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a></label>
+			<br />
+		</div>
+
+		<input type="button" id="submit-input" value="Submit" />
+	</form>
+
+	
+</body>
+</html>
