@@ -24,7 +24,7 @@
 </nav>
 <div class="container" style="margin-top: 50px">
 <?php
-require('db.php');
+//require('db.php');
 // If form submitted, insert values into the database.
 if (isset($_REQUEST['username'])){
     print_r($_REQUEST);
@@ -109,9 +109,9 @@ if (isset($_REQUEST['username'])){
                                 <input class="form-control" type="password" name="confirm_password" placeholder="Password" required />
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
+                        <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <input class="btn-primary btn" type="submit" name="submit" value="Register" />
+                                <input class="btn-info btn" type="submit" name="submit" value="Register" />
                             </div>
                         </div>
                     </form>

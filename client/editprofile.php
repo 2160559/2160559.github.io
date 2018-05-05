@@ -62,7 +62,7 @@
                         <div class="form-group row">
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <input class="btn-primary btn" type="submit" name="submit" value="Edit Profile" />
+                                <input class="btn-info btn" type="submit" name="submit" value="Save Changes" />
                             </div>
                         </div>
                     </div>

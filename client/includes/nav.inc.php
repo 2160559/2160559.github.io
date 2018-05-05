@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
     <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
@@ -13,19 +13,19 @@
         </div>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="" style="color:white;">Become a Host</a>
+                <a class="nav-link" href="">Become a Host</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../saved.php" style="color:white;">Saved</a>
+                <a class="nav-link" href="../saved.php">Saved</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../messages.php" style="color:white;">Messages</a>
+                <a class="nav-link" href="../messages.php">Messages</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white;">
                     <img src="profile" alt="">username
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" style="color:white;">
+                <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="../editprofile.php">Edit Profile</a>
                     <a class="dropdown-item" href="../accountsettings.php">Account Settings</a>
                     <div class="dropdown-divider"></div>

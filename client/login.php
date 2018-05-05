@@ -2,8 +2,8 @@
 <html>
 <?php include_once('includes/head.inc.php')?>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light margin-left">
-    <a class="navbar-brand" href="index.php">ABANG</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +24,7 @@
 </nav>
 <div class="container" style="margin-top: 50px">
 <?php
-require('db.php');
+//require('db.php');
 session_start();
 // If form submitted, insert values into the database.
 if (isset($_POST['username'])){
@@ -36,8 +36,8 @@ if (isset($_POST['username'])){
     $password = mysqli_real_escape_string($con,$password);
     //Checking is user existing in the database or not
     echo $query = "SELECT * FROM `users` WHERE username='$username' and password='".md5($password)."'";
-    $result = mysqli_query($con,$query) or die("an error occurred");
-    $rows = mysqli_num_rows($result);
+//    $result = mysqli_query($con,$query) or die("an error occurred");
+   // $rows = mysqli_num_rows($result);
     if($rows==1){
         $_SESSION['username'] = $username;
         // Redirect user to index.php
@@ -69,7 +69,7 @@ if (isset($_POST['username'])){
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
-                                <input type="submit" class="btn btn-primary" value="Login">
+                                <input type="submit" class="btn btn-info" value="Login">
                             </div>
                         </div>
                     </form>
