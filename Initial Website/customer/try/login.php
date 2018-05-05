@@ -2,41 +2,45 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Registration</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <?php
-require('includes/db_connect.inc.php');
+require('db.php');
+session_start();
 // If form submitted, insert values into the database.
-if (isset($_REQUEST['username'])){
+if (isset($_POST['username'])){
     // removes backslashes
     $username = stripslashes($_REQUEST['username']);
     //escapes special characters in a string
     $username = mysqli_real_escape_string($con,$username);
-    $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($con,$email);
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($con,$password);
-    $trn_date = date("Y-m-d H:i:s");
-    $query = "INSERT into `users` (username, password, email, trn_date)
-VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
-    $result = mysqli_query($con,$query);
-    if($result){
+    //Checking is user existing in the database or not
+    $query = "SELECT * FROM `users` WHERE username='$username'
+and password='".md5($password)."'";
+    $result = mysqli_query($con,$query) or die(mysql_error());
+    $rows = mysqli_num_rows($result);
+    if($rows==1){
+        $_SESSION['username'] = $username;
+        // Redirect user to index.php
+        header("Location: index.php");
+    }else{
         echo "<div class='form'>
-<h3>You are registered successfully.</h3>
+<h3>Username/password is incorrect.</h3>
 <br/>Click here to <a href='login.php'>Login</a></div>";
     }
 }else{
     ?>
     <div class="form">
-        <h1>Registration</h1>
-        <form name="registration" action="" method="post">
+        <h1>Log In</h1>
+        <form action="" method="post" name="login">
             <input type="text" name="username" placeholder="Username" required />
-            <input type="email" name="email" placeholder="Email" required />
             <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" name="submit" value="Register" />
+            <input name="submit" type="submit" value="Login" />
         </form>
+        <p>Not registered yet? <a href='registration.php'>Register Here</a></p>
     </div>
 <?php } ?>
 </body>
