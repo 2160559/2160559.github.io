@@ -15,9 +15,8 @@ nav div img {
 	display: block;
 	float: left;
 	margin-top: 1% 5% 1% 1.6%;
-	background-color: lightgray;
 	border: 2px solid white;
-	min-height: 20em;
+	min-height:20em;
 }
 
 #map {
@@ -26,4 +25,8 @@ nav div img {
 	float: right;
 	right: 2%;
 	top: 10.5%;
+}
+
+.card-header > h1 {
+    font-size: 18;
 }
