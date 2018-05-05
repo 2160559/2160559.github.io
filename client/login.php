@@ -38,15 +38,14 @@
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($con, $password);
         //Checking is user existing in the database or not
-        echo $query = "SELECT id, username, f_name, l_name, acc_type, email_add, birthdate, profile_img, phone_number 
-          FROM `users` WHERE email_add='$email' and pass='" . md5($password) . "'";
+        echo $query = "SELECT * FROM `users` WHERE email_add='$email' and pass='" . md5($password) . "'";
         $result = mysqli_query($con, $query) or die("an error occurred");
         $rows = mysqli_num_rows($result);
         $row = mysqli_fetch_row($result);
         $current_user= new User($rows[0], $row[1] ,$row[2],$row[3], $row[4], $row[5], $row[6], $row[7], $row[8]);
 
         if ($rows == 1) {
-            $_SESSION['username'] = $email;
+            $_SESSION['id'] = $email;
             // Redirect user to index.php
             //header("Location: index.php");
         } else {
