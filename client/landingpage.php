@@ -2,8 +2,9 @@
 <html lang="en">
 <?php require_once ('includes/head.inc.php')?>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light margin-left">
-    <a class="navbar-brand" href="index.php">ABANG</a>
+<div class="wrapper"  style="background-image: url(images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,6 +14,9 @@
 
         </div>
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Become a Host</a>
             </li>
@@ -28,17 +32,19 @@
         <div class="col-4"></div>
         <div class="col-4">
             <div class="text-center">
-                <img class="card-img-top" src="images/logo2.png" alt="Logo">
+                <img class="card-img-top" src="images/logo.png" alt="Logo">
                 <div class="card-body">
-                    <h2 class="card-title">Abang</h2>
-                    <p class="card-text">Find Warmth in Baguio</p>
-                    <a href="login.php" class="btn btn-primary">Login</a>
+                    <h2 class="card-text" style="color:white">Find Warmth</h2>
+                    <h3 class="card-text" style="color:white">in Baguio</h3>
+                </div>
+                <div class="card-body">
+                    <a href="login.php" class="btn btn-dark btn-lg btn-block">Login</a>
                 </div>
             </div>
         </div>
-        <div class="col-4"></div>
     </div>
-
 </div>
+</div>
+<?php require_once ('includes/footer.inc.php')?>
 </body>
 </html>

@@ -1,4 +1,6 @@
-
+body {
+    background-color:  #e6ffff !important;
+}
 nav div img {
 	max-height: 1em;
 }
@@ -15,9 +17,9 @@ nav div img {
 	display: block;
 	float: left;
 	margin-top: 1% 5% 1% 1.6%;
-	background-color: lightgray;
 	border: 2px solid white;
-	min-height: 20em;
+	min-height:20em;
+    background-color: #00ced1;
 }
 
 #map {
@@ -26,4 +28,24 @@ nav div img {
 	float: right;
 	right: 2%;
 	top: 10.5%;
+}
+
+.card-header > h1 {
+    
+}
+ul.navbar-nav li.nav-item a.nav-link {
+    color: white !important;
+}
+ul.navbar-nav li.nav-item a.nav-link:hover {
+    color: #00ced1 !important;
+}
+
+footer.bg-dark > p#copyright {
+    color: lightcyan;
+    text-align: center !important;
+}
+
+.card-header {
+background-color: #004d4d !important;
+    color: aliceblue;
 }
