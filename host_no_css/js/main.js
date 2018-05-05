@@ -75,68 +75,54 @@ var validate = function(){
 	var acceptance = new LiveValidation('accept-input', { validMessage: "OK!"});
 	acceptance.add(Validate.Acceptance);
 };
-//var select = document.getElementById("houseno1"); 
-var options2 = [];
 
-for(var y = 1; y <= 100; y++){
-    options2.push(y);
 
-}
-var d="a";
 
-var cp = ["Select Province","Abra", "Benguet", "Kalinga", "Apayao", "Mountain Province","Ifugao" ]; 
-var r1=["Ilocos Norte","Ilocos Sur","La Union","Pangasinan"];
-var select="";
-var citiesBenguet=[    "Atok","Baguio","Bakun","Boko","Bugias","Itogon","Kabayan","Kapangan","Kibungan","La Trinidad","Mankayan","Sablan","Tuba","Tublay"];
-var citiesAbra=["Bangued","Boliney","Bucay"];
-//var city=document.getElementById("city").value;
-var checkProvince="";
-function val() {
-    
-    d=document.getElementById("Region").value;
-   
-    if(d=="CAR"){
-       select  = document.getElementById("car-prov"); 
-        determiner(cp,select); 
-       
-        
+$(document).ready(function() {
+var select2 = document.getElementById("houseno1"); 
+var options2 = []; 
+for(var i=1;i<200;i++)
+    {
+        options2.push(i);
     }
-    else{
- 
-       select = document.getElementById("r1-prov");
-        determiner(r1,select);
-    }
-    
-   
-}
-
-function val2(){
-var selecta1 = document.getElementById("Provinces").value;
-    console.log(selecta1);
-     var myobject = {
-    ValueA : 'Text A',
-    ValueB : 'Text B',
-    ValueC : 'Text C'
-};
-var selecta = document.getElementById("city");
-for(index in myobject) {
-    selecta.options[selecta.options.length] = new Option(myobject[index], index);
-}
-}
-
-
-
-function determiner(a,b)
-{    
-    for(var i = 0; i < a.length; i++) {
-    var opt = a[i];
+for(var i = 0; i < options2.length; i++) {
+    var opt = options2[i];
     var el = document.createElement("option");
     el.textContent = opt;
-    el.value = el;
-    b.appendChild(el);
+    el.value = opt;
+    select2.appendChild(el);
+}
 
-}
+
+  $("#item1").change(function() {
+    var value = $(this).val();
+    $("#item2").html(options[value]);
+  });
+    
+
+  $("#item2").change(function() {
+      var value = $(this).val();
+      $("#item3").html(options1[value]);
+  });
+    
+
+  
+  var options = [
+      "<option>Select Province </option><option value='0'>Abra</option><option value='1'>Apayao</option><option value='2'>Benguet</option><option value='3'>Ifugao</option><option value='4'>Kalinga</option><option value='5'>Mountain Province</option>",
+      "<option value='0'>Ilocos Norte</option><option value='1'>Ilocos Sur</option><option value='2'>La Union</option><option value='3'>Pangasinan</option>"
+  ];
+
+
+  var options1 = [
+  "<option value='0'>Bangued</option><option value='1'>Boliney</option>",
+  "<option value='0'>Calanasan</option><option value='1'>Flora</option>",
+  "<option value='0'>Atok</option><option value='1'>Baguio</option>","<option value='0'>Aguinaldo</option><option value='1'>Banaue</option>"];
+ });
+
+
+
+
     
     
-}
+
 

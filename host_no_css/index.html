@@ -39,62 +39,37 @@
         </div>
         <hr>
         <h2>Address </h2>
-        
-        <div>
-        Region:
-        <select name="Region"  onchange="val()" id="Region" >
-        <option>Select Region</option>
-        <option value="CAR"  id="A" class="CAR-provinces">CAR</option>
-            
-        <option value="R1"   class="R1-provinces">
-            Region 1</option>
-        </select>
-
         <br>
-        Province:
-    <select name="Provinces" id="Provinces" onchange="val2()"  >
-        <option>Select Province </option>
-
+        Region
+        <select id="item1">
+            <option>Select Region</option>
+            <option value="0">CAR</option>
+            <option value="1">Region 1</option>
+                   
         </select>
-
-        <div class="hideme R1-provinces">
-        <select id="r1-prov"></select>
-        </div>
-        
-        <div class="hideme CAR-provinces">
-        <select id="car-prov">
-       
-        </select>
-        </div>
         <br>
-        Municipality/City:
-        
-        <select id="city" >
-          <option>Select Municipality/City</option>
-            
-    
-        </select>
-        
-        
-        </div>
-      
-        
-        
-       
-        <div>
-            <label for="barang">Barangay </label>
-            <select name="brgy">
-            <option selected="" value="Bakakeng North">Bakakeng North</option>
-                
+        Province
+        <select id="item2">
+        <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;</option>
 
-            <option value="General Luna, Upper">General Luna, Upper</option>
-            <option value="General Luna, Lower">General Luna, Lower</option>
-            <option value="Gibraltar">Gibraltar</option>
+    </select>
+        <br>
+      Municipality/City  
+    <select id="item3">
+    <option> Select Municipality/City</option>
+    </select>
+         <br>
+      Barangay
+       <input type="text" id="brgy"  minlength="1" required> 
+   
     
-            </select>
+
+ 
         
         
-        </div>
+    
          <div>
           <label for="st">Street</label>
           <input type="text" id="street"  minlength="1" required>
