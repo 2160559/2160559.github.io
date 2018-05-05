@@ -2,8 +2,8 @@
 <html>
 <?php include_once ('includes/head.inc.php')?>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light margin-left">
-    <a class="navbar-brand" href="index.php">ABANG</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
+    <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
     </button>
