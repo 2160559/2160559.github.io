@@ -32,22 +32,9 @@ include_once('functions.php');
     </div>
 </nav>
 <div class="container p-4">
-    <?php include_once('pagefragments/registration_page.html'); echo get_usernames();?>
+    <?php include_once('pagefragments/registration_page.html')?>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#username').keyup(function () {
-            console.log("asdf");
-                if (jQuery.inArray($('#username').val(), <?php echo get_usernames()?>)) {
-                    $('#usercheck').parent('div').removeClass('has-error').addClass('has-success');
 
-                } else {
-                    $('#usercheck').parent('div').removeClass('has-success').addClass('has-error');
-                }
-                $('#usercheck').html(data.msg);
-        });
-    });
-</script>
 <script>
     validateUsername(<?php get_usernames()?>);
 </script>
