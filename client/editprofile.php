@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php require_once ('includes/head.inc.php')?>
+<?php session_start(); require_once ('includes/head.inc.php')?>
 <body>
 <?php include_once ('includes/nav.inc.php')?>
 <div class="container" style="margin-top: 50px">    
@@ -14,7 +14,7 @@
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Add/Change<br/>Profile Photo</label>
                             <div class="col-md-6">
-                                <p><input type="file" name="file"></p>
+                                <p><input type="file" class="form-control-file" name="file"></p>
                                 <p><input class="btn btn-secondary" type="submit" value="Upload"></p>                           
                             </div>
                         </div>
@@ -71,5 +71,7 @@
         </div>
     </div>
 </div>
+</div>
+    <?php require_once ('includes/footer.inc.php')?>
 </body>
 </html>

@@ -2,18 +2,18 @@ body {
     background-color:  #e6ffff !important;
 }
 nav div img {
-	max-height: 1em;
+    max-height: 1em;
 }
 
 /* Main */
 
 #main.container .row {
-	clear: both;
-	padding: 0px;
-	margin: 0px;
+    clear: both;
+    padding: 0px;
+    margin: 0px;
 }
 
-#main.container .row .mainbox {
+#main .row .mainbox {
 	display: block;
 	float: left;
 	margin-top: 1% 5% 1% 1.6%;
@@ -22,17 +22,27 @@ nav div img {
     background-color: #00ced1;
 }
 
+#main.container .row .mainbox {
+    display: block;
+    float: left;
+    margin-top: 1% 5% 1% 1.6%;
+    border: 2px solid white;
+    min-height:20em;
+    background-color: #00ced1;
+}
+
 #map {
-	position: fixed;
-	min-height: 85%;
-	float: right;
-	right: 2%;
-	top: 10.5%;
+    position: fixed;
+    min-height: 85%;
+    float: right;
+    right: 2%;
+    top: 10.5%;
 }
 
 .card-header > h1 {
-    
+
 }
+
 ul.navbar-nav li.nav-item a.nav-link {
     color: white !important;
 }
@@ -46,6 +56,96 @@ footer.bg-dark > p#copyright {
 }
 
 .card-header {
-background-color: #004d4d !important;
+    background-color: #004d4d !important;
     color: aliceblue;
 }
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+html body {
+    margin-bottom: 60px;
+}
+html footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: 70px;
+}
+
+/* Comment box styles
+-------------------------------------------------- */
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
+
+.detailBox {
+    width:80%;
+    border:1px solid #bbb;
+    margin:2%;
+    background-color: aliceblue;
+}
+.titleBox {
+    background-color: #004d4d;
+    padding:10px;
+}
+.titleBox label{
+  color:#fff;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:5%;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:20em;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10%;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:10%;
+    margin-right:5%;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:100%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:7%;
+}
+
+

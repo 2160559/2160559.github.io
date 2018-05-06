@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: JunJun
- * Date: 05/05/2018
- * Time: 03:13 PM
- */
-
 class User
 {
     private $user_id;
@@ -14,6 +7,7 @@ class User
     private $last_name;
     private $acc_type;
     private $email_add;
+    private $password;
     private $birth_date;
     private $profile_img;
     private $phone_number;
@@ -26,11 +20,13 @@ class User
      * @param $last_name
      * @param $acc_type
      * @param $email_add
+     * @param $password
      * @param $birth_date
      * @param $profile_img
      * @param $phone_number
      */
-    public function __construct($user_id, $username, $first_name, $last_name, $acc_type, $email_add, $birth_date, $profile_img, $phone_number)
+    public function __construct($user_id, $username, $first_name, $last_name, $acc_type,
+                                $email_add, $password, $birth_date, $profile_img, $phone_number)
     {
         $this->user_id = $user_id;
         $this->username = $username;
@@ -38,11 +34,11 @@ class User
         $this->last_name = $last_name;
         $this->acc_type = $acc_type;
         $this->email_add = $email_add;
+        $this->password = $password;
         $this->birth_date = $birth_date;
-        $this->profile_img = "data:image;base64".base64_decode($profile_img);
+        $this->profile_img = "data:image;base64" . base64_decode($profile_img);
         $this->phone_number = $phone_number;
     }
-
     /**
      * @return mixed
      */
@@ -142,6 +138,22 @@ class User
     /**
      * @return mixed
      */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getBirthDate()
     {
         return $this->birth_date;
@@ -186,5 +198,4 @@ class User
     {
         $this->phone_number = $phone_number;
     }
-
 }
