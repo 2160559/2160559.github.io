@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<?php require_once ('includes/head.inc.php')?>
+<?php session_start(); require_once('includes/head.inc.php') ?>
 <body>
-<?php include_once ('includes/nav.inc.php')?>
+<?php include_once('includes/nav.inc.php') ?>
 <!-- Main -->
 <div class="container" style="margin-top: 25px;">
     <div class="container col-md-8" id="main">

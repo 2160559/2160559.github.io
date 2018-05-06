@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<?php require_once ('includes/head.inc.php')?>
+<?php session_start(); require_once ('includes/head.inc.php')?>
 <body>
 <?php include_once ('includes/nav.inc.php')?>
 <div class="container" style="margin-top: 50px">    
@@ -71,5 +71,7 @@
         </div>
     </div>
 </div>
+</div>
+    <?php require_once ('includes/footer.inc.php')?>
 </body>
 </html>
