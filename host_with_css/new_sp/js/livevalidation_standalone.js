@@ -97,7 +97,7 @@ LiveValidation.prototype = {
       // options
       var options = optionsObj || {};
       
-      this.validMessage = options.validMessage || '\u2713';
+      this.validMessage = options.validMessage || '';
       var node = options.insertAfterWhatNode || this.element;
 	  this.insertAfterWhatNode = node.nodeType ? node : document.getElementById(node);
       this.onlyOnBlur =  options.onlyOnBlur || false;
@@ -839,7 +839,7 @@ var Validate = {
     Confirmation: function(value, paramsObj){
       	if(!paramsObj.match) throw new Error("Validate::Confirmation - Error validating confirmation: Id of element to match must be provided!");
     	var paramsObj = paramsObj || {};
-    	var message = paramsObj.failureMessage || "Does not match!";
+    	var message = paramsObj.failureMessage || "Password does not match!";
     	var match = paramsObj.match.nodeName ? paramsObj.match : document.getElementById(paramsObj.match);
     	if(!match) throw new Error("Validate::Confirmation - There is no reference with name of, or element with id of '" + paramsObj.match + "'!");
     	if(value != match.value) Validate.fail(message);
