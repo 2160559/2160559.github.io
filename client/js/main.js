@@ -1,4 +1,3 @@
-
 var backEventListener = null;
 
 var unregister = function() {
@@ -16,9 +15,6 @@ var init = function () {
     if ( backEventListener !== null ) {
         return;
     }
-
-
-
     var backEvent = function(e) {
         if ( e.keyName == "back" ) {
             try {
@@ -40,7 +36,6 @@ var init = function () {
     // add eventListener for tizenhwkey (Back Button)
     document.addEventListener( 'tizenhwkey', backEvent );
     backEventListener = backEvent;
-
     validate();
 };
 

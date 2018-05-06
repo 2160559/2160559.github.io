@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
     <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
-        <div>
+    <div class="collapse navbar-collapse" id="navb">
+        <div class="mr-auto">
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
                 <button class="btn btn-outline-info my-2 my-sm-0" type="button">Search</button>
@@ -33,4 +34,4 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
     </button>
-</nav>
+        </nav>
