@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <title>Service Provide Registration</title>
-
+     
     <link rel="stylesheet" href="./css/validation.css" />
     <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="./js/livevalidation_standalone.js"></script>
@@ -60,15 +60,22 @@
                     <div class="card-body">
                     <form name="host-registration" action="" method="post">
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                            
+                            
+                            <label class="col-md-4 col-form-label text-md-right" for="nick-input" >First Name</label>
+                            
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="f_name" placeholder="First Name" class="LV_valid_field" required>
+                                <input style="width: 100%;" class="LV_valid_field" type="text"  placeholder="First Name" 
+                                       id="nick-input" required >
                             </div>
+                            
+                            
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                            <label class="col-md-4 col-form-label text-md-right">Last Name</label>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" name="l_name" placeholder="Last Name" class="LV_valid_field" required>
+                                <input  style="width: 100%;" type="text" name="l_name" placeholder="Last Name"
+                                       id="surname-input" class="LV_valid_field" required>
                             </div>
                         </div>
                        
@@ -94,7 +101,10 @@
                             <label class="col-md-4 col-form-label text-md-right">Region</label>
                             <div class="col-md-6">    
                                 <select id="item1" class="form-control">
-                                    <option value=""></option>
+                                    
+                                    <option>Select Region</option>
+                                    <option value="0">CAR</option>
+                                    <option value="1">Region 1</option>
                                 </select>
                             </div>
                         </div>
@@ -134,9 +144,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="number-input" class="col-md-4 col-form-label text-md-right">Contact Number</label>
+                            <label for="number-input"  class="col-md-4 col-form-label text-md-right">Contact Number</label>
                             <div class="col-md-4">
-                                <input type="text" id="number-input" value="+63" class="form-control LV_valid_field" />
+                                <input style="width: 100%;" type="text" id="number-input" value="+63" class="LV_valid_field" />
                             </div>
                         </div>
                          
@@ -145,19 +155,19 @@
                         <div class="form-group row">
                             <label for="mail-input" class="col-md-4 col-form-label text-md-right">E-mail</label>
                             <div class="col-md-6">
-                                <input type="text" id="mail-input" value="" class="LV_valid_field form-control" />
+                                <input type="text" style="width: 100%;" id="mail-input" value="" class="LV_valid_field " />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="pass-input" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6"> 
-                                <input type="password" id="pass-input" value="" class="LV_valid_field form-control" />
+                                <input type="password" style="width: 100%;" id="pass-input" value="" class="LV_valid_field" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="confpass-input" class="col-md-4 col-form-label text-md-right">Confirm password</label> 
                             <div class="col-md-6">
-                                <input type="password" id="confpass-input" value="" class="LV_valid_field form-control" />
+                                <input type="password" style="width: 100%;" id="confpass-input" value="" class="LV_valid_field" />
                             </div>
                         </div>
                         <div class="form-group row">
