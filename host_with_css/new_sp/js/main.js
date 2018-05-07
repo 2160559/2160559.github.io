@@ -5,7 +5,29 @@
    });
    
 });
-
+function initialize() {
+    var myLatlng = new google.maps.LatLng(16.38418084926152,120.59318745595851);
+    var myOptions = {
+      zoom: 18,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    
+    var marker = new google.maps.Marker({
+        position: myLatlng, 
+        map: map,
+        draggable:true
+    });
+    google.maps.event.addListener(
+        marker,
+        'drag',
+        function() {
+            document.getElementById('lat').value = marker.position.lat();
+            document.getElementById('lng').value = marker.position.lng();
+        }
+    );
+  }
 var backEventListener = null;
 function yesnoCheck() {
     if (document.getElementById('yesCheck').checked) {
