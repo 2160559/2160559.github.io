@@ -7,6 +7,14 @@
 });
 
 var backEventListener = null;
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'block';
+    }
+    else document.getElementById('ifYes').style.display= 'none';
+
+}
+var backEventListener = null;
 
 var unregister = function() {
     if ( backEventListener !== null ) {

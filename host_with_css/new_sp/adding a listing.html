@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Service Provide Registration</title>
+     
+    <link rel="stylesheet" href="./css/validation.css" />
+    <script type="text/javascript" src="./js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="./js/livevalidation_standalone.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js">
+        
+    </script>
+    <link rel="stylesheet" href="./css/jquery.mobile-1.3.2.min.css"/>
+    <!--link rel="stylesheet" href="./css/styletemp.css" /-->
+</head>
+
+<body class="is-loading">
+        <div class="wrapper"  style="background-image: url(images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand " href="index.php"><img src="images/logo2.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navb">
+                <div class="mr-auto">
+
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" style="color: white">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" style="color: white">Become a Host</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html" style="color: white">Sign Up</a>
+                    </li>
+                </ul>
+            </div>            
+        </nav>
+
+        <div class="row justify-content-center margin-top">
+            <div class="container justify-content-center m-5 pb-5">
+                <div class="card">
+                    <div class="card-header"><h1>Adding a listing</h1></div>
+                    <div class="card-body">
+                    <form name="host-registration" action="" method="post">
+                           <div class="form-group row">
+                            <label class="col-md-4 text-md-right">So is it a house or a room?</label>
+                            <div class="col-md-6">
+                                  <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">  House
+                                &nbsp;&nbsp;
+                                 <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> Room
+                            </div>    
+                            
+                        </div>
+                        <div class="form-group row" id="ifYes" style="display:none">
+                        
+                            <label class="col-md-4 col-form-label text-md-right">Number of Rooms</label>
+						      
+						    <select id="numrooms1" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                             
+                            </select>
+                                  
+                           
+                        </div>
+                      
+                    
+                       
+                      
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Number of beds</label>
+                
+                          <select id="numbeds1" >
+                            <option value="1">1</option>
+
+
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                             
+                         </select>
+                          
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Number of comfort rooms</label>
+                
+                          <select id="numcr1" >
+                            <option value="1">1</option>
+
+
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                             
+                         </select>
+                          
+                        </div>
+                   
+                 
+                
+                         
+                        <hr>
+                        
+                   
+                     
+                 
+                        <div class="form-group row">
+                            <label for="busi" class="col-md-4 col-form-label text-md-right">Business Permit</label>
+                            <div class="col-md-6">
+                                <input type="file" name="pic" accept="image/*">
+                                <input type="submit" value="Upload" class="btn btn-secondary">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                            <label for="agree" >
+                                <input type="checkbox" value="agree" class="form-check-input" />
+                                    I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <input type="button" id="submit-input" value="Next>>" class="btn btn-primary col-md-3" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
