@@ -57,26 +57,58 @@
         <div class="row justify-content-center margin-top">
             <div class="container justify-content-center m-5 pb-5">
                 <div class="card">
-                    <div class="card-header"><h1>Photos and Description</h1></div>
+                    <div class="card-header"><h1>Payments and Rates</h1></div>
                     <div class="card-body">
                     <form name="host-registration" action="" method="post">
          
 
-                        
                         <div class="form-group row">
-                            <div class="embed-responsive embed-responsive-21by9">
-     <iframe id="uppics" src="../jQuery-File-Upload-master/jQuery-File-Upload-master/index.html" class="embed-responsive-item"   seamless="seamless" frameborder="0" >
-                                </iframe>
-</div>
-                             
-                     
-                        </div>
-                        <div class="form-group row">
-                                   Tell us about your place
+                            <label class="col-md-4 text-md-right">So is it per night or per person?</label>
+                            <div class="col-md-6">
+                                  <input type="radio" name="yesno" id="pperson">  Per person
+                                &nbsp;&nbsp;
+                                 <input type="radio" name="yesno" id="ppnight"> Per night
+                                 <input class="form-control" style="width:50%" type="text" id="brgy"  minlength="1" placeholder="enter rate here" required>
+                            </div>    
                            
-                        <textarea  class="form-control" rows="5"></textarea>
-                        </div> 
-                   
+                        </div>
+                         <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Are rates negotiable?</label>
+                            <div class="col-md-6">
+                                  <input type="radio"  name="yesno" id="yesNego">  Yes
+                                &nbsp;&nbsp;
+                                 <input type="radio"  name="yesno" id="noNego"> No
+                            </div>    
+                            
+                        </div>
+                         <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Do you require downpayments?</label>
+                            <div class="col-md-6">
+                                  <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">  Yes
+                                &nbsp;&nbsp;
+                                 <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> No
+                            </div>    
+                            
+                        </div>
+                        <div class="form-group row" id="ifYes" style="display:none">
+                        
+                            <label class="col-md-4 col-form-label text-md-right">Specify downpayment Percentage</label>
+						      
+						    <select id="numpercent" >
+                            <option value="1">10%</option>
+                            <option value="2">20%</option>
+                            <option value="3">30%</option>
+                            <option value="4">40%</option>
+                            <option value="5">50%</option>
+                            <option value="6">60%</option>
+                            <option value="7">70%</option>
+                            <option value="8">80%</option>
+                            </select>
+                                  
+                           
+                        </div>
+                 
+                 
                  
                 
                          
@@ -88,7 +120,7 @@
                         <div class="form-group row">
                                  <div class="col-md-7 col-form-label text-md-right form-check-label">
                                 
-                            <a href="adding a listing4.html" class="btn btn-primary col-md-3">Next>></a>
+                            <a href="adding a listing5.html" class="btn btn-primary col-md-3">Next>></a>
                             </div>
                         </div>
                     </form>
