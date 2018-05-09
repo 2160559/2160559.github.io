@@ -1,317 +1,244 @@
-CREATE DATABASE  IF NOT EXISTS `initial` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `initial`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: initial
--- ------------------------------------------------------
--- Server version	5.7.19
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 09, 2018 at 05:12 AM
+-- Server version: 5.7.19
+-- PHP Version: 7.1.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `initial`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(45) NOT NULL,
+  `lname` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `fname`, `lname`, `username`, `password`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin'),
+(1, 'admin', 'admin', 'admin', 'admin');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `bank_account`
 --
 
 DROP TABLE IF EXISTS `bank_account`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `bank_account` (
+CREATE TABLE IF NOT EXISTS `bank_account` (
   `sv_id` int(11) NOT NULL,
   `account_no` int(11) NOT NULL,
   `bank` varchar(45) NOT NULL,
   `account_type` enum('checing','savings') NOT NULL,
-  KEY `sv_id_idx` (`sv_id`),
-  CONSTRAINT `sv_id` FOREIGN KEY (`sv_id`) REFERENCES `service_provider` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `sv_id_idx` (`sv_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `bank_account`
---
-
-LOCK TABLES `bank_account` WRITE;
-/*!40000 ALTER TABLE `bank_account` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bank_account` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `customers`
 --
 
 DROP TABLE IF EXISTS `customers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customers` (
+CREATE TABLE IF NOT EXISTS `customers` (
   `id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `customers`
---
-
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `house`
 --
 
 DROP TABLE IF EXISTS `house`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `house` (
+CREATE TABLE IF NOT EXISTS `house` (
   `id` int(11) NOT NULL,
   KEY `id_idx` (`id`),
-  KEY `house_id_idx` (`id`),
-  CONSTRAINT `house_id` FOREIGN KEY (`id`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `house_id_idx` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `house`
---
-
-LOCK TABLES `house` WRITE;
-/*!40000 ALTER TABLE `house` DISABLE KEYS */;
-/*!40000 ALTER TABLE `house` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `house_images`
 --
 
 DROP TABLE IF EXISTS `house_images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `house_images` (
+CREATE TABLE IF NOT EXISTS `house_images` (
   `hose_id` int(11) NOT NULL,
   `image` blob NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `house_images`
---
-
-LOCK TABLES `house_images` WRITE;
-/*!40000 ALTER TABLE `house_images` DISABLE KEYS */;
-/*!40000 ALTER TABLE `house_images` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `messages`
 --
 
 DROP TABLE IF EXISTS `messages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `messages` (
+CREATE TABLE IF NOT EXISTS `messages` (
   `customer` int(11) NOT NULL,
   `service_provider` int(11) NOT NULL,
   `time_sent` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`service_provider`,`customer`),
   KEY `customer_idx` (`customer`),
-  KEY `service_provider_idx` (`service_provider`),
-  CONSTRAINT `customer` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `service_provider` FOREIGN KEY (`service_provider`) REFERENCES `service_provider` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `service_provider_idx` (`service_provider`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `messages`
---
-
-LOCK TABLES `messages` WRITE;
-/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pay_reserve`
---
-
-DROP TABLE IF EXISTS `pay_reserve`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pay_reserve` (
-  `payment_id` int(11) NOT NULL,
-  `ressrvation_id` int(11) NOT NULL,
-  `status` enum('cancelled','pending','done') NOT NULL,
-  `customer` int(11) DEFAULT NULL,
-  PRIMARY KEY (`payment_id`,`ressrvation_id`),
-  KEY `reserve_id_idx` (`ressrvation_id`),
-  KEY `customer_id_idx` (`customer`),
-  CONSTRAINT `customer_id` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `pay_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`),
-  CONSTRAINT `reserve_id` FOREIGN KEY (`ressrvation_id`) REFERENCES `reservations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pay_reserve`
---
-
-LOCK TABLES `pay_reserve` WRITE;
-/*!40000 ALTER TABLE `pay_reserve` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pay_reserve` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `payments`
 --
 
 DROP TABLE IF EXISTS `payments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `payments` (
+CREATE TABLE IF NOT EXISTS `payments` (
   `id` int(11) NOT NULL,
   `payment_date` date NOT NULL,
   `reservation_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `reservation_id_idx` (`reservation_id`),
-  CONSTRAINT `reservation_id` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`)
+  KEY `reservation_id_idx` (`reservation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `payments`
+-- Table structure for table `pay_reserve`
 --
 
-LOCK TABLES `payments` WRITE;
-/*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `payments` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `pay_reserve`;
+CREATE TABLE IF NOT EXISTS `pay_reserve` (
+  `payment_id` int(11) NOT NULL,
+  `ressrvation_id` int(11) NOT NULL,
+  `status` enum('cancelled','pending','done') NOT NULL,
+  `customer` int(11) DEFAULT NULL,
+  PRIMARY KEY (`payment_id`,`ressrvation_id`),
+  KEY `reserve_id_idx` (`ressrvation_id`),
+  KEY `customer_id_idx` (`customer`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `reservations`
 --
 
 DROP TABLE IF EXISTS `reservations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `reservations` (
+CREATE TABLE IF NOT EXISTS `reservations` (
   `id` int(11) NOT NULL,
   `date_reserved` date NOT NULL,
   `check-in_date` date NOT NULL,
   `check-out_date` date NOT NULL,
   `payment_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `payment_id_idx` (`payment_id`),
-  CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`)
+  KEY `payment_id_idx` (`payment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `reservations`
---
-
-LOCK TABLES `reservations` WRITE;
-/*!40000 ALTER TABLE `reservations` DISABLE KEYS */;
-/*!40000 ALTER TABLE `reservations` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `room`
 --
 
 DROP TABLE IF EXISTS `room`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `room` (
+CREATE TABLE IF NOT EXISTS `room` (
   `id` int(11) NOT NULL,
   `area` int(11) NOT NULL,
   `no_beds` int(11) NOT NULL,
   `bed_size` int(11) NOT NULL,
   `house` int(11) NOT NULL,
   KEY `room_id_idx` (`id`),
-  KEY `hose-id_idx` (`house`),
-  CONSTRAINT `hose-id` FOREIGN KEY (`house`) REFERENCES `house` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `room-id` FOREIGN KEY (`id`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `hose-id_idx` (`house`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `room`
---
-
-LOCK TABLES `room` WRITE;
-/*!40000 ALTER TABLE `room` DISABLE KEYS */;
-/*!40000 ALTER TABLE `room` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `saves`
 --
 
 DROP TABLE IF EXISTS `saves`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `saves` (
+CREATE TABLE IF NOT EXISTS `saves` (
   `customer` int(11) NOT NULL,
   `transient` int(11) NOT NULL,
   PRIMARY KEY (`customer`,`transient`),
-  KEY `transient_idx` (`transient`),
-  CONSTRAINT `custome_id` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `transient_id` FOREIGN KEY (`transient`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `transient_idx` (`transient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `saves`
---
-
-LOCK TABLES `saves` WRITE;
-/*!40000 ALTER TABLE `saves` DISABLE KEYS */;
-/*!40000 ALTER TABLE `saves` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `service_provider`
 --
 
 DROP TABLE IF EXISTS `service_provider`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `service_provider` (
+CREATE TABLE IF NOT EXISTS `service_provider` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(45) NOT NULL,
   `permit` blob NOT NULL,
   `gov_id` blob NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `service_provider`
+-- Table structure for table `superadmin`
 --
 
-LOCK TABLES `service_provider` WRITE;
-/*!40000 ALTER TABLE `service_provider` DISABLE KEYS */;
-/*!40000 ALTER TABLE `service_provider` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `superadmin`;
+CREATE TABLE IF NOT EXISTS `superadmin` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(45) NOT NULL,
+  `lname` varchar(45) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `password` varchar(45) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `superadmin`
+--
+
+INSERT INTO `superadmin` (`id`, `fname`, `lname`, `username`, `password`) VALUES
+(1, 'karen', 'titiwa', 'superadmin', 'superadmin'),
+(1, 'karen', 'titiwa', 'superadmin', 'superadmin');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `transient`
 --
 
 DROP TABLE IF EXISTS `transient`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `transient` (
+CREATE TABLE IF NOT EXISTS `transient` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(45) NOT NULL,
   `type` enum('room','house') NOT NULL,
@@ -319,27 +246,17 @@ CREATE TABLE `transient` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `transient`
---
-
-LOCK TABLES `transient` WRITE;
-/*!40000 ALTER TABLE `transient` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transient` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
   `f_name` varchar(45) NOT NULL,
   `l_name` varchar(45) NOT NULL,
   `acc_type` enum('superadmin','admin','provider','customer') NOT NULL,
@@ -347,31 +264,104 @@ CREATE TABLE `users` (
   `pass` varchar(45) NOT NULL,
   `birthdate` date DEFAULT NULL,
   `profile_img` blob,
-  `phone_number` varchar(45) NOT NULL,
+  `phone_number` varchar(13) DEFAULT NULL,
+  `status` enum('approved','pending') NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `email_add_UNIQUE` (`email_add`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (6,'Gaspar','Gaspar Jr.','Monoten','customer','gmonoten25@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99','1998-08-25',NULL,'09453513902'),(23,'gaspa','gas','mon','customer','gas@mail.com','5f4dcc3b5aa765d61d8327deb882cf99','2018-05-06',NULL,'234567876543');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`id`, `username`, `f_name`, `l_name`, `acc_type`, `email_add`, `pass`, `birthdate`, `profile_img`, `phone_number`, `status`) VALUES
+(1, 'princess', 'Princess', 'Dacapias', 'provider', 'ces@gmail.com', 'princess', '1998-05-09', NULL, '+639192544271', 'approved'),
+(2, 'dominic', 'Dominic', 'Gonzaga', 'provider', 'nic@gmail.com', 'nic', '1998-03-22', NULL, '+639192544275', 'approved'),
+(3, 'gaspar', 'Gaspar', 'Monoten', 'customer', 'gaspar@gmail.com', 'gaspar', '1997-05-10', NULL, '+639192544278', 'approved'),
+(4, 'rafa', 'Rapha', 'Meija', 'customer', 'rafa@gmail.com', 'rafa', '1997-05-23', NULL, '+639192544279', 'approved'),
+(5, 'karen', 'Karen', 'Titiwa', 'superadmin', 'karen@gmail.com', 'karen', '1999-09-08', NULL, '+639123544270', 'approved'),
+(7, 'ic', 'Lawrence Christian', 'Pagalanan', 'provider', 'ic@gmail.com', 'ic', '1997-02-15', NULL, '+639192544274', 'approved'),
+(8, 'abi', 'Abigail', 'Rubrico', 'provider', 'abi@gmail.com', 'abi', '1998-03-09', NULL, '+639192464277', 'approved'),
+(10, 'admin', 'Admin', 'Admin', 'admin', 'admin@gmail.com', 'admin', '1987-05-12', NULL, '+639192454270', 'approved'),
+(11, 'superadmin', 'Super', 'Admin', 'superadmin', 'superadmin@gmail.com', 'superadmin', '1987-05-12', NULL, '+639192664274', 'approved'),
+(12, 'provider', 'Mr', 'Provider', 'provider', 'provider@gmail.com', 'provider', '1987-05-12', NULL, '+639192452276', 'approved'),
+(14, 'ella', 'Ella', 'Magdalena', 'provider', 'ella@gmail.com', 'ella', '1987-05-12', NULL, '+639192544273', 'pending'),
+(15, 'coco', 'Coco', 'Martin', 'provider', 'coco@gmail.com', 'coco', '1978-12-13', NULL, '+639192544273', 'pending'),
+(16, 'maria', 'Maria', 'Concepcion', 'customer', 'maria@hotmail.com', 'maria', '1982-05-07', NULL, '+639192544273', 'pending'),
+(17, 'maribel', 'Maan', 'Uake', 'customer', 'maribel@yahoo.com', 'maribel', '1990-12-09', NULL, '+639192544273', 'approved'),
+(18, 'antonia', 'Antonia', 'Laone', 'customer', 'nina@yahoo.com', 'antonia', '1982-05-07', NULL, '+639192534273', 'approved'),
+(20, 'zac', 'Ana', 'Tilo', 'customer', 'zac@hotmail.com', 'zac', '1982-05-07', NULL, '+639192567273', 'approved'),
+(21, 'cecil', 'Camil', 'Merceded', 'provider', 'cecil@hotmail.com', 'cecil', '1998-03-09', NULL, '+639192544273', 'pending'),
+(23, 'ryan', 'Ryan', 'Bang', 'customer', 'ryan@gmail.com', 'ryan', '1990-12-09', NULL, '+639192544273', 'pending'),
+(25, 'dan', 'Dan', 'Sebastian', 'provider', 'dan@dslu.edu.ph', 'dan', '1990-12-09', NULL, '+639192544273', 'pending'),
+(39, 'jim', 'Jim', 'Boy', 'admin', 'boy@yahoo.com', 'jim', NULL, NULL, '09232544273', 'approved'),
+(40, 'jim', 'Jim', 'Boy', 'admin', 'boy@yahoo.com', 'jim', NULL, NULL, '09232544273', 'approved'),
+(41, 'jim', 'Jim', 'Boy', 'admin', 'boy@yahoo.com', 'jim', NULL, NULL, '09232544273', 'approved');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bank_account`
+--
+ALTER TABLE `bank_account`
+  ADD CONSTRAINT `sv_id` FOREIGN KEY (`sv_id`) REFERENCES `service_provider` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `customers`
+--
+ALTER TABLE `customers`
+  ADD CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `house`
+--
+ALTER TABLE `house`
+  ADD CONSTRAINT `house_id` FOREIGN KEY (`id`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `customer` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `service_provider` FOREIGN KEY (`service_provider`) REFERENCES `service_provider` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `reservation_id` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`);
+
+--
+-- Constraints for table `pay_reserve`
+--
+ALTER TABLE `pay_reserve`
+  ADD CONSTRAINT `customer_id` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pay_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`),
+  ADD CONSTRAINT `reserve_id` FOREIGN KEY (`ressrvation_id`) REFERENCES `reservations` (`id`);
+
+--
+-- Constraints for table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`);
+
+--
+-- Constraints for table `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `hose-id` FOREIGN KEY (`house`) REFERENCES `house` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `room-id` FOREIGN KEY (`id`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `saves`
+--
+ALTER TABLE `saves`
+  ADD CONSTRAINT `custome_id` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `transient_id` FOREIGN KEY (`transient`) REFERENCES `transient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-05-06 11:32:18
