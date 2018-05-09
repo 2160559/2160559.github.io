@@ -32,7 +32,7 @@ include_once('functions.php');
     </div>
 </nav>
 <div class="container p-4">
-    <?php include_once('pagefragments/registration_page.html'); echo get_usernames();?>
+    <?php include_once('pagefragments/registration_page.html'); get_usernames();?>
 </div>
 <script>
     $(document).ready(function () {

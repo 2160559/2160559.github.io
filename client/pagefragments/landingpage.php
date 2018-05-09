@@ -5,7 +5,7 @@
 <div style="background: url(images/EagleNewsPh.jpg) no-repeat;
 background-size:cover;">
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
+        <a class="navbar-brand " href="index.php"><img src="../images/logo2.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
             <span class="navbar-toggler-icon"></span>
         </button>

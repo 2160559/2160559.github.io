@@ -10,20 +10,34 @@
         </div>
       </div>
       <div class ="row">      
-        <div class="col-md-6 col-sm-12 col-md-6 btn-grp" >
           <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            
+            <div class="btn-grp" role="group" aria-label="Second group">
+              <div class="btn-group-toggle" data-toggle="buttons">
+                <input class="btn btn-outline-info active btn-lg btn-block" type="submit" name="submit" value="View Later">
+              </div>
+            </div>
+            
+            <div class="btn-grp" role="group" aria-label="Third group">
+              <input class="btn-dark btn btn-lg btn-block" type="submit" name="submit" value="Check Availability" />
+            </div>
+            
+            <div class="btn-grp" role="group" aria-label="Fourth group">
+              <input class="btn-dark btn btn-lg btn-block" type="submit" name="submit" value="Book Now" />
+            </div>
+                        
             <div class="btn-grp" role="group" aria-label="First group">
               <input class="btn-dark btn btn-lg btn-block" type="submit" name="submit" value="View Photos" />
             </div>
-
-            <div class="btn-grp" role="group" aria-label="Second group">
-              <div class="btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-outline-dark active btn-lg btn-block"><input type="checkbox" name="" value="save" checked autocomplete="off" >Saved</label>
-              </div>
-            </div>
+            
           </div>
         </div>
-        <div class="col-sm-12 col-md-6 mainbox">
+  
+      <br>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1>Transient Name</h1> 
+          <p>Short Desc..</p> 
         </div>
       </div>
       <div class="row">
@@ -96,9 +110,6 @@
               </div>
               <div id="col5" class="collapse" data-parent="#accordion">
                 <div class="card-body actionBox">
-
-
-
                   <ul class="commentList">
                     <li>
                       <div class="commenterImage">
@@ -125,7 +136,6 @@
                       </div>
                     </li>
                   </ul>
-
                   <form class="form-inline" role="form">
                     <div class="form-group">
                       <textarea class="form-control" placeholder="Write your comments here..." rows="4" cols="30"></textarea>
@@ -135,8 +145,6 @@
                     </div>
                   </form>
                 </div>
-
-
               </div>
             </div>
 

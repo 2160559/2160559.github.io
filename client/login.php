@@ -46,7 +46,7 @@ include_once('includes/db.inc.php');
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($con, $password);
         //Checking is user existing in the database or not
-        $query = "SELECT * FROM `users` WHERE email_add='$email' and pass='" . md5($password) . "'";
+        $query = "SELECT * FROM `users` WHERE email_add='$email' and pass=' $password '";
         $result = mysqli_query($con, $query) or die("an error occurred");
         $rows = mysqli_num_rows($result);
         $row = mysqli_fetch_row($result);
