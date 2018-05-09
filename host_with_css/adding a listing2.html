@@ -41,14 +41,14 @@
 
                 </div>
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html" style="color: white">Login</a>
+                  <li class="nav-item">
+                        <a class="nav-link" href="yourlistings.html" style="color: white">Listings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html" style="color: white">Become a Host</a>
+                        <a class="nav-link" href="reservations.html" style="color: white">Reservations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="signup.html" style="color: white">Sign Up</a>
+                        <a class="nav-link" href="" style="color: white">Sign out</a>
                     </li>
                 </ul>
             </div>            
@@ -57,58 +57,37 @@
         <div class="row justify-content-center margin-top">
             <div class="container justify-content-center m-5 pb-5">
                 <div class="card">
-                    <div class="card-header"><h1>Payments and Rates</h1></div>
+                    <div class="card-header"><h1>Address and Check in/out</h1></div>
                     <div class="card-body">
                     <form name="host-registration" action="" method="post">
-         
+                 
+                      
+                      <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;"></div>
+                       
+                        <input type="text" style="display: none" id="lat">
+                <input type="text" style="display: none" id="lng">
+                   
 
                         <div class="form-group row">
-                            <label class="col-md-4 text-md-right">So is it per night or per person?</label>
-                            <div class="col-md-6">
-                                  <input type="radio" name="yesno1" id="pperson">  Per person
-                                &nbsp;&nbsp;
-                                 <input type="radio" name="yesno1" id="ppnight"> Per night
-                                 <input class="form-control" style="width:50%" type="text" id="brgy"  minlength="1" placeholder="enter rate here" required>
-                            </div>    
+                              <table style="width:100%">
+                              <tr>
+                                <th >Check in</th>
+                                <th style="padding-right:160px"><input type="time" name="cin"></th> 
+
+                              </tr>
+                                <tr>
+                                <th>Check out</th>
+                                <th style="padding-right:160px"><input type="time" name="cout"></th> 
+
+                              </tr>
+
                            
-                        </div>
-                         <div class="form-group row">
-                            <label class="col-md-4 text-md-right">Are rates negotiable?</label>
-                            <div class="col-md-6">
-                                  <input type="radio"  name="yesnoa" id="yesNego">  Yes
-                                &nbsp;&nbsp;
-                                 <input type="radio"  name="yesnoa" id="noNego"> No
-                            </div>    
-                            
-                        </div>
-                         <div class="form-group row">
-                            <label class="col-md-4 text-md-right">Do you require downpayments?</label>
-                            <div class="col-md-6">
-                                  <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">  Yes
-                                &nbsp;&nbsp;
-                                 <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> No
-                            </div>    
-                            
-                        </div>
-                        <div class="form-group row" id="ifYes" style="display:none">
                         
-                            <label class="col-md-4 col-form-label text-md-right">Specify downpayment Percentage</label>
-						      
-						    <select id="numpercent" >
-                            <option value="1">10%</option>
-                            <option value="2">20%</option>
-                            <option value="3">30%</option>
-                            <option value="4">40%</option>
-                            <option value="5">50%</option>
-                            <option value="6">60%</option>
-                            <option value="7">70%</option>
-                            <option value="8">80%</option>
-                            </select>
-                                  
-                           
+                    
+                            </table>
+                             Check out specifies the time that the guests should leave the place.
                         </div>
-                 
-                 
+                   
                  
                 
                          
@@ -120,7 +99,7 @@
                         <div class="form-group row">
                                  <div class="col-md-7 col-form-label text-md-right form-check-label">
                                 
-                            <a href="adding a listing5.html" class="btn btn-primary col-md-3">Next>></a>
+                            <a href="adding a listing3.html" class="btn btn-primary col-md-3">Next>></a>
                             </div>
                         </div>
                     </form>
