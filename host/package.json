@@ -1,0 +1,18 @@
+{
+  "name": "service_provider",
+  "version": "1.0.0",
+  "description": "provides all services for transient owners",
+  "main": "index.js",
+  "scripts": {
+    "test": "hosting"
+  },
+  "author": "9325b_group1",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.6.4"
+  }
+}
