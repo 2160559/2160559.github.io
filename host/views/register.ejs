@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <% include snips/reg-header %>
+</head>
+
+<body class="is-loading">
+<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+    <% include snips/nav %>
+    <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1><%= title %></h1>
+                </div>
+                <div class="card-body">
+                    <form name="host-registration" action="" method="post">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right" for="nick-input">First Name</label>
+                            <div class="col-md-6">
+                                <input style="width: 100%;" class="LV_valid_field" type="text" placeholder="First Name" id="nick-input" name="fname" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Last Name</label>
+                            <div class="col-md-6">
+                                <input style="width: 100%;" class="LV_valid_field" type="text" placeholder="Last Name" id="surname-input" name="lname" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Gender</label>
+                            <div class="col-md-6">
+                                <input type="radio" name="gender" /> Male &nbsp;&nbsp;
+                                <input type="radio" name="gender" /> Female
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Birthdate</label>
+                            <div class="col-md-3">
+                                <input class="form-control" type="date" name="birthdate" style="text-transform: uppercase;" required>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3 class="col-md-4">Address </h3>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Region</label>
+                            <div class="col-md-6">
+                                <select id="item1" class="form-control">
+                                <option>Select Region</option>
+                                <option value="0">CAR</option>
+                                <option value="1">Region 1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Province</label>
+                            <div class="col-md-6">
+                                <select id="item2" class="form-control">
+                                <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right"> Municipality/City</label>
+                            <div class="col-md-6">
+                                <select id="item3" class="form-control">
+                                <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Barangay</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="brgy" minlength="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Street</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="street" minlength="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">House number</label>
+                            <div class="col-md-2">
+                                <select id="houseno1" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="number-input" class="col-md-4 col-form-label text-md-right">Contact Number</label>
+                            <div class="col-md-4">
+                                <input style="width: 100%;" type="text" id="number-input" value="+63" class="LV_valid_field" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label for="mail-input" class="col-md-4 col-form-label text-md-right">E-mail</label>
+                            <div class="col-md-6">
+                                <input type="text" style="width: 100%;" id="mail-input" value="" class="LV_valid_field " />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pass-input" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" style="width: 100%;" id="pass-input" value="" class="LV_valid_field" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="confpass-input" class="col-md-4 col-form-label text-md-right">Confirm password</label>
+                            <div class="col-md-6">
+                                <input type="password" style="width: 100%;" id="confpass-input" value="" class="LV_valid_field" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="busi" class="col-md-4 col-form-label text-md-right">Business Permit</label>
+                            <div class="col-md-6">
+                                <input type="file" name="pic" accept="image/*">
+                                <input type="submit" value="Upload" class="btn btn-secondary">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <label for="agree">
+                                <input type="checkbox" value="agree" class="form-check-input" />
+                                    I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <input type="submit" id="submit-input" value="Submit" class="btn btn-primary col-md-3" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

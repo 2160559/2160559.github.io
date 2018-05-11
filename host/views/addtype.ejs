@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <% include snips/reg-header %>
+</head>
+
+<body class="is-loading" onload="initialize()">
+<div class="wrapper" style="background-image: url(../images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+    <% include snips/log-nav %>
+    <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1><%= title %></h1>
+                </div>
+                <div class="card-body">
+                    <form name="host-registration" action="" method="post">
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">So is it a house or a room?</label>
+                            <div class="col-md-6">
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> House &nbsp;&nbsp;
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> Room
+                            </div>
+                        </div>
+                        <div class="form-group row" id="ifYes" style="display:none">
+                            <label class="col-md-4 col-form-label text-md-right">Number of Rooms</label>
+                            <select id="numrooms1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Number of beds</label>
+                            <select id="numbeds1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Number of comfort rooms</label>
+                            <select id="numcr1">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <label for="busi" class="col-md-4 col-form-label text-md-right">Business Permit</label>
+                            <div class="col-md-6">
+                                <input type="file" name="pic" accept="image/*">
+                                <input type="submit" value="Upload" class="btn btn-secondary">
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;"></div>
+                        <input type="text" style="display: none" id="lat">
+                        <input type="text" style="display: none" id="lng">
+                        <div class="form-group row">
+                            <table style="width:100%">
+                                <tr>
+                                    <th>Check in</th>
+                                    <th style="padding-right:160px"><input type="time" name="cin"></th>
+                                </tr>
+                                <tr>
+                                    <th>Check out</th>
+                                    <th style="padding-right:160px"><input type="time" name="cout"></th>
+                                </tr>
+                            </table>
+                            Check out specifies the time that the guests should leave the place.
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="embed-responsive embed-responsive-21by9">
+                                <iframe id="uppics" src="/jq-upload" class="embed-responsive-item" seamless="seamless" frameborder="0" >
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            Tell us about your place!
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div> 
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">So is it per night or per person?</label>
+                            <div class="col-md-6">
+                                <input type="radio" name="yesno1" id="pperson">  Per person
+                                    &nbsp;&nbsp;
+                                <input type="radio" name="yesno1" id="ppnight"> Per night
+                                <input class="form-control" style="width:50%" type="text" id="brgy"  minlength="1" placeholder="enter rate here" required>
+                            </div>    
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Are rates negotiable?</label>
+                            <div class="col-md-6">
+                                <input type="radio"  name="yesnoa" id="yesNego"> Yes
+                                &nbsp;&nbsp;
+                                <input type="radio"  name="yesnoa" id="noNego"> No
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Do you require downpayments?</label>
+                            <div class="col-md-6">
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">  Yes
+                                &nbsp;&nbsp;
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> No
+                            </div>
+                        </div>
+                        <div class="form-group row" id="ifYes" style="display:none">
+                            <label class="col-md-4 col-form-label text-md-right">Specify downpayment Percentage</label>
+						    <select id="numpercent" >
+                                <option value="1">10%</option>
+                                <option value="2">20%</option>
+                                <option value="3">30%</option>
+                                <option value="4">40%</option>
+                                <option value="5">50%</option>
+                                <option value="6">60%</option>
+                                <option value="7">70%</option>
+                                <option value="8">80%</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <label for="agree">
+                                    <input type="checkbox" value="agree" class="form-check-input" />
+                                    I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> </label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <input type="submit" value="Next" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
