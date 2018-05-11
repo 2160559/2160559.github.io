@@ -1,129 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <?php require_once ('includes/head.inc.php')?>
-  <body>
-    <?php include_once ('includes/nav.inc.php')?>
-    <!-- Main -->
-    <div class="row my-2">    
-            <div class="tab-content py-4">
-                <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">User name</h5>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Name</label>
-                                <div class="col-lg-9">
-                                    <span>{{ Auth::user()->name }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Email</label>
-                                <div class="col-lg-9">
-                                    <span>{{ Auth::user()->email }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Username</label>
-                                <div class="col-lg-9">
-                                    <span>{{ Auth::user()->name }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="quiz">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Quiz</th>
-                            <th>Score</th>
-                            <th>Number of Items</th>
-                            <th>Percentage</th>
-                            <th>Date Taken</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tab-pane" id="edit">
-                    <form role="form">
-                        @csrf
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Name</label>
-                            <div class="col-lg-9">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                       name="name" value="{{ Auth::user()->name }}" required autofocus>
+<?php session_start();
+require_once('includes/head.inc.php') ?>
+<body>
+<?php
+include_once('includes/nav.inc.php');
+include_once('functions.php');
+include_once('User.php');
+include_once('getUser.php');
+include_once('includes/db.inc.php');
+?>
+<div class="container" >
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                                @endif
+    <?php
+    if (isset($_REQUEST['username'])) {
+        $current_user->setUsername($_REQUEST['username']);
+        $current_user->setFirstName($_REQUEST['f_name']);
+        $current_user->setLastName($_REQUEST['l_name']);
+        $current_user->setBirthDate($_REQUEST['birthdate']);
+        $current_user->setPhoneNumber($_REQUEST['phone']);
+        $query = "UPDATE `users` SET `username`='" . $current_user->getUsername() . "',`f_name`='" . $current_user->getFirstName() . "',
+      `l_name`='" . $current_user->getLastName() . "',`birthdate`='" . $current_user->getBirthDate() . "',
+      `phone_number`='" . $current_user->getPhoneNumber() . "' WHERE `id` = '" . $current_user->getUserId() . "'";
+        $result = mysqli_query($con, $query) or die("an error occurred");
+    } ?>
+    <div class="row m-4 pb-5 justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><h1>Edit Profile</h1></div>
+                <div class="card-body">
+
+                    <form action="uploadfile.php" method="POST" enctype="multipart/form-data" target="_blank">
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Add/Change<br/>Profile Photo</label>
+                            <div class="col-md-6">
+                                <p><input type="file" name="file"></p>
+                                <input class="btn btn-secondary btn-sm" type="submit" value="Upload">
+                                <input class="btn btn-outline-danger btn-sm" type="submit" name="submit" value="Remove Photo"/>
                             </div>
                         </div>
+                    </form>
+
+                    <form name="registration" action="" method="post">
+
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                            <div class="col-lg-9">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                       name="email" value="{{ Auth::user()->email }}"
+                            <label class="col-md-4 col-form-label text-md-right">Username</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="username"
+                                       value="<?php echo $current_user->getUsername() ?>"
                                        required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                                @endif
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="{{ Auth::user()->name }}">
+                            <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="f_name" value="<?php
+                                echo $current_user->getFirstName() ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input id="password" type="password"
-                                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                                       placeholder="Password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                                @endif
+                            <label class="col-md-4 col-form-label text-md-right">Last Name</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" name="l_name" value="<?php
+                                echo $current_user->getLastName() ?>" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                            <div class="col-lg-9">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                                       placeholder="Confirm Password" required>
+                            <label class="col-md-4 col-form-label text-md-right">Birthdate</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="date" name="birthdate" value="<?php
+                                echo $current_user->getBirthDate() ?>" required>
+                                <p><input type="checkbox" name="" value="hide"> Hide Birthday</p>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
+                            <label class="col-md-4 col-form-label text-md-right">Phone Number</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="tel" name="phone" value="<?php echo
+                                $current_user->getPhoneNumber() ?>" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <input class="btn-primary btn" type="submit" name="submit"  value="Save Changes"/>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 order-lg-1 text-center">
-            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-            <h6 class="mt-2">Upload a different photo</h6>
-            <label class="custom-file">
-                <input type="file" id="file" class="custom-file-input">
-                <span class="btn">Choose file</span>
-            </label>
-        </div>
-<?php include_once ('includes/footer.inc.php')?>
+    </div>
+</div>
+    <?php require_once ('includes/footer.inc.php')?>
 </body>
 </html>
