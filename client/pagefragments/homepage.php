@@ -19,11 +19,11 @@
             </section>
         </div>
       <div class="col-12 col-md-6 mb-4 col-lg-4 filterarea">
-            <div class="profile-usertitle-name">Price Range</div>
+            <div class="profile-usertitle-name">Number of Guests</div>
             <section class="range-slider">
               <span class="rangeValues  profile-usertitle-username"></span>
-              <input value="500" min="500" max="50000" step="500" type="range">
-              <input value="50000" min="500" max="50000" step="500" type="range">
+              <input value="1" min="1" max="30" step="1" type="range">
+              <input value="30" min="1" max="30" step="1" type="range">
             </section>
         </div>
         <div class="col-12 col-md-6 mb-4 col-lg-4 filterarea">
@@ -99,7 +99,8 @@
   if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
   
   var displayElement = parent.getElementsByClassName("rangeValues")[0];
-      displayElement.innerHTML = "$ " + slide1 + "k - $" + slide2 + "k";
+      displayElement.innerHTML =  slide1 + " - " + slide2 ;
+
 }
 
 window.onload = function(){
@@ -116,6 +117,7 @@ window.onload = function(){
         }
       }
 }</script>
+  
 <?php include_once ('includes/footer.inc.php')?>
 </body>
 </html>
