@@ -19,11 +19,11 @@
             </div>
             
             <div class="btn-grp" role="group" aria-label="Third group">
-              <input class="btn-dark btn btn-lg btn-block" type="submit" name="submit" value="Check Availability" />
+              <a class="btn-dark btn btn-lg btn-block" href="checkavail.php" name="submit">Check Availability</a>
             </div>
             
             <div class="btn-grp" role="group" aria-label="Fourth group">
-              <input class="btn-dark btn btn-lg btn-block" type="submit" name="submit" value="Book Now" />
+              <a class="btn-dark btn btn-lg btn-block" href="reservation.php" name="submit">Book Now</a>
             </div>
                         
             <div class="btn-grp" role="group" aria-label="First group">

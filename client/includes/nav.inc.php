@@ -20,7 +20,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style="color:white;">
                     <img src="profile" alt="">
-                    <?php echo $_SESSION['user'][1]?>
+                    
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="../editprofile.php">Edit Profile</a>

@@ -93,7 +93,6 @@ include_once('includes/db.inc.php');
         </div>
     </div>
 </div>
-</div>
     <?php require_once ('includes/footer.inc.php')?>
 </body>
 </html>
