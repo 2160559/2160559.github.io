@@ -102,13 +102,26 @@ var validate = function(){
 	var email = new LiveValidation('mail-input', { validMessage: ""});
 	email.add(Validate.Email);
 	
-	
+	var acceptance = new LiveValidation('accept-input', { validMessage: "OK!"});
+	acceptance.add(Validate.Acceptance);
 };
 
 
 
 $(document).ready(function() {
-
+var select2 = document.getElementById("houseno1"); 
+var options2 = []; 
+for(var i=1;i<200;i++)
+    {
+        options2.push(i);
+    }
+for(var i = 0; i < options2.length; i++) {
+    var opt = options2[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    select2.appendChild(el);
+}
 
 
   $("#item1").change(function() {

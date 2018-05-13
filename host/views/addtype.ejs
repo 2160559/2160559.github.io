@@ -67,6 +67,7 @@
                         <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;"></div>
                         <input type="text" style="display: none" id="lat">
                         <input type="text" style="display: none" id="lng">
+                      
                         <div class="form-group row">
                             <table style="width:100%">
                                 <tr>
@@ -83,7 +84,10 @@
                         <hr>
                         <div class="form-group row">
                             <div class="embed-responsive embed-responsive-21by9">
-                                <iframe id="uppics" src="/jq-upload" class="embed-responsive-item" seamless="seamless" frameborder="0" >
+                                    <iframe id="uppics" src="jQuery-File-Upload-master/jQuery-File-Upload-master/index.html" class="embed-responsive-item"   seamless="seamless" frameborder="0" >
+                                    
+                                    
+                                    
                                 </iframe>
                             </div>
                         </div>
@@ -109,27 +113,10 @@
                                 <input type="radio"  name="yesnoa" id="noNego"> No
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-md-4 text-md-right">Do you require downpayments?</label>
-                            <div class="col-md-6">
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck">  Yes
-                                &nbsp;&nbsp;
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> No
-                            </div>
-                        </div>
-                        <div class="form-group row" id="ifYes" style="display:none">
-                            <label class="col-md-4 col-form-label text-md-right">Specify downpayment Percentage</label>
-						    <select id="numpercent" >
-                                <option value="1">10%</option>
-                                <option value="2">20%</option>
-                                <option value="3">30%</option>
-                                <option value="4">40%</option>
-                                <option value="5">50%</option>
-                                <option value="6">60%</option>
-                                <option value="7">70%</option>
-                                <option value="8">80%</option>
-                            </select>
-                        </div>
+                        
+                        
+                        
+                        
                         <hr>
                         <div class="form-group row">
                             <div class="col-md-7 col-form-label text-md-right form-check-label">
