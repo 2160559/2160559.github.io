@@ -1,0 +1,16 @@
+/*Service Provider Registration Queries from here*/
+
+
+INSERT INTO users (username, f_name, l_name, email_add,password,phone,acc_type,profile_img,birthday)
+VALUES ("fish@ocean.com","fish ","tadpole","fish@ocean.com",12345678,+637559250700,"provider",null,DATE ("2017-05-05"));
+
+
+/*
+select * from `service-provider`;
+
+
+/*concatenate the region,province,city,brgy,stree,house no to one string when inserting*/
+select * from users;
+INSERT INTO `service-provider`(id,address,`business-permit`,`bank-acc-no`) VALUES (6,"CAR Benguet Baguio Bakakeng Central Diwata Street 47","null",12345678);
+
+/*until here*/
