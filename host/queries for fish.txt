@@ -1,0 +1,92 @@
+
+READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME 
+1. import first the new database (webtechlabfinal.sql) located in our master branch
+2. i have added a sql query file in case u want to experiment queries (messedupqueries.sql)
+3. queries below are what you me to do
+4. dont feck up lol, pls work FOREVER.
+-----------------------------------------------------------
+
+/*Service Provider Registration Queries*/
+INSERT INTO users (username, f_name, l_name, email_add,password,phone,acc_type,profile_img,birthday)
+VALUES ("fish@ocean.com","fish ","tadpole","fish@ocean.com",12345678,+637559250700,"provider",null,DATE ("2017-05-05"));
+
+
+
+/*concatenate the region,province,city,brgy,stree,house number to one string when inserting*/
+
+
+INSERT INTO `service-provider`(id,address,`business-permit`,`bank-acc-no`) VALUES (6,"CAR Benguet Baguio Bakakeng Central Diwata Street 47","null",12345678);
+
+
+/*shows list of service providers*/
+select id "Service Provider ID",address "Service Provider Address", `business-permit`, `bank-acc-no` from `service-provider`;
+
+ 
+-------------------------------------------------------------------------------------------------------------------
+/*Insert a listing*/
+
+/*inserting a house listing*/
+
+
+insert into house(`service-provider`,`address`,`no_CR`,`longitude`,`latitude`)
+VALUE(7,"bahay ni nic",2,16.38418084926152,120.59318745595851); /*created house 4*/
+
+
+
+/*inserting a room listing*/
+
+
+insert into room(area,no_beds,house_id) VALUES(80,1,4); /*adds one room to the house 4*/
+
+/*inserting house images*/
+
+insert into `house-images`(`house-id`,image) VALUES(4,image data here);
+-------------------------------------------------------------------------------------------------------------------
+
+/*Retrieve Listing based on service provider id*/
+select house.id as "House ID", `service-provider` "Service Provider/User id",address "House Address", no_CR "Number of Comfort Rooms",longitude,latitude
+ 
+from house 
+inner join room on house.id=room.house_id;
+-------------------------------------------------------------------------------------------------------------------
+/*Displays payment transactions and where the payment came from and for what house/room the payment is for*/
+select bookings.id "booking id",house_id "House id", `room-id` "Payment for room id",`date-booked` ,`check-in`,`check-out`,payment_id,
+amount,bookings.`customer-id`,f_name"Payor First Name",l_name "Payor Last Name"
+
+from bookings 
+
+inner join payment on payment.`customer-id`=bookings.`customer-id`
+
+inner join users on bookings.`customer-id`=users.id 
+
+inner join room on `room-id`=room.id 
+
+inner join house on house.id=room.house_id;
+-------------------------------------------------------------------------------------------------------------------
+/*Retrieve reservation based on service provider id*/
+select `customer-id`,l_name "Customer Last Name",f_name"Customer First Name",`service-provider`"Service Provider ID",house.id as "House ID",`room-id`,`date-reserved`,status
+
+from reservations 
+
+inner join users on  reservations.`customer-id`=users.id
+
+inner join room on `room-id`=room.id
+
+inner join house on room.house_id=house.id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
