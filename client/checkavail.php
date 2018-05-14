@@ -35,15 +35,13 @@
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Check-in</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="date" name="checkin" value="<?php
-                                                                                  echo $current_user->getBirthDate() ?>" required>
+                    <input class="form-control" type="date" name="checkin" value="" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 col-form-label text-md-right">Check-out</label>
                   <div class="col-md-6">
-                    <input class="form-control" type="date" name="checkout" value="<?php
-                                                                                    echo $current_user->getBirthDate() ?>" required>
+                    <input class="form-control" type="date" name="checkout"  required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -89,7 +87,7 @@
 
               <div class="form-group row">
                 <div class="col-md-4 text-md-right ">
-                <a class="btn btn-info btn-lg" href="reservation.php">Back</a>
+                <a class="btn btn-info btn-lg" href="transient.php">Back</a>
                 </div>
                 <div class="col-md-6">
                   <div class="btn-info btn-lg btn"  name="submit">Check</div>
