@@ -1,3 +1,11 @@
+
+READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME READ ME 
+1. import first the new database (webtechlabfinal.sql) located in our master branch
+2. i have added a sql query file in case u want to experiment queries (messedupqueries.sql)
+3. queries below are what you me to do
+4. dont feck up lol, pls work FOREVER.
+-----------------------------------------------------------
+
 /*Service Provider Registration Queries*/
 INSERT INTO users (username, f_name, l_name, email_add,password,phone,acc_type,profile_img,birthday)
 VALUES ("fish@ocean.com","fish ","tadpole","fish@ocean.com",12345678,+637559250700,"provider",null,DATE ("2017-05-05"));
