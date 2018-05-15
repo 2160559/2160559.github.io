@@ -24,13 +24,13 @@
                         <div class="form-group row">
                             <label class="col-md-4 text-md-right">So is it a house or a room?</label>
                             <div class="col-md-6">
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"> House &nbsp;&nbsp;
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"> Room
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" name="yesCheck"> House &nbsp;&nbsp;
+                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck" name="noCheck"> Room
                             </div>
                         </div>
                         <div class="form-group row" id="ifYes" style="display:none">
                             <label class="col-md-4 col-form-label text-md-right">Number of Rooms</label>
-                            <select id="numrooms1">
+                            <select id="numrooms1" name="numrooms1">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Number of beds</label>
-                            <select id="numbeds1">
+                            <select id="numbeds1" name="numbeds1">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Number of comfort rooms</label>
-                            <select id="numcr1">
+                            <select id="numcr1" name="numcr1">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -66,8 +66,8 @@
                         <hr>
                         <h3>Specify the location by dragging the marker</h3>
                         <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;"></div>
-                        <input type="text"  id="lat">
-                        <input type="text"  id="lng">
+                        <input type="text"  id="lat" name="lat">
+                        <input type="text"  id="lng" name="lng">
                     
                         <hr>
                         <div class="form-group row">
@@ -90,7 +90,7 @@
                                 <input type="radio" name="yesno1" id="pperson">  Per person
                                     &nbsp;&nbsp;
                                 <input type="radio" name="yesno1" id="ppnight"> Per night
-                                <input class="form-control" style="width:50%" type="text" id="brgy"  minlength="1" placeholder="enter rate here" required>
+                                <input class="form-control" style="width:50%" type="text" id="brgy" name="brgy" minlength="1" placeholder="enter rate here" required>
                             </div>    
                         </div>
                         <div class="form-group row">
