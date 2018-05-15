@@ -4,5 +4,3 @@ check if node is working (try "node -v")
 type "npm install" (to download modules needed)
 type "node index" (to start website)
 go to "localhost/3666" (to see website)
-
-nic your queries pls thanks heheh

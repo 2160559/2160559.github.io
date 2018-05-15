@@ -17,10 +17,35 @@
         <div class="container justify-content-center m-5 pb-5">
             <div class="card">
                 <div class="card-header">
-                    <h1><%= title %></h1>
+                    <h1><%= title %> (<%= data.length %>)</h1>
                 </div>
                 <div class="card-body">
-                    queried data here
+                    <% if( data.length > 0) { %>
+                        <table>
+                            <tr>
+                                <td>Address</td>
+                                <td>Number of Rooms</td>
+                                <td>Number of CR</td>
+                                <td>Number of Beds</td>
+                                <td>Total Area (sqm)</td>
+                                <td>Status</td>
+                                <td></td>
+                            </tr>
+                            <% data.forEach(function(list) { %>
+                            <tr>
+                                <td><%= list.address %></td>
+                                <td><%= list.countroom %></td>
+                                <td><%= list.no_CR %></td>
+                                <td><%= list.no_beds %></td>
+                                <td><%= list.area %></td>
+                                <td><%= list.status%></td>
+                                <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    <% } else { %>
+                        <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
+                    <% } %>
                 </div>
             </div>
         </div>
