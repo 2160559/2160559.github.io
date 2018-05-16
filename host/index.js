@@ -3,7 +3,6 @@ var app        = express();
 var mysql      = require('mysql');
 var bodyParser = require('body-parser');
 var path       = require('path');
-var mailbox    = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -18,16 +17,8 @@ app.set('view engine', 'ejs');
 let userID = -1;
 let userName, queried, num;
 
-var mailman = mailbox.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'official.abang@gmail.com',
-    pass: 'webtech2018'
-  }
-});
-
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'localhost', //ip address
   user     : 'root',
   password : '',
   database : 'transient'
@@ -85,12 +76,11 @@ app.get('/listings', function(req, res) {
  Displays details about each listing
  */
 app.get('/listings/:uid/:hid', function(req, res) {
-    var pid = res.params.uid,
-        hid = res.params.hid;
-    //connection.query("SELECT * FROM bookings", [pid, hid], function(err, rows) {
-    //    if(err) throw err;
-    //    res.render('listingdes', data: rows, uid: userID});
-    //});
+    var pid = req.params.uid, hid = req.params.hid;
+    connection.query("SELECT * FROM `house` WHERE house.`service-provider` = ? AND house.id = ?", [pid, hid], function(err, rows) {
+        if(err) throw err;
+        res.render('listingdes', {list: rows});
+    });
 });
 
 /**
@@ -105,9 +95,12 @@ app.get('/addlist', function(req, res) {
     }
 });
 
+/**
+ Accessible after 'Add Listing'
+ Adds to `house` in database, Displays confirmation page
+ */
 app.post('/addlist', function(req, res) {
-    console.log("listing added to db! well sorta");
-    res.render('tba', {title: "Add A Listing"});
+    res.render('yesadd', {title: "Add A Listing"});
 });
 
 /**
@@ -119,13 +112,18 @@ app.get('/transactions', function(req, res) {
     if (userID < 0) {
         res.render('noaccess');
     } else {
-        connection.query("SELECT bookings.id `bookid`, house_id `houseid`, `room-id` `roomid`, payment_id `payid`, house.address, amount, bookings.`customer-id` `custid`, CONCAT(f_name,' ',l_name) `custname` FROM bookings inner join payment on payment.`customer-id`= bookings.`customer-id` inner join users on bookings.`customer-id`=users.id  inner join room on `room-id`=room.id inner join house on house.id=room.house_id where house.`service-provider` = ?", userID, function(err, rows) {
+        connection.query("SELECT house.address, amount, CONCAT(f_name,' ',l_name) `custname` FROM bookings inner join payment on payment.`customer-id`= bookings.`customer-id` inner join users on bookings.`customer-id`=users.id  inner join room on `room-id`=room.id inner join house on house.id=room.house_id where house.`service-provider` = ?", userID, function(err, rows) {
             if(err) throw err;
             res.render('transactions', {title: "Transactions", data: rows, uid: userID});
         });
     }
 });
 
+/**
+ Accessible anywhere
+ Adds to `users` in database
+ Incomplete: add to `service-provider`
+ */
 app.post('/register', function(req, res){
     var rName = req.body.fname;
     var rSurname = req.body.lname;
@@ -137,10 +135,22 @@ app.post('/register', function(req, res){
     var rBarangay = req.body.brgy;
     var rStreet = req.body.street;
     var rHouseNo = req.body.houseno;
+    var rContact = req.body.contact;
     var rEmail = req.body.email;
     var rPass = req.body.password;
     var rPermit = req.body.permit;
-    res.send(`${rName} ${rSurname} is a ${rGender} born on ${rBD} living in ${rCity}, ${rProv}, ${rRegion}`);
+    var rBank = req.body.cardno;
+    
+    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday) VALUES (?,?,?,?,?,?,?,?,?)", [rEmail, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD], function(err, rows) {
+        if(err) throw err;
+    });
+    
+    connection.query("SELECT * FROM users WHERE username = ? AND f_name = ? AND l_name =?", [rEmail, rName, rSurname], function(err, rows) {
+        if(err) throw err;
+        userID = rows[0].id;
+        userName = rName+" "+rSurname;
+        res.render('yeslog', {name: userName});
+    });
 });
 
 app.get('/signout', function(req, res) {

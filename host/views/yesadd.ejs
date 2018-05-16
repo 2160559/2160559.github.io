@@ -17,18 +17,18 @@
         <div class="container justify-content-center m-5 pb-5">
             <div class="card">
                 <div class="card-header">
-                    <h1><%= list[0].name %></h1>
+                    <h1><%= title %></h1>
                 </div>
                 <div class="card-body">
-                    <p>Address: <%= list[0].address %></p>
-                    <p>Description: <%= list[0].description %></p>
-                    <p>Rules: <%= list[0].rules %></p>
-                    <p>Amenities: <%= list[0].amenities %></p>
-                    <p>Cancellations: <%= list[0].cancellations %></p>
-                    <p>Price: <%= list[0].price %></p>
+                    <div class="form-group row">
+                         <p>Sorry, can't do that right now :(</p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p><a href="/listings">Go back</a></p>
+                <hr>
+                <div class="form-group row">
+                     <div class="col-md-7 col-form-label text-md-right form-check-label">
+                        <p>You may view all your listings <a href="/listings">here</a>!</p>
+                    </div>
                 </div>
             </div>
         </div>

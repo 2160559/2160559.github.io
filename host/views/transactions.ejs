@@ -17,11 +17,27 @@
         <div class="container justify-content-center m-5 pb-5">
             <div class="card">
                 <div class="card-header">
-                    <h1><%= title %></h1>
+                    <h1><%= title %> (<%= data.length %>)</h1>
                 </div>
                 <div class="card-body">
-                    queried data here
-                </div>
+                    <% if( data.length > 0) { %>
+                        <table>
+                            <tr>
+                                <td>Address</td>
+                                <td>Amount</td>
+                                <td>Customer</td>
+                            </tr>
+                            <% data.forEach(function(list) { %>
+                            <tr>
+                                <td><%= list.address %></td>
+                                <td><%= list.amount %></td>
+                                <td><%= list.custname %></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    <% } else { %>
+                        <p>Hm, you don't have any transactions yet. Don't lose hope; someone probably hasn't found your listing yet!</p>
+                    <% } %>
             </div>
         </div>
     </div>
