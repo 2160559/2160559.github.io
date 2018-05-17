@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 15, 2018 at 04:21 PM
+-- Generation Time: May 16, 2018 at 02:35 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -266,12 +266,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `acc_type` enum('superadmin','admin','customer','provider') NOT NULL,
   `profile_img` blob,
   `birthday` date NOT NULL,
-  `status` enum('pending','active','deactivated') DEFAULT NULL,
+  `status` enum('pending','active','deactivated','approved','disabled','rejected','enabled') DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `email_add_UNIQUE` (`email_add`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -283,7 +283,18 @@ INSERT INTO `users` (`id`, `username`, `f_name`, `l_name`, `email_add`, `passwor
 (3, 'user3', 'testa', 'wlast', 'testa@ya.com', '12345678', '639359250700', 'customer', NULL, '2011-05-05', NULL),
 (5, 'user4', 'testa', 'wlasta', 'tesaata@ya.com', '12345678', '637559250700', 'customer', NULL, '2011-05-05', NULL),
 (6, 'fish@ocean.com', 'fish ', ' tadpole', 'fish@ocean.com', '12345678', '637559250700', 'provider', NULL, '2017-05-05', NULL),
-(7, 'dominic@abang.com', 'nic ', ' tadpole', 'dominic@abang.com', '12345678', '637559250700', 'provider', NULL, '2017-05-05', NULL);
+(7, 'dominic@abang.com', 'nic ', ' tadpole', 'dominic@abang.com', '12345678', '637559250700', 'provider', NULL, '2017-05-05', NULL),
+(8, 'superadmin', 'Superadmin', 'Superadmin', 'superadmin@gmail.com', '17c4520f6cfd1ab53d8745e84681eb49', '09302854814', 'superadmin', NULL, '1999-09-08', 'approved'),
+(9, 'admin', 'Admin', 'Admin', 'admin@gmail.com', 'admin', '09187466375', 'admin', NULL, '2000-05-25', 'disabled'),
+(10, 'dominic', 'Dominic', 'Gonzaga', 'nicgon@gmail.com', 'dominic', '09359820701', 'customer', NULL, '1998-11-22', 'disabled'),
+(11, 'ledor', 'Jannledor', 'Pingalo', 'ledor@yahoo.com', 'ledor', '09876533895', 'admin', NULL, '1995-05-07', 'deactivated'),
+(12, 'jana', 'Jan Paula', 'San Juan', 'jana@gmaill.com', 'jana', '09756822748', 'admin', NULL, '1998-05-08', 'disabled'),
+(13, 'graham', 'Graham', 'Flora', 'graham@gmail.com', 'graham', '0987902885', 'admin', NULL, '1999-05-18', 'disabled'),
+(14, 'ces', 'Princess Lyka', 'Dacapias', 'lyca@gmail.com', 'ces', '09789366578', 'customer', NULL, '2000-05-07', 'pending'),
+(15, 'ic', 'Lawrence', 'Pagalanan', 'ic@hotmail.com', 'scknajwdnefbcoiqw', '09398766574', 'customer', NULL, '1998-03-23', 'approved'),
+(16, 'rafa', 'Rapha Lynne', 'Meija', 'rafa@yahoo.com', '$asdkcnas193nasdknva8', '09187633657', 'provider', NULL, '1997-05-01', 'approved'),
+(17, 'junjun', 'Gaspar', 'Monoten', 'junjun@hotmail.com', 'junjun', '09198739820', 'provider', NULL, '1998-05-11', 'pending'),
+(18, 'justine', 'Justine', 'Dongayao', 'justine@yahoo.com', 'dongayao', '09890977654', 'provider', NULL, '1990-05-10', 'pending');
 
 --
 -- Constraints for dumped tables
