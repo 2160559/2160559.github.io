@@ -34,11 +34,11 @@ background-size:cover;">
                 <div class="text-center">
                     <img class="card-img-top" src="images/logo.png" alt="Logo">
                     <div class="card-body">
-                        <h2 class="card-text" style="color:white">Find Warmth</h2>
-                        <h3 class="card-text" style="color:white">in Baguio</h3>
+                        <h2 class="card-text" style="color:white">Account Inactive!</h2>
                     </div>
                     <div class="card-body">
-                        <a href="login.php" class="btn btn-dark btn-lg btn-block">Login</a>
+                        <h3 class="card-text" style="color:white">Please wait for the account to be marked as
+                            approved</h3>
                     </div>
                 </div>
             </div>

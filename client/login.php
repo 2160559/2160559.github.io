@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <?php
-include_once('includes/head.inc.php');
-include_once('User.php');
-include_once('includes/db.inc.php');
+include 'pagefragments/head.html';
+include 'includes/db.inc.php';
 ?>
-
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50"
@@ -35,61 +33,78 @@ include_once('includes/db.inc.php');
 <script type="text/javascript" src="js/main.js"></script>
 <div class="container">
     <?php
-
-    session_start();
-    // If form submitted, insert values into the database.
-    if (isset($_POST['email'])) {
-        // removes backslashes
+    if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = stripslashes($_REQUEST['email']);
-        //escapes special characters in a string
-        $email = mysqli_real_escape_string($con, $email);
         $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        //Checking is user existing in the database or not
-        $query = "SELECT * FROM `users` WHERE email_add='$email' and pass='$password'";
-        $result = mysqli_query($con, $query) or die("an error occurred");
-        $rows = mysqli_num_rows($result);
-        $row = mysqli_fetch_row($result);
-        $current_user = new User($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8],
-            $row[9]);
-        if ($rows == 1) {
-            $_SESSION['id'] = $current_user->getUserId() . rand(1, 50);
-            $_SESSION['user'] = $row;
-            // Redirect user to index.php
-            header("Location: index.php");
-        } else {
-            include('pagefragments/login_page.html');
-            ?>
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-                 aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-title">Error!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Invalid Username/Password
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        if ($stmt = $mysqli->prepare("SELECT * FROM `users` WHERE `email_add` = ?")) {
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
+            $stmt->bind_result($id, $username, $f_name, $l_name, $email_add, $pass, $phone, $acc_type,
+                $profile_img, $birthday, $status);
+            $stmt->fetch();
+            if ($status == 'active') {
+                if ($acc_type == 'provider') {
+                    ?>
+                    <form action="http://provider.abang.com/providerlogin" method="post" id="user-form">
+                        <input type="text" name="email_add" value="<?php echo $email ?>">
+                        <input type="text" name="password" value="<?php echo $password ?>">
+                        <input type="submit" class="d-none">
+                    </form>
+                    <script type="text/javascript">
+                        document.getElementById('user-form').submit(); // SUBMIT FORM
+                    </script>
+                <?php
+                } else {
+                if (password_verify($password, $pass)) {
+                    $current_user = array('id' => $id, 'username' => $username, 'first_name' => $f_name, 'last_name' =>
+                        $l_name, 'email' => $email, 'password' => $pass, 'phone' => $phone, 'acc_type' => $acc_type,
+                        'profile_img' => $profile_img, 'birthdate' => $birthday, 'status' => $status);
+                    session_start();
+                    $_SESSION['id'] = session_create_id();
+                    $_SESSION['user'] = $current_user;
+                    header('Location: index.php');
+                } else {
+                ?>
+                    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+                         aria-labelledby="modal-title" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal-title">Error!</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Invalid Username/Password
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(window).on('load', function () {
-                    $('#modal').modal('show');
-                });
-            </script>
-            <?php
+                    <script type="text/javascript">
+                        $(window).on('load', function () {
+                            $('#modal').modal('show');
+                        });
+                    </script>
+                    <?php
+                }
+                }
+            }elseif($status == 'pending'){
+                header('Location: inactive.php');
+            }
+            else{
+                header('Location: deactivated.php');
+            }
+            $stmt->close();
         }
-    } else {
-        include('pagefragments/login_page.html');
-    } ?>
+        $mysqli->close();
+    }
+    include('pagefragments/login_page.html');
+    ?>
 </div>
-<?php include_once 'includes/footer.inc.php' ?>
+<?php include 'pagefragments/footer.html' ?>
 </body>
 </html>

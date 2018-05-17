@@ -3,39 +3,35 @@
         <div class="card">
             <div class="card-header"><h1>Registration</h1></div>
             <div class="card-body">
-
-                <form name="registration" action="register.php" method="post">
-
-                <form name="registration" action="" method="post">
-
+                <form name="registration" action="registration.php" method="post">
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Username</label>
                         <div class="col-md-6">
                             <input class="form-control" type="text" name="username" placeholder="Username"
-                                   id="username">
-
-                            <span id="usercheck" class="help-block"></span>
-
+                                   id="UserName" onkeyup="checkname();" required>
+                            <span id="name_status"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">First Name</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="f_name" placeholder="First Name"
+                            <input class="form-control" type="text" id="f_name" name="f_name" placeholder="First Name"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-4 col-form-label text-md-right">First Name</label>
+                        <label class="col-md-4 col-form-label text-md-right">Last Name</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="text" name="l_name" placeholder="Last Name"
+                            <input class="form-control" type="text" id="l_name" name="l_name" placeholder="Last Name"
                                    required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Email Address</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="email" name="email" placeholder="Email" required>
+                            <input class="form-control" type="email" name="email" id="UserEmail"
+                                   onkeyup="checkemail();" placeholder="Email" required>
+                            <span id="email_status"></span>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -47,30 +43,27 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Phone Number</label>
                         <div class="col-md-6">
-
-                            <input class="form-control" type="tel" name="phone" placeholder="Phone Number"
-
                             <input class="form-control" type="tel" name="phone" value="+63" maxlength="" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Password</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="password" name="password" placeholder="Password"
+                            <input class="form-control" type="password" id="password" name="password"
+                                   placeholder="Password"
                                    required/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                         <div class="col-md-6">
-                            <input class="form-control" type="password" name="confirm_password"
+                            <input class="form-control" type="password" name="confpass" id="confpass"
                                    placeholder="Password" required/>
                         </div>
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
-                            <input id="btn-submit" class="btn-primary btn" type="submit" name="submit"
-                                   value="Register"/>
+                            <input id="btn-submit" class="btn-primary btn" type="submit" name="submit" value="Register"/>
                         </div>
                     </div>
                 </form>

@@ -1,5 +1,10 @@
-
 <?php
-// Enter your Host, username, password, database below.
-// I left password empty because i do not set password on localhost.
-$con = mysqli_connect("localhost","root","","initial") or die("Connection failed");
+define('host', '192.168.254.112');
+define('user', 'root');
+define('password', '');
+define('database', 'transient');
+$mysqli = new mysqli(host, user, password, database);
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
