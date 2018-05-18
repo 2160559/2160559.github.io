@@ -110,8 +110,6 @@ var validate = function(){
 
 $(document).ready(function() {
 
-
-
   $("#item1").change(function() {
     var value = $(this).val();
     $("#item2").html(options[value]);
@@ -126,15 +124,15 @@ $(document).ready(function() {
 
   
   var options = [
-      "<option>Select Province </option><option value='0'>Abra</option><option value='1'>Apayao</option><option value='2'>Benguet</option><option value='3'>Ifugao</option><option value='4'>Kalinga</option><option value='5'>Mountain Province</option>",
-      "<option value='0'>Ilocos Norte</option><option value='1'>Ilocos Sur</option><option value='2'>La Union</option><option value='3'>Pangasinan</option>"
+      "<option>Select Province </option><option value='Abra'>Abra</option><option value='Apayao'>Apayao</option><option value='Benguet'>Benguet</option><option value='Ifugao'>Ifugao</option><option value='Kalinga'>Kalinga</option><option value='Mountain Province'>Mountain Province</option>",
+      "<option value='Ilocos Norte'>Ilocos Norte</option><option value='Ilocos Sur'>Ilocos Sur</option><option value='La Union'>La Union</option><option value='Pangasinan'>Pangasinan</option>"
   ];
 
 
   var options1 = [
-  "<option value='0'>Bangued</option><option value='1'>Boliney</option>",
-  "<option value='0'>Calanasan</option><option value='1'>Flora</option>",
-  "<option value='0'>Atok</option><option value='1'>Baguio</option>","<option value='0'>Aguinaldo</option><option value='1'>Banaue</option>"];
+      "<option value='Bangued'>Bangued</option><option value='Boliney'>Boliney</option>",
+      "<option value='Calanasan'>Calanasan</option><option value='Flora'>Flora</option>",
+      "<option value='Atok'>Atok</option><option value='Baguio City'>Baguio City</option>","<option value='Aguinaldo'>Aguinaldo</option><option value='Banaue'>Banaue</option>"];
  });
 
 
