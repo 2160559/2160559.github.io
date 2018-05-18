@@ -1,3 +1,4 @@
+
 var backEventListener = null;
 
 var unregister = function() {
@@ -40,28 +41,17 @@ var init = function () {
 };
 
 window.onload = init;
-$(document).unload( unregister );
 
 var validate = function(){
-	var surname = new LiveValidation('surname-input', { validMessage: ""});
-	surname.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
+    let f_name = new LiveValidation('f_name', { validMessage: ""});
+    f_name.add(Validate.format, {pattern: /^[a-zA-Z]*$/});
+	let l_name = new LiveValidation('l_name', { validMessage: ""});
+	l_name.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
 
-	var confpass = new LiveValidation('confpass-input', { validMessage: ""});
-	confpass.add(Validate.Confirmation, { match: 'pass-input' });
+	let confpass = new LiveValidation('confpass', { validMessage: ""});
+	confpass.add(Validate.Confirmation, { match: 'password' });
 
-	var specnumber = new LiveValidation('number-input', { validMessage: ""});
-	specnumber.add(Validate.Cpno);
-
-	var email = new LiveValidation('mail-input', { validMessage: ""});
-	email.add(Validate.Email);
-
-	var acceptance = new LiveValidation('accept-input', { validMessage: "OK!"});
-	acceptance.add(Validate.Acceptance);
 };
-var validateUsername = function(usernames){
-    var username = new LiveValidation('username', { validMessage: "Valid"});
-    username.add(Validate.Inclusion, usernames);
-}
 
 
 
