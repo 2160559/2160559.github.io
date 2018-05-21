@@ -25,10 +25,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-//app.listen(8666, function() {
-app.listen(80, '0.0.0.0', function () { //uncomment for demo
-    //console.log('Thank you for using Abang services! You may find us at :8666 ~');
-    console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
+app.listen(8666, function() {
+//app.listen(80, '0.0.0.0', function () { //uncomment for demo
+    console.log('Thank you for using Abang services! You may find us at :8666 ~');
+    //console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
 });
 
 app.get('/', function (req, res) {
