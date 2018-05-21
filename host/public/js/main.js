@@ -26,10 +26,14 @@ function initialize() {
         function() {
             document.getElementById('lat').value = marker.position.lat();
             document.getElementById('lng').value = marker.position.lng();
+            
         }
     );
+    
+      
   }
 var backEventListener = null;
+
 function yesnoCheck() {
     if (document.getElementById('yesCheck').checked) {
         document.getElementById('ifYes').style.display = 'block';
