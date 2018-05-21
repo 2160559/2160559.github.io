@@ -180,7 +180,9 @@
                             </div>
                         </div>
                         <hr>
-                        <h3>Business Requirements and Remittance Details</h3>
+                        
+                        
+                        <h3>Business Requirements and Payment Details</h3>
                         <div class="form-group row">
                             <label for="busi" class="col-md-4 col-form-label text-md-right">Business Permit</label>
                             <div class="col-md-6">
@@ -188,32 +190,15 @@
                                 <input type="submit" value="Upload" class="btn btn-secondary">
                             </div>
                         </div>
+                        
                         <div class="form-group row">
-                            <label for="cardno" class="col-md-4 col-form-label text-md-right">Remittance Details</label>
+                             <label for="cardno" class="col-md-4 col-form-label text-md-right">Bank Account Number</label>
                             <div class="col-md-6">
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" name="yesCheck"> 
-                                Different Remittance Details
-                                
-                                &nbsp;&nbsp;
-                                <input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="notSame" name="noCheck"> 
-                                Same as above
+                                <input class="form-control" type="number" id="cardno" name="cardno"  minlength="1" required>
                             </div>
                       
                         </div>
-                          <div class="form-group row" id="ifYes" style="display:none">
-                            <label class="col-md-4 col-form-label text-md-right">Name</label>
-                               
-                                <input class="LV_valid_field" type="text"  placeholder="First Name" 
-                                       id="nick-input1" name="fname" required >
-                                        <input   type="text" name="lname" placeholder="Last Name"
-                                       id="surname-input1" class="LV_valid_field" required>
-                              
-                               <label for="number-input"  class="col-md-4 col-form-label text-md-right">Contact Number</label>
-                            
-                                <input  type="text" id="number-input1" name="contact1" value="+63" class="LV_valid_field" />
-                            
-                            
-                        </div>
+                       
                         <hr>
                         <div class="form-group row">
                             <div class="col-md-7 col-form-label text-md-right form-check-label">

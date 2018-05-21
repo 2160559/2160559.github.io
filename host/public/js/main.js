@@ -98,11 +98,7 @@ var validate = function(){
 	surname.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
     
        
-	var nick1 = new LiveValidation('nick-input1', { validMessage: ""});
-	nick1.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
-	
-	var surname1 = new LiveValidation('surname-input1', { validMessage: ""});
-	surname1.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
+
 
 	var confpass = new LiveValidation('confpass-input', { validMessage: ""});
 	confpass.add(Validate.Confirmation, { match: 'pass-input' });
@@ -110,9 +106,7 @@ var validate = function(){
 	var specnumber = new LiveValidation('number-input', { validMessage: ""});
 	specnumber.add(Validate.Cpno);
     
-    var specnumber1 = new LiveValidation('number-input1', { validMessage: ""});
-	specnumber1.add(Validate.Cpno);
-	
+
 	var email = new LiveValidation('mail-input', { validMessage: ""});
 	email.add(Validate.Email);
 	
