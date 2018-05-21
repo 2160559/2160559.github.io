@@ -25,16 +25,23 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-app.listen(80, '0.0.0.0', function () {
-    console.log('Thank you for using Abang services! You may find us at :80 ~');
+//app.listen(8666, function() {
+app.listen(80, '0.0.0.0', function () { //uncomment for demo
+    //console.log('Thank you for using Abang services! You may find us at :8666 ~');
+    console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
 });
 
 app.get('/', function (req, res) {
     if (req.session.userName) {
-       res.redirect('/home');
+        res.redirect('/home');
     } else {
-       res.render('home');
+        userName = "";
+        res.render('home');
     }
+});
+
+app.get('/login', function (req, res) {
+    res.render('login');
 });
 
 app.get('/home', function (req, res) {
@@ -46,7 +53,6 @@ app.get('/home', function (req, res) {
 });
 
 app.post('/providerlogin', function(req, res) {
-    //app.use(session({secret: 'vigilnights', resave: false, saveUninitialized: true}));
     var email = req.body.email_add.toString();
     var pass = req.body.password;
     connection.query("SELECT * FROM `users` WHERE email_add = ? AND password = ?", [email, pass], function(err, result) {
