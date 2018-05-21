@@ -19,7 +19,7 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  host     : '192.168.254.112', //ip address
+  host     : '192.168.254.105', //ip address
   user     : 'root',
   password : '',
   database : 'transient'
