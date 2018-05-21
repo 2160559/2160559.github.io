@@ -5,6 +5,7 @@
    });
    
 });
+
 function initialize() {
     var myLatlng = new google.maps.LatLng(16.38418084926152,120.59318745595851);
     var myOptions = {
