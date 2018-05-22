@@ -4,13 +4,12 @@ var app        = express();
 var mysql      = require('mysql');
 var bodyParser = require('body-parser');
 var path       = require('path');
-
-
+var mailbox    = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
-app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 600000000000000000000000 }}));
+app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}));
 
 app.set('view engine', 'ejs');
 
@@ -19,10 +18,19 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  host     : '192.168.254.105', //ip address
+  //host     : '192.168.254.112', //ip address
+  host     : 'localhost', //comment for demo
   user     : 'root',
   password : '',
   database : 'transient'
+});
+
+var mailman = mailbox.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'official.abang@gmail.com',
+    pass: 'webtech2018'
+  }
 });
 
 connection.connect();
@@ -42,6 +50,7 @@ app.get('/', function (req, res) {
     }
 });
 
+//testing w/o client
 app.get('/login', function (req, res) {
     res.render('login');
 });
@@ -99,7 +108,7 @@ app.post('/register', function(req, res){
     var rPermit = req.body.permit;
     var rBank = req.body.cardno;
     var rAddress = rHouseNo+" "+rStreet+" "+rBarangay+" "+rCity+" "+rProv+" "+rRegion;
-   
+    
     connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday) VALUES (?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD], function(err, rows) {
         if(err) throw err;
     });
@@ -142,37 +151,14 @@ app.get('/listings/:uid/:hid', function(req, res) {
 
 app.get('/addlist', function(req, res) {
     if (!req.session.userName) {
-       res.redirect('/');
+        res.redirect('/');
     } else {
         res.render('addtype', {title: "Add A Listing"});
     }
 });
 
 app.post('/addlist', function(req, res) {
-
-
-
-   var rentType=req.body.yesno;
-   var noRoom=req.body.numrooms1;
-   var noBeds=req.body.numbeds1;
-    var noCR=req.body.numcr1;
-    var lati=req.body.lat;
-    var longi=req.body.lng;
-    var descrip=req.body.description;
-    var price1=req.body.presyo;
-    var name1=req.body.pname;
-    var ame=req.body.hame;
-    var ru=req.body.hrules;
-    var pol=req.body.hpop;
-    var adds=req.body.answer1;
-   
-    connection.query("INSERT INTO house (`service-provider`, address, no_CR,longitude,latitude, name, description,rules, amenities,cancellations,price,no_room) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [userID,adds,noCR,longi,lati,name1,descrip,ru,ame,pol,price1,noRoom], function(err, rows) {
-        if(err) throw err;
-            res.render('yesadd', {title: "Congrats!"});
-    });
-    
-  
-    
+    //res.render('yesadd', {title: "Add A Listing"});
 });
 
 app.get('/transactions', function(req, res) {
@@ -190,3 +176,26 @@ app.get('/signout', function(req, res) {
     req.session.destroy();
     res.redirect('http://www.abang.com/index.php');
 });
+
+/* EMAIL */
+
+app.post('/c/forget', function(req, res) { // client forget password
+    var email = req.body.email_add;
+
+    var mailOptions = {
+        from: '"Abang" official.abang@gmail.com',
+        to: `${email}`,
+        subject: 'Account Confirmation',
+        html: '<h1>Reset Password</h1><p>does this work</p>'
+    };
+    
+    mailman.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            res.send(`<p>email sent</p>`); // test
+            //res.redirect('http://');
+        }
+    });
+});
+

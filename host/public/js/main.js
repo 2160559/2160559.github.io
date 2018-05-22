@@ -5,7 +5,6 @@
    });
    
 });
-
 function initialize() {
     var myLatlng = new google.maps.LatLng(16.38418084926152,120.59318745595851);
     var myOptions = {
@@ -26,14 +25,10 @@ function initialize() {
         function() {
             document.getElementById('lat').value = marker.position.lat();
             document.getElementById('lng').value = marker.position.lng();
-            
         }
     );
-    
-      
   }
 var backEventListener = null;
-
 function yesnoCheck() {
     if (document.getElementById('yesCheck').checked) {
         document.getElementById('ifYes').style.display = 'block';
@@ -98,7 +93,11 @@ var validate = function(){
 	surname.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
     
        
-
+	var nick1 = new LiveValidation('nick-input1', { validMessage: ""});
+	nick1.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
+	
+	var surname1 = new LiveValidation('surname-input1', { validMessage: ""});
+	surname1.add(Validate.Format, {pattern: /^[a-zA-Z]*$/});
 
 	var confpass = new LiveValidation('confpass-input', { validMessage: ""});
 	confpass.add(Validate.Confirmation, { match: 'pass-input' });
@@ -106,7 +105,9 @@ var validate = function(){
 	var specnumber = new LiveValidation('number-input', { validMessage: ""});
 	specnumber.add(Validate.Cpno);
     
-
+    var specnumber1 = new LiveValidation('number-input1', { validMessage: ""});
+	specnumber1.add(Validate.Cpno);
+	
 	var email = new LiveValidation('mail-input', { validMessage: ""});
 	email.add(Validate.Email);
 	
