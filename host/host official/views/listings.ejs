@@ -28,9 +28,6 @@
                             <tr>
                                 <td>Address</td>
                                 <td>Number of CR</td>
-                                <td>Number of Beds</td>
-                                <td>Total Area (sqm)</td>
-                                <td>Status</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -38,10 +35,7 @@
                             <tr>
                                 <td><%= list.address %></td>
                                 <td><%= list.no_CR %></td>
-                                <td><%= list.no_beds %></td>
-                                <td><%= list.area %></td>
-                                <td><%= list.status%></td>
-                                <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                                <td><a href="/listings<%= uid %><%= list.id %>">See info</a></td>
                                 <td><a href="">Edit info</a></td>
                             </tr>
                             <% }); %>

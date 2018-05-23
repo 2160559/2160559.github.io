@@ -19,8 +19,8 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  host     : '192.168.254.114', //ip address
-  //xhost     : 'localhost', //comment for demo
+  //host     : '192.168.254.114', //ip address
+  host     : 'localhost', //comment for demo
   user     : 'root',
   //password : '12345678',
     password : '',
@@ -120,8 +120,6 @@ app.post('/register', function(req, res){
         if(err) throw err;
         userID = rows[0].id;
         userName = rName+" "+rSurname;
-        
-        
     });
     connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
            if (err) throw err;
@@ -133,22 +131,24 @@ app.get('/listings', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by house.id", userID, function(err, rows) { // if doesn't work, comment this and uncomment alt below
-        //connection.query("SELECT house.id as 'houseid', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ?", userID, function(err, rows) { // alt w/o group by
+        connection.query("SELECT DISTINCT house.id, house.address, house.no_CR, house.name, house.no_room, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM (house CROSS JOIN `service-provider` on `house`.`service-provider` = `service-provider`.`id`) LEFT JOIN `house-images` ON house.cover_image = `house-images`.`house-id` WHERE `service-provider`.`id` = ?", userID, function(err, rows) {
             if(err) throw err;
             res.render('listings', {title: "Your Listings", data: rows, uid: userID});
         });
     }
 });
 
-app.get('/listings/:uid/:hid', function(req, res) {
+app.get('/listings:uid:hid', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM (`house` LEFT JOIN `house-images` ON `house`.`id` = `house-images`.`house-id`) WHERE `house`.`id` = ? AND `house`.`service-provider` = ?", [pid, hid], function(err, rows) {
+        connection.query("SELECT DISTINCT house.address, house.description, house.rules, house.cancellations, house.price FROM (house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
             if(err) throw err;
-            res.render('listingdes', {list: rows});
+            connection.query("SELECT room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.`id`) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.`id` = ?", [pid, hid], function(err, rows) {
+                if(err) throw err;
+                res.render('listingdes', {house: rowa, room: rows});
+            });
         });
     }
 });
