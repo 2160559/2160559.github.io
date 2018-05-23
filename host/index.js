@@ -4,13 +4,12 @@ var app        = express();
 var mysql      = require('mysql');
 var bodyParser = require('body-parser');
 var path       = require('path');
-
-
+var mailbox    = require('nodemailer');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
-app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 600000000000000000000000 }}));
+app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}));
 
 app.set('view engine', 'ejs');
 
@@ -19,10 +18,20 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  host     : '192.168.254.105', //ip address
+  //host     : '192.168.254.112', //ip address
+  host     : 'localhost', //comment for demo
   user     : 'root',
-  password : '',
+  //password : '12345678',
+    password : '',
   database : 'transient'
+});
+
+var mailman = mailbox.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'official.abang@gmail.com',
+    pass: 'webtech2018'
+  }
 });
 
 connection.connect();
@@ -42,6 +51,7 @@ app.get('/', function (req, res) {
     }
 });
 
+//testing w/o client
 app.get('/login', function (req, res) {
     res.render('login');
 });
@@ -63,7 +73,7 @@ app.post('/providerlogin', function(req, res) {
             res.render('nolog');
         } else {
             userID = result[0].id;
-            userName = result[0].f_name + result[0].l_name;
+            userName = result[0].f_name +" "+ result[0].l_name;
             newSession = req.session;
             newSession.userName = userName;
             newSession.email = result[0].email_add;
@@ -99,8 +109,8 @@ app.post('/register', function(req, res){
     var rPermit = req.body.permit;
     var rBank = req.body.cardno;
     var rAddress = rHouseNo+" "+rStreet+" "+rBarangay+" "+rCity+" "+rProv+" "+rRegion;
-   
-    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday) VALUES (?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD], function(err, rows) {
+    
+    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday, status) VALUES (?,?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD, "pending"], function(err, rows) {
         if(err) throw err;
     });
     
@@ -114,14 +124,15 @@ app.post('/register', function(req, res){
         });
     });
     
-    res.render('yeslog', {name: userName});
+    res.render('yesreg', {email: rEmail});
 });
 
 app.get('/listings', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by 1", userID, function(err, rows) {
+        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by house.id", userID, function(err, rows) { // if doesn't work, comment this and uncomment alt below
+        //connection.query("SELECT house.id as 'houseid', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ?", userID, function(err, rows) { // alt w/o group by
             if(err) throw err;
             res.render('listings', {title: "Your Listings", data: rows, uid: userID});
         });
@@ -133,7 +144,7 @@ app.get('/listings/:uid/:hid', function(req, res) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM house join `house-images` on house.id = `house-images`.`house-id` WHERE house.`service-provider` = ? AND house.id = ?", [pid, hid], function(err, rows) {
+        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM (`house` LEFT JOIN `house-images` ON `house`.`id` = `house-images`.`house-id`) WHERE `house`.`id` = ? AND `house`.`service-provider` = ?", [pid, hid], function(err, rows) {
             if(err) throw err;
             res.render('listingdes', {list: rows});
         });
@@ -142,16 +153,13 @@ app.get('/listings/:uid/:hid', function(req, res) {
 
 app.get('/addlist', function(req, res) {
     if (!req.session.userName) {
-       res.redirect('/');
+        res.redirect('/');
     } else {
         res.render('addtype', {title: "Add A Listing"});
     }
 });
 
 app.post('/addlist', function(req, res) {
-
-
-
    var rentType=req.body.yesno;
    var noRoom=req.body.numrooms1;
    var noBeds=req.body.numbeds1;
@@ -165,14 +173,20 @@ app.post('/addlist', function(req, res) {
     var ru=req.body.hrules;
     var pol=req.body.hpop;
     var adds=req.body.answer1;
-   
+    var houseid;
+    
     connection.query("INSERT INTO house (`service-provider`, address, no_CR,longitude,latitude, name, description,rules, amenities,cancellations,price,no_room) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [userID,adds,noCR,longi,lati,name1,descrip,ru,ame,pol,price1,noRoom], function(err, rows) {
         if(err) throw err;
-            res.render('yesadd', {title: "Congrats!"});
     });
-    
-  
-    
+
+    connection.query("SELECT * FROM house WHERE `house`.name = ?", name1, function(err, rows) {
+        if(err) throw err;
+        houseid = rows[0].id;
+        connection.query("INSERT INTO `room` (area, no_beds, house_id) VALUES (?,?,?)", ["100", noBeds, houseid], function(err, rows) {
+        if(err) throw err;
+            res.render('yesadd', {title: "Congrats!"});
+            });
+    });
 });
 
 app.get('/transactions', function(req, res) {
@@ -190,3 +204,26 @@ app.get('/signout', function(req, res) {
     req.session.destroy();
     res.redirect('http://www.abang.com/index.php');
 });
+
+/* EMAIL */
+
+app.post('/c/forget', function(req, res) { // client forget password
+    var email = req.body.email_add;
+
+    var mailOptions = {
+        from: '"Abang" official.abang@gmail.com',
+        to: `${email}`,
+        subject: 'Account Confirmation',
+        html: '<h1>Reset Password</h1><p>does this work</p>'
+    };
+    
+    mailman.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            res.send(`<p>email sent</p>`); // test
+            //res.redirect('http://');
+        }
+    });
+});
+

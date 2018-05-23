@@ -30,6 +30,7 @@
                                 <td>Total Area (sqm)</td>
                                 <td>Status</td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <% data.forEach(function(list) { %>
                             <tr>
@@ -40,12 +41,13 @@
                                 <td><%= list.area %></td>
                                 <td><%= list.status%></td>
                                 <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                                <td><a href="">Edit info</a></td>
                             </tr>
                             <% }); %>
                         </table>
                 </div>
                 <div class="card-body">
-                    <p><a href="/addlist">Add more listings</a></p>
+                    <p><a href="/addlist">Add more!</a></p>
                 </div>
                     <% } else { %>
                         <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
