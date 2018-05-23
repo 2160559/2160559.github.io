@@ -158,7 +158,7 @@ app.get('/listings', function (req, res) {
     }
 });
 
-app.get('/listings/:uid/:hid', function (req, res) {
+app.get('/listings:uid:hid', function (req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
@@ -277,4 +277,8 @@ app.get('/yesreg', function(req, res) {
     res.render('yesreg', {
         email: uMail
     });
+});
+
+app.get('/nolog', function(req, res) {
+    res.render('nolog');
 });
