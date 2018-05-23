@@ -32,6 +32,7 @@
                                 <td>Total Area (sqm)</td>
                                 <td>Status</td>
                                 <td></td>
+                                <td></td>
                             </tr>
                             <% data.forEach(function(list) { %>
                             <tr>
@@ -41,6 +42,7 @@
                                 <td><%= list.area %></td>
                                 <td><%= list.status%></td>
                                 <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                                <td><a href="">Edit info</a></td>
                             </tr>
                             <% }); %>
                         </table>

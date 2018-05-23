@@ -21,7 +21,8 @@ var connection = mysql.createConnection({
   //host     : '192.168.254.112', //ip address
   host     : 'localhost', //comment for demo
   user     : 'root',
-  password : '',
+  //password : '12345678',
+    password : '',
   database : 'transient'
 });
 
@@ -171,10 +172,19 @@ app.post('/addlist', function(req, res) {
     var ru=req.body.hrules;
     var pol=req.body.hpop;
     var adds=req.body.answer1;
-   
+    var houseid;
+    
     connection.query("INSERT INTO house (`service-provider`, address, no_CR,longitude,latitude, name, description,rules, amenities,cancellations,price,no_room) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", [userID,adds,noCR,longi,lati,name1,descrip,ru,ame,pol,price1,noRoom], function(err, rows) {
         if(err) throw err;
+    });
+
+    connection.query("SELECT * FROM house WHERE `house`.name = ?", name1, function(err, rows) {
+        if(err) throw err;
+        houseid = rows[0].id;
+        connection.query("INSERT INTO `room` (area, no_beds, house_id) VALUES (?,?,?)", ["100", noBeds, houseid], function(err, rows) {
+        if(err) throw err;
             res.render('yesadd', {title: "Congrats!"});
+            });
     });
 });
 
