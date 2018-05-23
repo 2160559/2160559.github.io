@@ -72,7 +72,7 @@ app.post('/providerlogin', function(req, res) {
             res.render('nolog');
         } else {
             userID = result[0].id;
-            userName = result[0].f_name + result[0].l_name;
+            userName = result[0].f_name +" "+ result[0].l_name;
             newSession = req.session;
             newSession.userName = userName;
             newSession.email = result[0].email_add;
@@ -142,7 +142,7 @@ app.get('/listings/:uid/:hid', function(req, res) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM house join `house-images` on house.id = `house-images`.`house-id` WHERE house.`service-provider` = ? AND house.id = ?", [pid, hid], function(err, rows) {
+        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM (`house` LEFT JOIN `house-images` ON `house`.`id` = `house-images`.`house-id`) WHERE `house`.`id` = ? AND `house`.`service-provider` = ?", [pid, hid], function(err, rows) {
             if(err) throw err;
             res.render('listingdes', {list: rows});
         });
