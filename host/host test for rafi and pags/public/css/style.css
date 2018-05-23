@@ -657,4 +657,7 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-
+.vcenter {
+    display: flex;
+    align-items: center;
+}

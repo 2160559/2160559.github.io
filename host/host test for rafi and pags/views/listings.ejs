@@ -19,12 +19,10 @@
             <div class="card-header">
               <h1><%= title %> (<%= data.length %>)</h1>
             </div>
-            <div class="card-body">
-              <p>Note: Listing is <i>per room</i>.</p>
-            </div>
+
             <div class="card-body">
               <% if( data.length > 0) { %>
-              <table class="table">
+              <table class="table table-striped">
                 <thead>
                   <th scope="col">Transient Name</th>
                   <th scope="col">Address</th>
@@ -41,7 +39,7 @@
                   <td><%= list.no_beds %></td>
                   <td><%= list.area %></td>
                   <td><%= list.status%></td>
-                  <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                  <td><a href="/listings<%= uid %><%= list.houseid %>">See info</a></td>
                   <td><a href="">Edit info</a></td>
                 </tr>
                 <% }); %>

@@ -112,7 +112,6 @@ $mysqli->close();
         </div>
     </div>
 </div>
-</div>
 
 <?php include 'pagefragments/footer.html' ?>
 </body>
