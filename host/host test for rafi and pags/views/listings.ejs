@@ -1,63 +1,62 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>
-        Abang - Provider
+      Abang - Provider
     </title>
     <% include snips/reg-header %>
-</head>
+  </head>
 
-<body class="is-loading">
-<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
-    <% include snips/log-nav %>
-    <div class="row justify-content-center margin-top">
+  <body class="is-loading">
+    <div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+      <% include snips/log-nav %>
+      <div class="row justify-content-center margin-top">
         <div class="container justify-content-center m-5 pb-5">
-            <div class="card">
-                <div class="card-header">
-                    <h1><%= title %> (<%= data.length %>)</h1>
-                </div>
-                <div class="card-body">
-                    <p>Note: Listing is <i>per room</i>.</p>
-                </div>
-                <div class="card-body">
-                    <% if( data.length > 0) { %>
-                        <table>
-                            <tr>
-                                <td>Address</td>
-                                <td>Number of CR</td>
-                                <td>Number of Beds</td>
-                                <td>Total Area (sqm)</td>
-                                <td>Status</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <% data.forEach(function(list) { %>
-                            <tr>
-                                <td><%= list.address %></td>
-                                <td><%= list.no_CR %></td>
-                                <td><%= list.no_beds %></td>
-                                <td><%= list.area %></td>
-                                <td><%= list.status%></td>
-                                <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
-                                <td><a href="">Edit info</a></td>
-                            </tr>
-                            <% }); %>
-                        </table>
-                </div>
-                <div class="card-body">
-                    <p><a href="/addlist">Add more!</a></p>
-                </div>
-                    <% } else { %>
-                        <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
-                </div>
-                    <% } %>
+          <div class="card">
+            <div class="card-header">
+              <h1><%= title %> (<%= data.length %>)</h1>
             </div>
+            <div class="card-body">
+              <p>Note: Listing is <i>per room</i>.</p>
+            </div>
+            <div class="card-body">
+              <% if( data.length > 0) { %>
+              <table>
+                <tr>
+                  <td>Address</td>
+                  <td>Number of CR</td>
+                  <td>Number of Beds</td>
+                  <td>Total Area (sqm)</td>
+                  <td>Status</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <% data.forEach(function(list) { %>
+                <tr>
+                  <td><%= list.address %></td>
+                  <td><%= list.no_CR %></td>
+                  <td><%= list.no_beds %></td>
+                  <td><%= list.area %></td>
+                  <td><%= list.status%></td>
+                  <td><a href="/listings/<%= uid %>/<%= list.houseid %>">See info</a></td>
+                  <td><a href="">Edit info</a></td>
+                </tr>
+                <% }); %>
+              </table>
+            </div>
+            <div class="card-body">
+              <p><a href="/addlist">Add more!</a></p>
+            </div>
+            <% } else { %>
+            <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
+          </div>
+          <% } %>
         </div>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 
 </html>
