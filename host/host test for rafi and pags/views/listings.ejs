@@ -11,7 +11,7 @@
   </head>
 
   <body class="is-loading">
-    <div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+    <div class="wrapper">
       <% include snips/log-nav %>
       <div class="row justify-content-center margin-top">
         <div class="container justify-content-center m-5 pb-5">
@@ -24,16 +24,16 @@
             </div>
             <div class="card-body">
               <% if( data.length > 0) { %>
-              <table>
-                <tr>
-                  <td>Address</td>
-                  <td>Number of CR</td>
-                  <td>Number of Beds</td>
-                  <td>Total Area (sqm)</td>
-                  <td>Status</td>
-                  <td></td>
-                  <td></td>
-                </tr>
+              <table class="table">
+                <thead>
+                  <th scope="col">Transient Name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Number of CR</th>
+                  <th scope="col">Number of Room</th>
+                  <th scope="col">Cover Image</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </thead>
                 <% data.forEach(function(list) { %>
                 <tr>
                   <td><%= list.address %></td>

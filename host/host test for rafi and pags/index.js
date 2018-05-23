@@ -259,20 +259,20 @@ app.get('/signout', function (req, res) {
 
 /* for front end use */
 
-app.get('/yeslog', function{
+app.get('/yeslog', function(req, res) {
     var uName = "username";
     res.render('yeslog', {
         name: uName
     });
 });
 
-app.get('/yesadd', function{
+app.get('/yesadd', function(req, res) {
     res.render('yesadd', {
         title: "Congrats!"
     });
 });
 
-app.get('/yesreg', function{
+app.get('/yesreg', function(req, res) {
     var uMail = "halu@rafi.com";
     res.render('yesreg', {
         email: uMail
