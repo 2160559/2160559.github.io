@@ -25,7 +25,8 @@ function upload($mysqli,$current_user)
                         $stmt->close();
                     }
                     $mysqli->close();
-                    $current_user['profile_img'] = $imgData;
+                    $_SESSION['user']['profile_img'] = $imgData;
+                    $current_user = $_SESSION['user'];
                     echo '
         <div id="alert" class="alert alert-success">
             <strong>Success!</strong>

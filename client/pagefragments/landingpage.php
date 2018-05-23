@@ -16,13 +16,10 @@ background-size:cover;">
             </div>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Login</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="registration.php">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Become a Host</a>
+                    <a class="nav-link" href="http://provider.abang.com/register">Become a Host</a>
                 </li>
             </ul>
         </div>

@@ -25,6 +25,20 @@ if (isset($_POST['phone'])) {
             <strong>Success!</strong>
         </div>
     ';
+} elseif (isset($_POST['delete'])) {
+    if ($stmt = $mysqli->prepare("UPDATE users SET profile_img = '' WHERE email_add = ?")) {
+        $stmt->bind_param('s', $current_user['email']);
+        $stmt->execute();
+        $stmt->close();
+        $current_user['profile_img'] = '';
+        $_SESSION['user'] = $current_user;
+    }
+    $mysqli->close();
+    echo '
+        <div id="alert" class="alert alert-success">
+            <strong>Success!</strong>
+        </div>
+    ';
 }
 include 'upload_img.php';
 ?>
@@ -43,9 +57,15 @@ include 'upload_img.php';
                             <div class="col-md-6">
                                 <input type="hidden" name="MAX_FILE_SIZE" value="500000">
                                 <p><input type="file" name="userfile"></p>
-                                <input class="btn btn-secondary btn-sm" type="submit" name="submit_image" value="Upload">
-                                <a class="btn btn-outline-danger btn-sm" name="submit" >Remove Photo</a>
+                                <input class="btn btn-secondary btn-sm" type="submit" name="submit_image"
+                                       value="Upload">
                             </div>
+                        </div>
+                    </form>
+                    <form action="" method="post">
+                        <div class="form-group row justify-content-center">
+                            <input type="submit" class="btn btn-outline-danger btn-sm" name="delete" value="Remove
+                                Photo">
                         </div>
                     </form>
                     <form action="" method="post">
@@ -86,10 +106,9 @@ include 'upload_img.php';
                         </div>
 
                         <div class="form-group row">
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <input class="btn-primary btn" type="submit" name="submit" value="Save Changes"/>
-                                </div>
+                            <div class="col-md-6 offset-md-4">
+                                <a href="profile.php" class="btn btn-primary">Back</a>
+                                <input class="btn-primary btn" type="submit" name="submit" value="Save Changes"/>
                             </div>
                         </div>
                     </form>

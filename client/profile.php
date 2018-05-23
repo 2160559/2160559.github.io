@@ -31,7 +31,11 @@ $mysqli->close();
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="<?php echo "data:image;base64," . base64_encode($current_user['profile_img']) ?>"
+                    <img src="<?php if ($current_user['profile_img'] !='') {
+                        echo "data:image;base64," . base64_encode($current_user['profile_img']);
+                    }else{
+                        echo "../images/default-profile.png";
+                    } ?>"
                          class="mx-auto img-fluid img-circle d-block" alt="avatar">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
@@ -49,6 +53,16 @@ $mysqli->close();
                         $b_day = date_create($current_user['birthdate']);
                         echo date_format($b_day, 'jS F Y');
                         ?>
+                    </div>
+                    <div class="profile-usertitle-birthday">
+                        <?php echo $current_user['email'] ?>
+                        <a href="changeemail.php">Edit</a>
+                    </div>
+                    <div class="profile-usertitle-birthday">
+                        <a href="changepassword.php">Change Password</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="editprofile.php">Edit Profile</a>
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->

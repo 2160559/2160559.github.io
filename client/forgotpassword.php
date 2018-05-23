@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <?php session_start();
-  require_once('includes/head.inc.php') ?>
-  <body>
-    <?php include_once('includes/nav.inc.php') ?>
-    <?php
-    include_once('includes/nav.inc.php');
-  include_once('functions.php');
-  include_once('User.php');
-  include_once('getUser.php');
-  include_once('includes/db.inc.php');
-    ?>
-    <div class="container">
-      <?php
-      if (isset($_REQUEST['email'])) {
-        $current_user->getEmailAdd($_REQUEST['email']);
-        $current_user->setPassword($_REQUEST['password']);
-        $query = "UPDATE `users` SET `email_add`='" . $current_user->getEmailAdd() . "',`pass`='" .
-          md5($current_user->getPassword()). "' WHERE `id` = '" . $current_user->getUserId() . "'";
-        $result = mysqli_query($con, $query) or die("an error occurred");
-      } ?>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-header"><h1>Account Settings</h1></div>
-            <div class="card-body">
-              <br/>
-              <p class="profile-usertitle-name text-center">A temporary password will be sent to your email.</p>
-              <br/>
-              <form name="registration" action="" method="post">
-                <div class="form-group row">
-                  <label class="col-md-4 col-form-label text-md-right">Change Email Address</label>
-                  <div class="col-md-6">
-                    <input class="form-control" type="email" name="email" value="<?php echo
-  $current_user->getEmailAdd()?>"
-                           required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-md-4"></div>
-                  <div class="col-md-6">
-                    <input class="btn-info btn float-right" type="submit" name="submit"  value="Send"/>
-                  </div>
-                </div>
-              </form>
-              <div class="form-group row mb-0">
-                <div class="col-md-4 col-form-label text-md-right">
-                  <a href="index.php">Go back to homepage</a>
-                </div>
-              </div>
-            </div>
-          </div>
+<?php
+include 'pagefragments/head.html';
+include 'includes/db.inc.php';
+?>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand " href="index.php"><img src="../images/logo%20-%20Copy.png" height="50"
+                                                   class="d-inline-block align-top" alt="ABANG"/></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navb">
+        <div class="mr-auto">
+
         </div>
-      </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="login.php">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="registration.php">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://provider.abang.com/register">Become a Host</a>
+            </li>
+        </ul>
     </div>
-    <?php require_once('includes/footer.inc.php') ?>
-  </body>
+</nav>
+<div class="container">
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+         aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">Error!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    An email has been sent to you. Please check your email.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#modal').modal('show');
+        });
+    </script>
+    <div class="row justify-content-center m-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"><h1>Recover Password</h1></div>
+                <div class="card-body">
+                    <form action="" method="post" name="forgotPassword">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email Address</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="email_add" class="form-control" placeholder="Email"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary" type="submit">Forgot Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php
+include 'pagefragments/footer.html'
+?>
+</body>
 </html>
