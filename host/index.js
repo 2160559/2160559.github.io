@@ -130,7 +130,8 @@ app.get('/listings', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by 1", userID, function(err, rows) {
+        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by house.id", userID, function(err, rows) { // if doesn't work, comment this and uncomment alt below
+        //connection.query("SELECT house.id as 'houseid', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ?", userID, function(err, rows) { // alt w/o group by
             if(err) throw err;
             res.render('listings', {title: "Your Listings", data: rows, uid: userID});
         });
@@ -158,9 +159,6 @@ app.get('/addlist', function(req, res) {
 });
 
 app.post('/addlist', function(req, res) {
-
-
-
    var rentType=req.body.yesno;
    var noRoom=req.body.numrooms1;
    var noBeds=req.body.numbeds1;
@@ -179,9 +177,6 @@ app.post('/addlist', function(req, res) {
         if(err) throw err;
             res.render('yesadd', {title: "Congrats!"});
     });
-    
-  
-    
 });
 
 app.get('/transactions', function(req, res) {
