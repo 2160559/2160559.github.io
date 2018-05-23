@@ -27,13 +27,13 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-    //host     : '192.168.', //ip address
-    host: 'localhost', //comment for demo
+    host     : '192.168.254.114', //ip address
+    //host: 'localhost', //comment for demo
     user: 'root',
     //password : '12345678',
     password: '',
-    //database: 'transient'
-    database: 'test'
+    database: 'transient'
+    //database: 'test'
 });
 
 var mailman = mailbox.createTransport({
@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
         res.redirect('/home');
     } else {
         userName = "";
-        res.render('home');
+        res.redirect('http://www.abang.com/index.php');
     }
 });
 
