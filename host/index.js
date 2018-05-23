@@ -109,7 +109,7 @@ app.post('/register', function(req, res){
     var rBank = req.body.cardno;
     var rAddress = rHouseNo+" "+rStreet+" "+rBarangay+" "+rCity+" "+rProv+" "+rRegion;
     
-    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday) VALUES (?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD], function(err, rows) {
+    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday, status) VALUES (?,?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD, "pending"], function(err, rows) {
         if(err) throw err;
     });
     
@@ -123,7 +123,7 @@ app.post('/register', function(req, res){
         });
     });
     
-    res.render('yeslog', {name: userName});
+    res.render('yesreg', {email: rEmail});
 });
 
 app.get('/listings', function(req, res) {
