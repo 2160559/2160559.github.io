@@ -138,14 +138,17 @@ app.get('/listings', function(req, res) {
     }
 });
 
-app.get('/listings/:uid/:hid', function(req, res) {
+app.get('/listings:uid:hid', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT *, concat('data:image;base64,', TO_BASE64(image)) as image FROM (`house` LEFT JOIN `house-images` ON `house`.`id` = `house-images`.`house-id`) WHERE `house`.`id` = ? AND `house`.`service-provider` = ?", [pid, hid], function(err, rows) {
+        connection.query("SELECT DISTINCT house.address, house.description, house.rules, house.cancellations, house.price FROM (house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
             if(err) throw err;
-            res.render('listingdes', {list: rows});
+            connection.query("SELECT room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.`id`) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.`id` = ?", [pid, hid], function(err, rows) {
+                if(err) throw err;
+                res.render('listingdes', {house: rowa, room: rows});
+            });
         });
     }
 });
