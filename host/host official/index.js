@@ -5,6 +5,7 @@ var mysql      = require('mysql');
 var bodyParser = require('body-parser');
 var path       = require('path');
 var mailbox    = require('nodemailer');
+var passwordHash = require('password-hash');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -94,7 +95,7 @@ app.get('/register', function(req, res) {
 app.post('/register', function(req, res){
     var rName = req.body.fname;
     var rSurname = req.body.lname;
-    var rGender = req.body.gender;
+    
     var rBD = req.body.birthdate; // format: year-mm-dd
     var rRegion = req.body.item1;
     var rProv = req.body.item2;
@@ -109,15 +110,8 @@ app.post('/register', function(req, res){
     var rPermit = req.body.permit;
     var rBank = req.body.cardno;
     var rAddress = rHouseNo+" "+rStreet+" "+rBarangay+" "+rCity+" "+rProv+" "+rRegion;
-    
-    var passwordHash = require('password-hash');
-
     var rPass = passwordHash.generate(rPass1);
 
-    
-    
-    
-    
     connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday, status) VALUES (?,?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD, "pending"], function(err, rows) {
         if(err) throw err;
     });
@@ -126,12 +120,12 @@ app.post('/register', function(req, res){
         if(err) throw err;
         userID = rows[0].id;
         userName = rName+" "+rSurname;
-        res.render('yeslog', {name: userName});
-        connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
-           if (err) throw err;
-        });
+        
+        
     });
-    
+    connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
+           if (err) throw err;
+    });
     res.render('yesreg', {email: rEmail});
 });
 

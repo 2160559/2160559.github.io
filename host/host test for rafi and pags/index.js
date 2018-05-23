@@ -256,3 +256,25 @@ app.get('/signout', function (req, res) {
 //        }
 //    });
 //});
+
+/* for front end use */
+
+app.get('/yeslog', function{
+    var uName = "username";
+    res.render('yeslog', {
+        name: uName
+    });
+});
+
+app.get('/yesadd', function{
+    res.render('yesadd', {
+        title: "Congrats!"
+    });
+});
+
+app.get('/yesreg', function{
+    var uMail = "halu@rafi.com";
+    res.render('yesreg', {
+        email: uMail
+    });
+});
