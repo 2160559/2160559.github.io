@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        Abang - Provider
+    </title>
+    <% include snips/reg-header %>
+</head>
+
+<body class="is-loading">
+        <div class="wrapper"  style="background-image: url(images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+        <% include snips/nav %>
+        <div class="row justify-content-center margin-top">
+            <div class="container justify-content-center m-5 pb-5">
+                <div class="card">
+                    <div class="card-header"><h1>Service Provider Registration</h1></div>
+                    <div class="card-body">
+                        
+                    <form name="host-registration" action="" method="post">
+                        <h3 >Personal Information </h3>
+                        <div class="form-group row">
+                            
+                            
+                            <label class="col-md-4 col-form-label text-md-right" for="nick-input" >First Name</label>
+                            
+                            <div class="col-md-6">
+                                <input style="width: 100%;" class="LV_valid_field" type="text"  placeholder="First Name" 
+                                       id="nick-input" name="fname" required >
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Last Name</label>
+                            <div class="col-md-6">
+                                <input  style="width: 100%;" type="text" name="lname" placeholder="Last Name"
+                                       id="surname-input" class="LV_valid_field" required>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Gender</label>
+                            <div class="col-md-6">
+                                <input type="radio" name="gender" value="Male"/> Male
+                                &nbsp;&nbsp;
+                                <input type="radio" name="gender" value="Female" /> Female
+                            </div>    
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Birthdate</label>
+                            <div class="col-md-3">
+                                <input class="form-control" type="date" name="birthdate" style="text-transform: uppercase;" required>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h3 class="col-md-4">Address </h3>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Region</label>
+                            <div class="col-md-6">    
+                                <select id="item1" name="item1" class="form-control">
+                                    <option>Select Region</option>
+                                    <option value="0">CAR</option>
+                                    <option value="1">Region 1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Province</label>
+                            <div class="col-md-6">
+                                <select id="item2" name="item2" class="form-control">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right"> Municipality/City</label>
+                            <div class="col-md-6">
+                                <select id="item3" name="item3" class="form-control">
+                                <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Barangay</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="brgy" name="brgy" minlength="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Street</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="street" name="street" minlength="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-md-4 col-form-label text-md-right">House number</label>
+                            <div class="col-md-2">
+                                  <input class="form-control" type="text" id="housenum" name="houseno" minlength="1" required>
+                            </div>
+                        </div>
+                        <hr>
+                        <h3 >Contact Details </h3>
+                        <div class="form-group row">
+                            <label for="number-input"  class="col-md-4 col-form-label text-md-right">Contact Number</label>
+                            <div class="col-md-4">
+                                <input style="width: 100%;" type="text" id="number-input" name="contact" value="+63" class="LV_valid_field" />
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for="mail-input" class="col-md-4 col-form-label text-md-right">E-mail</label>
+                            <div class="col-md-6">
+                                <input type="text" style="width: 100%;" id="mail-input" name="email" value="" class="LV_valid_field " />
+                            </div>
+                        </div>
+                         
+                        <hr>
+                         <h3 >Login Credentials </h3>
+                      
+                        <div class="form-group row">
+                            <label for="user-input" class="col-md-4 col-form-label text-md-right">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" style="width: 100%;" id="user-input" name="username" value="" class="LV_valid_field " />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pass-input" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6"> 
+                                <input type="password" style="width: 100%;" id="pass-input" name="password" value="" class="LV_valid_field" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="confpass-input" class="col-md-4 col-form-label text-md-right">Confirm password</label> 
+                            <div class="col-md-6">
+                                <input type="password" style="width: 100%;" id="confpass-input" value="" class="LV_valid_field" />
+                            </div>
+                        </div>
+                        <hr>
+                        <h3>Business Requirements and Remittance Details</h3>
+                        <div class="form-group row">
+                            <label for="busi" class="col-md-4 col-form-label text-md-right">Business Permit</label>
+                            <div class="col-md-6">
+                                <input type="file" name="permit" accept="image/*">
+                                <input type="submit" value="Upload" class="btn btn-secondary">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cardno" class="col-md-4 col-form-label text-md-right">Bank Account Number</label>
+                            <div class="col-md-6">
+                              <input class="form-control" type="number" id="cardnum" name="cardno" minlength="1" required>
+                            </div>
+                      
+                        </div>
+                         
+                        <hr>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                            <label for="agree" >
+                                <input type="checkbox" value="agree" class="form-check-input" required />
+                                    I agree to the <a href="javascript:termsOfUse()">Terms of Use</a> and <a a href="javascript:privacyPolicy()">Privacy Policy</a> </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                                <input type="submit" id="submit-input" value="Submit" class="btn btn-primary col-md-3" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

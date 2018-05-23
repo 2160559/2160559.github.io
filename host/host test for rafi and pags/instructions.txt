@@ -1,0 +1,22 @@
+
+open "cmd" in this directory
+check if node is working (try "node -v")
+type "npm install" (to download modules needed)
+type "node index" (to start website)
+go to "localhost/3666" (to see website)
+
+in phpmyadmin:
+add new database named "test" (imp!)
+import "transient.sql"
+
+test account:
+user: test@ya.com
+pass: 12345678
+
+pages that need front end:
+
+/views (ejs)
+addtype, home, listings, listingdes, nolog, register, yesadd, yeslog, yesreg
+
+/views/snips (ejs)
+log-nav (when logged in), nav (when not logged in)

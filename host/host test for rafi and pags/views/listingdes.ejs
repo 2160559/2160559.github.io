@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        Abang - Provider
+    </title>
+    <% include snips/reg-header %>
+</head>
+
+<body class="is-loading">
+<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+    <% include snips/log-nav %>
+    <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1><%= list[0].name %></h1>
+                </div>
+                <div class="card-body">
+                    <p>Address: <%= list[0].address %></p>
+                    <p>Description: <%= list[0].description %></p>
+                    <p>Rules: <%= list[0].rules %></p>
+                    <p>Amenities: <%= list[0].amenities %></p>
+                    <p>Cancellations: <%= list[0].cancellations %></p>
+                    <p>Price: <%= list[0].price %></p>
+                </div>
+<!--                <img src="<%= list[0].image %>" style="width:100%;height:auto;">-->
+                <div class="card-body">
+                    <p><a href="/listings">Go back</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

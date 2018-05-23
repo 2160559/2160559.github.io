@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+        Abang - Provider
+    </title>
+    <% include snips/reg-header %>
+</head>
+
+<body class="is-loading">
+<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+    <% include snips/log-nav %>
+    <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+            <div class="card">
+                <div class="card-header">
+                    <h1><%= title %> (<%= data.length %>)</h1>
+                </div>
+                <div class="card-body">
+                    <% if( data.length > 0) { %>
+                        <table>
+                            <tr>
+                                <td>Listing Address</td>
+                                <td>Amount Paid</td>
+                                <td>Customer</td>
+                            </tr>
+                            <% data.forEach(function(list) { %>
+                            <tr>
+                                <td><%= list.address %></td>
+                                <td><%= list.amount %></td>
+                                <td><%= list.custname %></td>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    <% } else { %>
+                        <p>Hm, you don't have any transactions yet. Don't lose hope; someone probably hasn't found your listing yet!</p>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

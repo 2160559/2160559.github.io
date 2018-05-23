@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>temp landing page</title>
+</head>
+
+<body>
+
+<div>
+<h3>easy access</h3>
+    <p>temp landing page since there's no connection to php side yet</p>
+<ul>
+    <li><a href="/register">registration</a></li>
+    <li><a href="/listings">listings</a></li>
+    <li><a href="/addlist">add a listing</a></li>
+    <li><a href="/transactions">transactions</a></li>
+</ul>
+</div>
+
+<div>
+<h3>test - login</h3>
+<form action="/providerlogin" method="POST">
+<label>email:</label> <input type="type" name="email_add" /><br>
+<label>password:</label> <input type="password" name="password" /><br>
+<input type="submit" />
+</form> 
+</div>
+
+<div>
+<h3>test - forget password (mail)</h3>
+<form action="/c/forget" method="POST">
+<label>email</label>: <input type="type" name="email_add" /><br>
+<input type="submit" />
+</form>
+</div>
+
+</body>
+
+</html>
