@@ -9,7 +9,7 @@ var mailbox    = require('nodemailer');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
-app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}));
+app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000 }}));
 
 app.set('view engine', 'ejs');
 
@@ -130,8 +130,7 @@ app.get('/listings', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT house.id as 'houseid', COUNT(*) 'countroom', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ? GROUP by house.id", userID, function(err, rows) { // if doesn't work, comment this and uncomment alt below
-        //connection.query("SELECT house.id as 'houseid', house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ?", userID, function(err, rows) { // alt w/o group by
+        connection.query("SELECT DISTINCT house.id as 'houseid', house.no_room, house.address, room.area, house.no_CR, room.no_beds, IF(bookings.id IS NULL, 'AVAILABLE', 'BOOKED') as 'status' FROM (house INNER JOIN room ON house.id = room.house_id) LEFT JOIN bookings ON bookings.`room-id` = room.id WHERE house.`service-provider` = ?", userID, function(err, rows) { // alt w/o group by
             if(err) throw err;
             res.render('listings', {title: "Your Listings", data: rows, uid: userID});
         });

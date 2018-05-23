@@ -20,11 +20,13 @@
                     <h1><%= title %> (<%= data.length %>)</h1>
                 </div>
                 <div class="card-body">
+                    <p>Note: Listing is <i>per room</i>.</p>
+                </div>
+                <div class="card-body">
                     <% if( data.length > 0) { %>
                         <table>
                             <tr>
                                 <td>Address</td>
-                                <td>Number of Rooms</td>
                                 <td>Number of CR</td>
                                 <td>Number of Beds</td>
                                 <td>Total Area (sqm)</td>
@@ -34,7 +36,6 @@
                             <% data.forEach(function(list) { %>
                             <tr>
                                 <td><%= list.address %></td>
-                                <td><%= list.countroom %></td>
                                 <td><%= list.no_CR %></td>
                                 <td><%= list.no_beds %></td>
                                 <td><%= list.area %></td>
