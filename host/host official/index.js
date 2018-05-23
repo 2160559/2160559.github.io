@@ -95,7 +95,7 @@ app.get('/register', function(req, res) {
 app.post('/register', function(req, res){
     var rName = req.body.fname;
     var rSurname = req.body.lname;
-    var rGender = req.body.gender;
+    
     var rBD = req.body.birthdate; // format: year-mm-dd
     var rRegion = req.body.item1;
     var rProv = req.body.item2;
