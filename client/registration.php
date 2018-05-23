@@ -48,7 +48,7 @@ include 'includes/db.inc.php';
             $phone = $_POST['phone'];
             $birthdate = $_POST['birthdate'];
             $acc_type = 'customer';
-            $status = 'active';
+            $status = 'pending';
             $current_user = array('username' => $username, 'first_name' => $f_name, 'last_name' => $l_name, 'email' =>
                 $email, 'password' => $password, 'phone' => $phone, 'birthdate' => $birthdate, 'acc_type' =>
                 $acc_type, 'status' => $status);

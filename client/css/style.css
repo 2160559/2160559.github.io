@@ -20,7 +20,7 @@ a {
 #main .row .mainbox {
 	display: block;
 	float: left;
-	margin-top: 1% 5% 1% 1.6%;
+	margin: 1% 5% 1% 1.6%;
 	border: 2px solid white;
 	min-height:20em;
     background-color: #00ced1;
@@ -29,7 +29,7 @@ a {
 #main.container .row .mainbox {
     display: block;
     float: left;
-    margin-top: 1% 5% 1% 1.6%;
+    margin: 1% 5% 1% 1.6%;
     border: 2px solid white;
     min-height:20em;
     background-color: #00ced1;
@@ -115,7 +115,7 @@ html footer {
     width:100%;
 }
 .taskDescription {
-    margin-top:10px 0;
+    margin-top:10px;
 }
 .commentList {
     padding:0;
@@ -198,7 +198,6 @@ html footer {
 .profile-usertitle-birthday {
   color: #5a7391;
   font-size: 12px;
-  font-weight: 350;
   margin-bottom: 20px;
 }
 
@@ -313,11 +312,7 @@ section.range-slider input[type=range]::-moz-focus-outer {
   background-color: white;
 }
 
--@import url(https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i);
-
-
-
-
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i);
 body {
   font-style: normal;
   line-height: 1.5;
@@ -625,4 +620,41 @@ body {
     opacity: 0.7; 
   }
 }
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.rating input {
+    position: absolute;
+    left: -999999px;
+}
+
+.rating label {
+    display: inline-block;
+    font-size: 0;
+}
+
+.rating > label:before {
+    position: relative;
+    font: 24px/1 FontAwesome;
+    display: block;
+    content: "\f005";
+    color: #ccc;
+    background: -webkit-linear-gradient(-45deg, #d9d9d9 0%, #b3b3b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > label.selected:before,
+.rating > label.selected ~ label:before {
+    color: #f0ad4e;
+    background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 

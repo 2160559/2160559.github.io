@@ -24,7 +24,7 @@ include 'includes/db.inc.php';
                 <a class="nav-link" href="registration.php">Sign Up</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Become a Host</a>
+                <a class="nav-link" href="http://provider.abang.com/register">Become a Host</a>
             </li>
         </ul>
     </div>
@@ -42,7 +42,14 @@ include 'includes/db.inc.php';
             $stmt->bind_result($id, $username, $f_name, $l_name, $email_add, $pass, $phone, $acc_type,
                 $profile_img, $birthday, $status);
             $stmt->fetch();
-            if ($status == 'active') {
+            if ($email_add == ''){
+                echo "
+                <script>
+                    window.alert('Email Address Not Found!');
+                </script>
+                ";
+            }
+            elseif ($status == 'enabled' || $status == 'approved') {
                 if ($acc_type == 'provider') {
                     ?>
                     <form action="http://provider.abang.com/providerlogin" method="post" id="user-form">
@@ -92,10 +99,9 @@ include 'includes/db.inc.php';
                     <?php
                 }
                 }
-            }elseif($status == 'pending'){
+            } elseif ($status == 'pending') {
                 header('Location: inactive.php');
-            }
-            else{
+            } else {
                 header('Location: deactivated.php');
             }
             $stmt->close();
