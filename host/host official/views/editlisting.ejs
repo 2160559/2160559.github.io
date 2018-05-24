@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+      Abang - Provider - View Listing
+    </title>
+    <% include snips/reg-header %>
+  </head>
+
+  <body>
+    <% include snips/log-nav %>
+    <div class="container">
+      <div class="row profile">
+        <!-- SIDE PROFILE -->
+        <div class="col-md-8">
+          <div class="profile-content">
+              
+               <h2>What do you want to edit?</h2>
+              <form method="post">
+                  <input type="radio" name="option" value="1"> Description<br>
+                  <input type="radio" name="option" value="2"> Address<br>
+                  <input type="radio" name="option" value="3"> Rules<br>
+                  <input type="radio" name="option" value="4"> Amenities<br>
+                  <input type="radio" name="option" value="5"> Cancellations<br>
+                  <input type="radio" name="option" value="6"> Price<br>
+                  Enter your edits here:
+                  <br>
+                  <textarea name="editshere" rows=5></textarea>
+                  <input type="submit" id="submit-input" value="Submit" class="btn btn-dark btn-block" />
+              </form>
+              <div><%- msg %></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+  </body>
+
+</html>

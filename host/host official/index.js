@@ -130,7 +130,9 @@ app.get('/listings:uid:hid', function(req, res) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT DISTINCT house.name, house.address, house.description, house.rules, house.amenities, house.cancellations, house.price, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM ((house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) JOIN `house-images` ON house.cover_image = `house-images`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
+        connection.query("SELECT DISTINCT house.name, house.address, house.description, house.rules, house.amenities, house.cancellations, house.price, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM ((house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) JOIN `house-images` ON house.cover_image = `house-images`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) 
+                         
+                         {
             if(err) throw err;
             connection.query("SELECT room.id, room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.id) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.id = ?", [hid, pid], function(err, rows) {
                 if(err) throw err;
@@ -139,6 +141,7 @@ app.get('/listings:uid:hid', function(req, res) {
         });
     }
 });
+
 
 app.get('/addlist', function(req, res) {
     if (!req.session.userName) {
@@ -313,3 +316,49 @@ app.post('/conmail', function(req, res) { // confirmation (admin > client/provid
         }
     });
 });
+
+app.get('/editlist',function(req, res) { 
+     if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        //
+         res.render('editlisting', {msg: ""});
+    }
+
+});
+app.post('/editlist', function(req, res){
+    var selectedOption = req.body.option;
+    var editValue=req.body.editshere;
+    var sql="";
+    //where id << thats the house id
+    switch(selectedOption) {
+    case "1":
+        sql="update house set description= ? where id=5";
+        break;
+    case "2":
+        sql="update house set rules= ? where id=5";
+        break;
+    case "3":
+        sql="update house set rules= ? where id=5";
+        break;
+    case "4":
+        sql="update house set amenities= ? where id=5";
+        break;
+    case "5":
+        sql="update house set cancellations= ? where id=5";
+        break;
+    case "6":
+        sql="update house set price= ? where id=5";
+        break;
+        
+    default:
+        
+    }
+      connection.query(sql,editValue, function(err, rows) {
+        if(err) throw err;
+        });
+
+    res.render('editlisting', {msg:"<h1>Edit Successful</h1>"});
+});
+
+
