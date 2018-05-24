@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'pagefragments/head.html'?>
-<body>
-<div style="background: url(images/EagleNewsPh.jpg) no-repeat;
-background-size:cover;">
+<body  style="background: url(images/EagleNewsPh.jpg) no-repeat; background-size: 100% 100%;">
+<div>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand " href="index.php"><img src="../images/logo2.png" height="50" class="d-inline-block align-top" alt="ABANG"/></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
@@ -35,7 +34,7 @@ background-size:cover;">
                         <h3 class="card-text" style="color:white">in Baguio</h3>
                     </div>
                     <div class="card-body">
-                        <a href="login.php" class="btn btn-dark btn-lg btn-block">Login</a>
+                        <a href="login.php" class="btn btn-dark btn-lg btn-block">Login</a><br><br>
                     </div>
                 </div>
             </div>
