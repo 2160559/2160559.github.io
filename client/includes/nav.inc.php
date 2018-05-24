@@ -26,7 +26,6 @@
                 </a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="../editprofile.php">Edit Profile</a>
-						<a class="dropdown-item" href="../accountsettings.php">Account Settings</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="includes/logout.inc.php">Logout</a>
 					</div>

@@ -18,9 +18,6 @@ include 'includes/db.inc.php';
         </div>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="login.php">Login</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="registration.php">Sign Up</a>
             </li>
             <li class="nav-item">

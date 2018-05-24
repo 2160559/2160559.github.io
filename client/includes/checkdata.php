@@ -12,7 +12,7 @@ if (isset($_POST['user_name'])) {
         if (count($usernames) > 0) {
             echo "Username Already Exists";
         } else {
-            echo "OK";
+            echo "&#10003;";
         }
     }
     exit();
@@ -27,10 +27,29 @@ if (isset($_POST['user_email'])) {
         while ($stmt->fetch()) {
             $emails[] = $email;
         }
-        if (count($emails) > 0) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+        } elseif (count($emails) > 0) {
             echo "Email Already Exists";
         } else {
-            echo "OK";
+            echo "&#10003;";
+        }
+    }
+    exit();
+}
+if (isset($_POST['email_add'])) {
+    if ($stmt = $mysqli->prepare("SELECT email_add FROM `users` where email_add = ?")) {
+        $stmt->bind_param('s', $_POST['email_add']);
+        $stmt->execute();
+        $stmt->bind_result($email);
+        $emails = [];
+        while ($stmt->fetch()) {
+            $emails[] = $email;
+        }
+if (count($emails) < 0) {
+            echo "Email Does Not Exist";
+        } else {
+            echo "&#10003;";
         }
     }
     exit();

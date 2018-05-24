@@ -30,48 +30,34 @@ include 'includes/db.inc.php';
     </div>
 </nav>
 <div class="container">
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
-         aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title">Error!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    An email has been sent to you. Please check your email.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $("#forgot").on('click', function () {
-            $('#modal').modal('show');
-        });
-    </script>
     <div class="row justify-content-center m-5">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header"><h1>Recover Password</h1></div>
                 <div class="card-body">
-                    <form action="provider.abang.com/cforget" method="post" name="forgotPassword">
+                    <form action="http://provider.abang.com/cforget" method="post" name="forgotPassword" onsubmit="return validateForm()">
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email Address</label>
                             <div class="col-lg-9">
                                 <input type="text" name="email_add" class="form-control" placeholder="Email"
-                                       required>
+                                       id="email_add" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-primary" type="submit" id="forgot">Forgot Password</button>
+                            <button class="btn btn-lg btn-primary" type="submit">Forgot Password</button>
                         </div>
                     </form>
                 </div>
+                <script>
+                    function validateForm() {
+                        var x = document.forms["forgotPassword"]["email_add"].value;
+                        if (x == "") {
+                            alert("Email must be filled out");
+                            return false;
+                        }
+                        alert("An email will be sent to the email address you provided, please check that out");
+                    }
+                </script>
             </div>
         </div>
     </div>

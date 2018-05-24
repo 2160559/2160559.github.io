@@ -12,7 +12,7 @@ function checkname()
             },
             success: function (response) {
                 $( '#name_status' ).html(response);
-                return response === "OK";
+                return response === "#2713";
             }
         });
     }
@@ -23,7 +23,7 @@ function checkname()
     }
 }
 
-function checkemail()
+function checkmail()
 {
     let email=document.getElementById( "UserEmail" ).value;
 
@@ -37,28 +37,13 @@ function checkemail()
             },
             success: function (response) {
                 $( '#email_status' ).html(response);
-                return response === "OK";
+                return response === "#2713";
             }
         });
     }
     else
     {
         $( '#email_status' ).html("");
-        return false;
-    }
-}
-
-function checkall()
-{
-    var namehtml=document.getElementById("name_status").innerHTML;
-    var emailhtml=document.getElementById("email_status").innerHTML;
-
-    if((namehtml && emailhtml)==="OK")
-    {
-        return true;
-    }
-    else
-    {
         return false;
     }
 }

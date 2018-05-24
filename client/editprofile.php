@@ -2,7 +2,7 @@
 <html>
 <?php
 session_start();
-$current_user = $_SESSION['user'];
+@$current_user = $_SESSION['user'];
 include 'pagefragments/head.html' ?>
 
 <body>
@@ -40,18 +40,7 @@ if (isset($_POST['phone'])) {
         </div>
     ';
 }
-if (isset($_GET['disable'])){
-        if ($stmt = $mysqli->prepare("UPDATE users set status = 'deactivated' where id = ?")){
-            $stmt->bind_param("i", $current_user['id']);
-            $stmt->execute();
-            $stmt->close();
-        }
-    $mysqli->close();
-    session_destroy();
-}
-if (isset($_SESSION['id'])){
-    header("Location:index.php");
-}
+
 include 'upload_img.php';
 ?>
 <script>$('#alert').delay(5000).fadeOut(400)</script>
@@ -126,7 +115,30 @@ include 'upload_img.php';
                     </form>
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
-                            <a href="editprofile.php?disable=true" class="btn btn-danger">Disable Account</a>
+                            <b  class="btn btn-danger" data-toggle="modal" data-target="#myModal">Disable Account</b>
+                        </div>
+                    </div>
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Warning!</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Are you sure you want to Deactivate Your account?
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <a href="disableaccount.php?disable=true" class="btn btn-danger">Disable</a>
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
