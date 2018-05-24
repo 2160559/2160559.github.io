@@ -12,13 +12,34 @@
 
   <body>
 
-    <% include snips/nav %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
+
+      <a class="navbar-brand " href="home"><img src="../images/logo%20-%20Copy.png" height="35" class="d-inline-block align-top" alt="ABANG"/></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navb">
+        <div class="mr-auto">
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/signout" style="color: white">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="row justify-content-center m-5">
       <div class="col-md-6">
         <div class="card">
           <div class="card-header"><h1>Welcome!</h1></div>
           <div class="card-body text-center">
-            <a href="#" class="btn btn-lg btn-dark btn-block">Transactions</a>
+            <br>
+            <!-- Fish, can you put the time and date here -->
+            <br>
+            <a href="listings" class="btn btn-lg btn-info btn-block">View Listings</a><br>
+            <a href="#" class="btn btn-lg btn-info btn-block">View Reservations</a><br>
+            <a href="transactions.ejs" class="btn btn-lg btn-info btn-block">View Transactions</a><br>
+            <br>
           </div>
         </div>
       </div>
