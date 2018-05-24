@@ -13,7 +13,7 @@
 </head>
 
 <body class="is-loading" onload="initialize()">
-<div class="wrapper" style="background-image: url(../images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+<div class="wrapper">
     <% include snips/log-nav %>
     <div class="row justify-content-center margin-top">
         <div class="container justify-content-center m-5 pb-5">
@@ -66,9 +66,10 @@
                  
                         <hr>
                         <h3>Specify the location by dragging the marker</h3>
-                        <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;"></div>
-                        <input type="text"  id="lat" name="lat">
-                        <input type="text"  id="lng" name="lng">
+                        <br>
+                        <div id="map_canvas" style="width:1000px;height:500px; margin: 0 auto;border:1px solid #bababa;border-radius: 5px;"></div>
+                            <input type="text"  id="lat" name="lat" class="d-none">
+                            <input type="text"  id="lng" name="lng" class="d-none">
                         
                         <script>
                             var kk;
@@ -83,70 +84,65 @@
                                         //alert("Location: " + results[0].formatted_address);
                                         kk=results[0].formatted_address;
                                         document.getElementById('answer').innerHTML = kk;
-                                       
-                                        
-                                       
                                     }
                                 }
                             });
                         }
                             </script>
-                        
-    
-                        <input type="button" value="Get Address" onclick="GetAddress()" />
-                        <textarea id="answer" class="form-control" name="answer1" rows="1"></textarea>
-          
+                        <br>
+                        <div class="row justify-content-center">    
+                            <input type="button" value="Get Address" onclick="GetAddress()" class="btn btn-dark" />
+                            <textarea id="answer" class="form-control col-md-8 float-left" name="answer1" rows="1" disabled style="font-weight: bold;"></textarea>
+                        </div>
+
                         <hr>
                         <div class="form-group row">
-                          <h3>Upload Images</h3>
-                            
+                          <h3>Upload Images</h3>                            
                         </div>
                         <div class="form-group row">
-                            Tell us about your place!
-                            <textarea class="form-control" name="description" rows="5"></textarea>
+                            <p>Tell us about your place!</p>
+                            <textarea class="form-control col-md-11" name="description" rows="5"></textarea>
                         </div> 
                         <hr>
                         <div class="form-group row">
-                            Tell us your house rules
-                            <textarea class="form-control" name="hrules" rows="5"></textarea>
+                            <p>Tell us your house rules<br>
+                            NOTE: Please separate your rules with a semi-colon (<b> ; </b>)</p>
+                            <textarea class="form-control col-md-11 " name="hrules" rows="5"></textarea>
                         </div> 
                         <hr>
                           <div class="form-group row">
-                            Tell us your house amenities
-                            <textarea class="form-control" name="hame" rows="5"></textarea>
+                            <p>Tell us your house amenities<br>
+                            NOTE: Please separate your amneties with a semi-colon (<b> ; </b>)</p>
+                            <textarea class="form-control col-md-11" name="hame" rows="5"></textarea>
                         </div> 
                         <hr>
                            <div class="form-group row">
-                            Tell us your cancellation policies
-                            <textarea class="form-control" name="hpop" rows="5"></textarea>
+                            <p>Tell us your cancellation policies<br>
+                                NOTE: Please separate your policies with a period (<b> . </b>)</p>
+                            <textarea class="form-control col-md-11" name="hpop" rows="5"></textarea>
                         </div> 
                         <hr>
                         <div class="form-group row">
-                            <label class="col-md-4 text-md-right">So is it per night or per person?</label>
+                            <label class="col-md-4 text-md-right">Select if rate is per person or per night:</label>
                             <div class="col-md-6">
                                 <input type="radio" name="yesno1" id="pperson">  Per person
                                     &nbsp;&nbsp;
                                 <input type="radio" name="yesno1" id="ppnight"> Per night
-                                <input class="form-control" style="width:50%" type="text"  name="presyo" minlength="1" placeholder="enter rate here" required>
+                                <input class="form-control" style="width:50%" type="text"  name="presyo" minlength="1" placeholder="Enter rate here" required>
                             </div>    
                         </div>
-                    
-                        
-                        
-                        
-                        
+
                         <hr>
                         <div class="form-group row">
-                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                            <div class="col-md-8 col-form-label text-md-right form-check-label">
                                 <label for="agree">
                                     <input type="checkbox" value="agree" class="form-check-input" required />
                                     I agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a> </label>
                             </div>
                         </div>
-                        <hr>
-                        <div class="form-group row">
-                            <div class="col-md-7 col-form-label text-md-right form-check-label">
-                                <input type="submit" value="Submit" />
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-7 col-form-label form-check-label">
+                                <input type="submit" value="Submit"  class="btn btn-dark btn-block" />
                             </div>
                         </div>
                     </form>

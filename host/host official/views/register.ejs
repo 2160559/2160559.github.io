@@ -11,7 +11,7 @@
 </head>
 
 <body class="is-loading">
-        <div class="wrapper"  style="background-image: url(images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+        <div class="wrapper">
         <% include snips/nav %>
         <div class="row justify-content-center margin-top">
             <div class="container justify-content-center m-5 pb-5">
@@ -22,23 +22,27 @@
                     <form name="host-registration" action="" method="post">
                         <h3 >Personal Information </h3>
                         <div class="form-group row">
-                            
-                            
                             <label class="col-md-4 col-form-label text-md-right" for="nick-input" >First Name</label>
-                            
                             <div class="col-md-6">
-                                <input style="width: 100%;" class="LV_valid_field" type="text"  placeholder="First Name" 
+                                <input style="width: 100%;padding: 0.375rem 0.75rem;border-radius: 0.25rem;border: 1px solid #ced4da;" class="LV_valid_field" type="text"  placeholder="First Name" 
                                        id="nick-input" name="fname" required >
                             </div>
-                            
-                            
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Last Name</label>
                             <div class="col-md-6">
-                                <input  style="width: 100%;" type="text" name="lname" placeholder="Last Name"
+                                <input  style="width: 100%;padding: 0.375rem 0.75rem;border-radius: 0.25rem;border: 1px solid #ced4da;" type="text" name="lname" placeholder="Last Name"
                                        id="surname-input" class="LV_valid_field" required>
                             </div>
+                        </div>
+                       
+                        <div class="form-group row">
+                            <label class="col-md-4 text-md-right">Gender</label>
+                            <div class="col-md-6">
+                                <input type="radio" name="gender" value="Male"/> Male
+                                &nbsp;&nbsp;
+                                <input type="radio" name="gender" value="Female" /> Female
+                            </div>    
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Birthdate</label>
@@ -99,13 +103,13 @@
                         <div class="form-group row">
                             <label for="number-input"  class="col-md-4 col-form-label text-md-right">Contact Number</label>
                             <div class="col-md-4">
-                                <input style="width: 100%;" type="text" id="number-input" name="contact" value="+63" class="LV_valid_field" />
+                                <input style="width: 100%;padding: 0.375rem 0.75rem;border-radius: 0.25rem;border: 1px solid #ced4da;" type="text" id="number-input" name="contact" value="+63" class="LV_valid_field">
                             </div>
                         </div>
-                           <div class="form-group row">
+                          <div class="form-group row">
                             <label for="mail-input" class="col-md-4 col-form-label text-md-right">E-mail</label>
                             <div class="col-md-6">
-                            <input type="text" style="width: 100%;" id="mail-input" name="email" value="" class="LV_valid_field "/>
+                                <input type="text" style="width: 100%;padding: 0.375rem 0.75rem;border-radius: 0.25rem;border: 1px solid #ced4da;" id="mail-input" name="email" value="" class="LV_valid_field">
                             </div>
                         </div>
                          
@@ -115,7 +119,7 @@
                         <div class="form-group row">
                             <label for="user-input" class="col-md-4 col-form-label text-md-right">Username</label>
                             <div class="col-md-6">
-                                <input type="text" style="width: 100%;" id="user-input" name="username" value="" class="LV_valid_field " />
+                                <input type="text" style="width: 100%;" id="user-input" name="username" value="" class="LV_valid_field" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -127,9 +131,10 @@
                         <div class="form-group row">
                             <label for="confpass-input" class="col-md-4 col-form-label text-md-right">Confirm password</label> 
                             <div class="col-md-6">
-                                <input type="password" style="width: 100%;" id="confpass-input" value="" class="LV_valid_field" />
+                                <input type="password" style="width: 100%;padding: 0.375rem 0.75rem;border-radius: 0.25rem;border: 1px solid #ced4da;" id="confpass-input" value="" class="LV_valid_field" />
                             </div>
                         </div>
+                        <br>
                         <hr>
                         <h3>Business Requirements and Remittance Details</h3>
                         <div class="form-group row">
@@ -138,7 +143,7 @@
                                 <input type="file" name="permit" accept="image/*">
                                 <input type="submit" value="Upload" class="btn btn-secondary">
                             </div>
-                        </div>        
+                        </div>
                         <div class="form-group row">
                             <label for="cardno" class="col-md-4 col-form-label text-md-right">Bank Account Number</label>
                             <div class="col-md-6">
@@ -149,15 +154,15 @@
                          
                         <hr>
                         <div class="form-group row">
-                            <div class="col-md-7 col-form-label text-md-right form-check-label">
+                            <div class="col-md-8  col-form-label text-md-right form-check-label">
                             <label for="agree" >
                                 <input type="checkbox" value="agree" class="form-check-input" required />
                                     I agree to the <a href="javascript:termsOfUse()">Terms of Use</a> and <a a href="javascript:privacyPolicy()">Privacy Policy</a> </label>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-md-7 col-form-label text-md-right form-check-label">
-                                <input type="submit" id="submit-input" value="Submit" class="btn btn-primary col-md-3" />
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-7 col-form-label form-check-label">
+                                <input type="submit" id="submit-input" value="Submit" class="btn btn-dark btn-block" />
                             </div>
                         </div>
                     </form>

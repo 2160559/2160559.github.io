@@ -1,40 +1,92 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>
-        Abang - Provider
+      Abang - Provider
     </title>
     <% include snips/reg-header %>
-</head>
+  </head>
 
-<body class="is-loading">
-<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
+  <body>
     <% include snips/log-nav %>
-    <div class="row justify-content-center margin-top">
-        <div class="container justify-content-center m-5 pb-5">
-            <div class="card">
-                <div class="card-header">
-                    <h1><%= house[0].name %></h1>
-                </div>
-                <div class="card-body">
-                    <p>Address: <%= house[0].address %></p>
-                    <p>Description: <%= house[0].description %></p>
-                    <p>Rules: <%= house[0].rules %></p>
-                    <p>Amenities: <%= house[0].amenities %></p>
-                    <p>Cancellations: <%= house[0].cancellations %></p>
-                    <p>Price: <%= house[0].price %></p>
-                </div>
-<!--                <img src="<%= house[0].image %>" style="width:100%;height:auto;">-->
-                <div class="card-body">
-                    <p><a href="/listings">Go back</a></p>
-                </div>
+    <div class="container">
+      <div class="row profile">
+        <!-- SIDE PROFILE -->
+        <div class="col-md-8">
+          <div class="profile-content">
+            <!-- SIDEBAR USERPIC -->
+            <div >
+              <img src="<%= house[0].coverimg %>" class="mx-auto img-fluid img-round d-block" alt="display-photo">
             </div>
+            <!-- END SIDEBAR USERPIC -->
+            <!-- SIDEBAR USER TITLE -->
+            <div class="gallery-block"><div class="heading"><h2 class="text-center"><%= house[0].name %></h2></div></div>
+
+              <table class="table table-striped">
+                <tr>
+                  <td style="width:25%" class="font-weight-bold ">Description</td>
+                  <td><%= house[0].description %></td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Address</td>
+                  <td><%= house[0].address %></td>
+                  
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Rules</td>
+                  <td><%= house[0].rules %></td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Amenities</td>
+                  <td><%= house[0].amenities %></td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Cancellations</td>
+                  <td><%= house[0].cancellations %></td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Price</td>
+                  <td>PHP <%= house[0].price %></td>
+                </tr>
+                <tbody>
+
+                </tbody>
+              </table>           
+
+            <!-- END SIDEBAR USER TITLE -->
+            <!-- SIDEBAR BUTTONS
+-->
+          </div>
         </div>
+        <!-- END SIDE PROFILE -->
+        <div class="col-md-4">
+          <div class="profile-content">
+            <div class="bd-example bd-example-tabs">
+              <p class="profile-usertitle-name">Room Status</p>
+              <table class="table table-striped">
+                <thead>
+                  <th>Room Number</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <% room.forEach (function(list, ind){ %>
+                    <tr>
+                        <td><%= ind + 1 %></td>
+                        <td><%= list.status %></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</body>
+
+  </body>
 
 </html>

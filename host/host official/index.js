@@ -1,16 +1,16 @@
-var express    = require('express');
-var session    = require('express-session');
-var app        = express();
-var mysql      = require('mysql');
-var bodyParser = require('body-parser');
-var path       = require('path');
-var mailbox    = require('nodemailer');
-var passwordHash = require('password-hash');
+var express      = require('express');
+var session      = require('express-session');
+var app          = express();
+var mysql        = require('mysql');
+var bodyParser   = require('body-parser');
+var path         = require('path');
+var mailbox      = require('nodemailer');
+var pwHash       = require('password-hash');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
-app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 }}));
+app.use(session({secret: 'vigilnight', resave: false, saveUninitialized: true, cookie: { maxAge: 6000000 }}));
 
 app.set('view engine', 'ejs');
 
@@ -19,12 +19,10 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  //host     : '192.168.254.114', //ip address
-  host     : 'localhost', //comment for demo
-  user     : 'root',
-  //password : '12345678',
+    host     : '192.168.254.114', //ip address
+    user     : 'root',
     password : '',
-  database : 'transient'
+    database : 'transient'
 });
 
 var mailman = mailbox.createTransport({
@@ -37,32 +35,19 @@ var mailman = mailbox.createTransport({
 
 connection.connect();
 
-app.listen(8666, function() {
-//app.listen(80, '0.0.0.0', function () { //uncomment for demo
-    console.log('Thank you for using Abang services! You may find us at :8666 ~');
-    //console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
+//app.listen(8666, function() {
+app.listen(80, '0.0.0.0', function () { //uncomment for demo
+    //console.log('Thank you for using Abang services! You may find us at :8666 ~');
+    console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
 });
 
+// if logged in, show dash; if not, redirect to client
 app.get('/', function (req, res) {
     if (req.session.userName) {
-        res.redirect('/home');
+        res.render('home', {user: req.session.userName});
     } else {
-        userName = "";
-        res.render('home');
+        res.redirect('http://www.abang.com/index.php')
     }
-});
-
-//testing w/o client
-app.get('/login', function (req, res) {
-    res.render('login');
-});
-
-app.get('/home', function (req, res) {
-   if (req.session.userName) {
-       res.render('yeslog', {name: userName});
-   } else {
-       res.redirect('/');
-   }
 });
 
 app.post('/providerlogin', function(req, res) {
@@ -79,7 +64,7 @@ app.post('/providerlogin', function(req, res) {
             newSession.userName = userName;
             newSession.email = result[0].email_add;
             newSession.id = req.sessionID;
-            res.render('yeslog', {name: userName});
+            res.render('yeslog');
         }
     });
 });
@@ -88,14 +73,13 @@ app.get('/register', function(req, res) {
     if (!req.session.userName) {
         res.render('register', {title: "Register as a Service Provider!"});
     } else {
-        res.redirect('/home');
+        res.redirect('/');
     }
 });
 
 app.post('/register', function(req, res){
     var rName = req.body.fname;
     var rSurname = req.body.lname;
-    
     var rBD = req.body.birthdate; // format: year-mm-dd
     var rRegion = req.body.item1;
     var rProv = req.body.item2;
@@ -106,24 +90,27 @@ app.post('/register', function(req, res){
     var rContact = req.body.contact;
     var rUsername = req.body.username;
     var rEmail = req.body.email;
-    var rPass1 = req.body.password;
+    var rPass = req.body.password;
+    var rHash = pwHash.generate(rPass);
     var rPermit = req.body.permit;
     var rBank = req.body.cardno;
     var rAddress = rHouseNo+" "+rStreet+" "+rBarangay+" "+rCity+" "+rProv+" "+rRegion;
-    var rPass = passwordHash.generate(rPass1);
-
-    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday, status) VALUES (?,?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rPass, rContact, "provider", null, rBD, "pending"], function(err, rows) {
+    
+    // insert as user
+    connection.query("INSERT INTO users (username, f_name, l_name, email_add, password, phone, acc_type, profile_img, birthday, status) VALUES (?,?,?,?,?,?,?,?,?,?)", [rUsername, rName, rSurname, rEmail, rHash, rContact, "provider", null, rBD, "pending"], function(err, rows) {
         if(err) throw err;
     });
     
+    // get user id and insert as provider
     connection.query("SELECT * FROM users WHERE username = ? AND f_name = ? AND l_name = ?", [rUsername, rName, rSurname], function(err, rows) {
         if(err) throw err;
         userID = rows[0].id;
         userName = rName+" "+rSurname;
-    });
-    connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
+        connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
            if (err) throw err;
+        });
     });
+
     res.render('yesreg', {email: rEmail});
 });
 
@@ -131,7 +118,7 @@ app.get('/listings', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT DISTINCT house.id, house.address, house.no_CR, house.name, house.no_room, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM (house CROSS JOIN `service-provider` on `house`.`service-provider` = `service-provider`.`id`) LEFT JOIN `house-images` ON house.cover_image = `house-images`.`house-id` WHERE `service-provider`.`id` = ?", userID, function(err, rows) {
+        connection.query("SELECT DISTINCT house.id, house.address, house.no_CR, house.name, house.no_room, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM (house CROSS JOIN `service-provider` on `house`.`service-provider` = `service-provider`.`id`) JOIN `house-images` ON house.cover_image = `house-images`.`id` WHERE `service-provider`.`id` = ?", [userID], function(err, rows) {
             if(err) throw err;
             res.render('listings', {title: "Your Listings", data: rows, uid: userID});
         });
@@ -143,9 +130,9 @@ app.get('/listings:uid:hid', function(req, res) {
         res.redirect('/');
     } else {
         var pid = req.params.uid, hid = req.params.hid;
-        connection.query("SELECT DISTINCT house.address, house.description, house.rules, house.cancellations, house.price FROM (house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
+        connection.query("SELECT DISTINCT house.name, house.address, house.description, house.rules, house.amenities, house.cancellations, house.price, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM ((house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) JOIN `house-images` ON house.cover_image = `house-images`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
             if(err) throw err;
-            connection.query("SELECT room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.`id`) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.`id` = ?", [pid, hid], function(err, rows) {
+            connection.query("SELECT room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.id) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.id = ?", [hid, pid], function(err, rows) {
                 if(err) throw err;
                 res.render('listingdes', {house: rowa, room: rows});
             });
@@ -202,6 +189,17 @@ app.get('/transactions', function(req, res) {
     }
 });
 
+app.get('/reservations', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        connection.query("SELECT * from reservations join `service-provider` where `service-provider`.id = ?", userID, function(err, rows) {
+            if(err) throw err;
+            res.render('reservations', {title: "Reservations", data: rows, uid: userID});
+        });
+    }
+});
+
 app.get('/signout', function(req, res) {
     req.session.destroy();
     res.redirect('http://www.abang.com/index.php');
@@ -209,23 +207,42 @@ app.get('/signout', function(req, res) {
 
 /* EMAIL */
 
-app.post('/c/forget', function(req, res) { // client forget password
+app.post('/cforget', function(req, res) { // client forget password
     var email = req.body.email_add;
 
     var mailOptions = {
         from: '"Abang" official.abang@gmail.com',
         to: `${email}`,
-        subject: 'Account Confirmation',
-        html: '<h1>Reset Password</h1><p>does this work</p>'
+        subject: 'Reset Password',
+        html: '<h1></h1>'
     };
     
     mailman.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
         } else {
-            res.send(`<p>email sent</p>`); // test
+            console.log(`email to ${email} sent!`);
             //res.redirect('http://');
         }
     });
 });
 
+app.post('/conmail', function(req, res) { // confirmation (admin > client/provider)
+    var email = req.body.email_add;
+    
+    var mailOptions = {
+        from: '"Abang" official.abang@gmail.com',
+        to: `${email}`,
+        subject: 'Account Confirmation',
+        html: '<h1>Congratulations!</h1><p>Your account for Abang has been approved; you may now log in!</p>'
+    };
+    
+    mailman.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(`email to ${email} sent!`);
+            res.redirect('http://www.abang.com/login.php');
+        }
+    });
+});

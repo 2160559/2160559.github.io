@@ -57,16 +57,14 @@ app.get('/', function (req, res) {
         res.redirect('/home');
     } else {
         userName = "";
-        //res.redirect('http://www.abang.com/index.php');
-        res.redirect('/');
+        res.redirect('http://www.abang.com/index.php');
+        //res.redirect('/');
     }
 });
 
 app.get('/home', function (req, res) {
     if (req.session.userName) {
-        res.render('yeslog', {
-            name: userName
-        });
+        res.render('home');
     } else {
         res.redirect('/');
     }
@@ -86,9 +84,7 @@ app.post('/providerlogin', function (req, res) {
             newSession.userName = userName;
             newSession.email = result[0].email_add;
             newSession.id = req.sessionID;
-            res.render('yeslog', {
-                name: userName
-            });
+            res.render('home');
         }
     });
 });
@@ -130,9 +126,7 @@ app.post('/register', function (req, res) {
         if (err) throw err;
         userID = rows[0].id;
         userName = rName + " " + rSurname;
-        res.render('yeslog', {
-            name: userName
-        });
+        res.render('home');
         connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function (err, rows) {
             if (err) throw err;
         });

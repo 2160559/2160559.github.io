@@ -19,7 +19,7 @@
           <div class="profile-content">
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
-              <img src="./images/baguio-city.jpg" class="mx-auto img-fluid img-circle d-block" alt="display-photo">
+              <img src="<%= house[0].coverimg %>" class="mx-auto img-fluid img-circle d-block" alt="display-photo">
             </div>
             <!-- END SIDEBAR USERPIC -->
             <!-- SIDEBAR USER TITLE -->
@@ -28,32 +28,31 @@
               <table class="table table-striped">
                 <tr>
                   <td style="width:25%" class="font-weight-bold ">Description</td>
-                  <td>Description here..</td>
-                  <td style="width:5%"><a href="#">Edit</a></td>
+                  <td><%= house[0].description %></td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Address</td>
-                  <td>Description here..</td>
+                  <td><%= house[0].address %></td>
                   <td><a href="#">Edit</a></td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Rules</td>
-                  <td>Description here..</td>
+                  <td><%= house[0].rules %></td>
                   <td><a href="#">Edit</a></td>
                 </tr>
                 <tr>
-                  <td class="font-weight-bold">Amenties</td>
-                  <td>Description here..</td>
+                  <td class="font-weight-bold">Amenities</td>
+                  <td><%= house[0].amenities %></td>
                   <td><a href="#">Edit</a></td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Cancellations</td>
-                  <td>Description here..</td>
+                  <td><%= house[0].cancellations %></td>
                   <td><a href="#">Edit</a></td>
                 </tr>
                 <tr>
                   <td class="font-weight-bold">Price</td>
-                  <td>Description here..</td>
+                  <td>PHP <%= house[0].price %></td>
                   <td><a href="#">Edit</a></td>
                 </tr>
                 <tbody>
