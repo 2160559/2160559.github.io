@@ -64,7 +64,7 @@ house_id = house.id join users on `customer-id` = users.id WHERE username = ?;")
                 <a href="changepassword.php">Change Password</a>
               </div>
               <div>
-                <a class="btn btn-primary" href="editprofile.php">Edit Profile</a>
+                <a class="btn btn-info" href="editprofile.php">Edit Profile</a>
               </div>
             </div>
             <!-- END SIDEBAR USER TITLE -->
@@ -95,7 +95,7 @@ house_id = house.id join users on `customer-id` = users.id WHERE username = ?;")
       $status = $reservation[3];
       $change = "";
       if ($status!="cancelled" && $status != "checked-out"){
-        $change = "<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#confirmation'>Cancel</button>";
+        $change = "<button class='btn btn-danger btn-sm' data-toggle='modal' data-target='#confirmation'>Cancel</button>";
       }
 
       
@@ -133,7 +133,7 @@ house_id = house.id join users on `customer-id` = users.id WHERE username = ?;")
                   <h6>Cancel Reservation?</h6><br>
                   <div class="form-group row">
                     <a class="btn btn-info" href="#">Yes, cancel my reservation.</a><pre>  </pre>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">No, go back to my profile.</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, go back to my profile.</button>
                   </div>
                 </div>
               </div>
