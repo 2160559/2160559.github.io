@@ -19,7 +19,8 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-    host     : '192.168.254.114', //ip address
+    //host     : '192.168.254.108', //ip address
+    host     : 'localhost',
     user     : 'root',
     password : '',
     database : 'transient'
@@ -35,10 +36,9 @@ var mailman = mailbox.createTransport({
 
 connection.connect();
 
-//app.listen(8666, function() {
-app.listen(80, '0.0.0.0', function () { //uncomment for demo
-    //console.log('Thank you for using Abang services! You may find us at :8666 ~');
-    console.log('Thank you for using Abang services! You may find us at :80 ~'); //uncomment for demo
+app.listen(8666, function() {
+//app.listen(80, '0.0.0.0', function () { //uncomment for demo
+    console.log('Thank you for using Abang services!'); //uncomment for demo
 });
 
 // if logged in, show dash; if not, redirect to client
@@ -64,7 +64,7 @@ app.post('/providerlogin', function(req, res) {
             newSession.userName = userName;
             newSession.email = result[0].email_add;
             newSession.id = req.sessionID;
-            res.render('yeslog');
+            res.render('home', {user: userName});
         }
     });
 });
@@ -132,7 +132,7 @@ app.get('/listings:uid:hid', function(req, res) {
         var pid = req.params.uid, hid = req.params.hid;
         connection.query("SELECT DISTINCT house.name, house.address, house.description, house.rules, house.amenities, house.cancellations, house.price, concat('data:image;base64,', TO_BASE64(`house-images`.image)) as coverimg FROM ((house CROSS JOIN `service-provider` ON `house`.`service-provider` = `service-provider`.`id`) JOIN `house-images` ON house.cover_image = `house-images`.`id`) LEFT JOIN room on house.id = room.house_id WHERE `service-provider`.id = ? AND house.id = ?", [pid, hid], function(err, rowa) {
             if(err) throw err;
-            connection.query("SELECT room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.id) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.id = ?", [hid, pid], function(err, rows) {
+            connection.query("SELECT room.id, room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.id) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.id = ?", [hid, pid], function(err, rows) {
                 if(err) throw err;
                 res.render('listingdes', {house: rowa, room: rows});
             });
@@ -182,20 +182,88 @@ app.get('/transactions', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT house.address, amount, CONCAT(f_name,' ',l_name) `custname` FROM bookings inner join payment on payment.`customer-id`= bookings.`customer-id` inner join users on bookings.`customer-id`=users.id  inner join room on `room-id`=room.id inner join house on house.id=room.house_id where house.`service-provider` = ?", userID, function(err, rows) {
+        connection.query("select `transaction-date` as `trandate`, amount from transactions where `service-provider-id` = ?", userID, function(err, rows) {
             if(err) throw err;
             res.render('transactions', {title: "Transactions", data: rows, uid: userID});
         });
     }
 });
 
+var pending, cancelled, successful, approved, denied;
+
+// imp: pending & approved res
 app.get('/reservations', function(req, res) {
     if (!req.session.userName) {
         res.redirect('/');
     } else {
-        connection.query("SELECT * from reservations join `service-provider` where `service-provider`.id = ?", userID, function(err, rows) {
+        connection.query("SELECT reservations.id AS 'resid', `house-name` AS 'name', `room-id` AS 'roomid', `date-reserved` AS 'dateres', `check-in` AS 'checkin', `check-out` AS 'checkout', reservations.status, username FROM reservations JOIN (SELECT room.house_id AS 'house-id', house.name AS 'house-name', room.id AS id, house.`service-provider` AS provider FROM room JOIN house ON room.house_id = house.id) rooms ON `room-id` = rooms.id JOIN users ON `customer-id` = users.id WHERE reservations.status = 'pending' and `provider` = ?", userID, function(err, pen) {
             if(err) throw err;
-            res.render('reservations', {title: "Reservations", data: rows, uid: userID});
+            pending = pen;
+            connection.query("SELECT reservations.id AS 'resid', `house-name` AS 'name', `room-id` AS 'roomid', `date-reserved` AS 'dateres', `check-in` AS 'checkin', `check-out` AS 'checkout', reservations.status, username FROM reservations JOIN (SELECT room.house_id AS 'house-id', house.name AS 'house-name', room.id AS id, house.`service-provider` AS provider FROM room JOIN house ON room.house_id = house.id) rooms ON `room-id` = rooms.id JOIN users ON `customer-id` = users.id WHERE reservations.status = 'approved' and `provider` = ?", userID, function(err, app) {
+                if(err) throw err;
+                approved = app;
+                res.render('reservations', {title: "Reservations", p: pending, a: approved});
+            });
+        });
+    }
+});
+
+// history: successful, denied & cancelled
+app.get('/reshist', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        connection.query("SELECT reservations.id AS 'resid', `house-name` AS 'name', `room-id` AS 'roomid', `date-reserved` AS 'dateres', `check-in` AS 'checkin', `check-out` AS 'checkout', reservations.status, username FROM reservations JOIN (SELECT room.house_id AS 'house-id', house.name AS 'house-name', room.id AS id, house.`service-provider` AS provider FROM room JOIN house ON room.house_id = house.id) rooms ON `room-id` = rooms.id JOIN users ON `customer-id` = users.id WHERE reservations.status = 'successful' and `provider` = ?", userID, function(err, suc) {
+            if(err) throw err;
+            successful = suc;
+            connection.query("SELECT reservations.id AS 'resid', `house-name` AS 'name', `room-id` AS 'roomid', `date-reserved` AS 'dateres', `check-in` AS 'checkin', `check-out` AS 'checkout', reservations.status, username FROM reservations JOIN (SELECT room.house_id AS 'house-id', house.name AS 'house-name', room.id AS id, house.`service-provider` AS provider FROM room JOIN house ON room.house_id = house.id) rooms ON `room-id` = rooms.id JOIN users ON `customer-id` = users.id WHERE reservations.status = 'denied' and `provider` = ?", userID, function(err, den) {
+                if(err) throw err;
+                denied = den;
+                connection.query("SELECT reservations.id AS 'resid', `house-name` AS 'name', `room-id` AS 'roomid', `date-reserved` AS 'dateres', `check-in` AS 'checkin', `check-out` AS 'checkout', reservations.status, username FROM reservations JOIN (SELECT room.house_id AS 'house-id', house.name AS 'house-name', room.id AS id, house.`service-provider` AS provider FROM room JOIN house ON room.house_id = house.id) rooms ON `room-id` = rooms.id JOIN users ON `customer-id` = users.id WHERE reservations.status = 'cancelled' and `provider` = ?", userID, function(err, can) {
+                    if(err) throw err;
+                    cancelled = can;
+                    res.render('reshistory', {title: "Reservation History", s: successful, d: denied, c: cancelled});
+                });
+            });
+        });
+    }
+});
+
+// res status: pending > accept
+app.get('/ares:resid', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        var resid = req.params.resid;
+        connection.query("UPDATE `reservations` SET `status`= 'approved' WHERE `id` = ? AND `status` = 'pending'", resid, function(err) {
+            if(err) throw err;
+            res.render('yesacc');
+        });
+    }
+});
+
+// res status: pending > denied
+app.get('/dres:resid', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        var resid = req.params.resid;
+        connection.query("UPDATE `reservations` SET `status`= 'denied' WHERE `id` = ? AND `status` = 'pending'", resid, function(err) {
+            if(err) throw err;
+            res.render('yesden');
+        });
+    }
+});
+
+// res status: pending > cancelled
+app.get('/cres:resid', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        var resid = req.params.resid;
+        connection.query("UPDATE `reservations` SET `status`= 'cancelled' WHERE `id` = ? AND `status` = 'pending'", resid, function(err) {
+            if(err) throw err;
+            res.render('yescan');
         });
     }
 });
@@ -211,10 +279,10 @@ app.post('/cforget', function(req, res) { // client forget password
     var email = req.body.email_add;
 
     var mailOptions = {
-        from: '"Abang" official.abang@gmail.com',
-        to: `${email}`,
+        from: `${email}`,
+        to: '"Abang" official.abang@gmail.com',
         subject: 'Reset Password',
-        html: '<h1></h1>'
+        html: '<h1>Pleas recover my password! pls :(</h1>'
     };
     
     mailman.sendMail(mailOptions, function(error, info){
@@ -222,7 +290,6 @@ app.post('/cforget', function(req, res) { // client forget password
             console.log(error);
         } else {
             console.log(`email to ${email} sent!`);
-            //res.redirect('http://');
         }
     });
 });

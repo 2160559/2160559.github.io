@@ -8,15 +8,6 @@
       Abang - Provider
     </title>
     <% include snips/reg-header %>
-    <script type="text/javascript">
-        var elems = document.getElementsByClassName('confirmation');
-        var confirmIt = function (e) {
-            if (!confirm('Are you sure?')) e.preventDefault();
-        };
-        for (var i = 0, l = elems.length; i < l; i++) {
-            elems[i].addEventListener('click', confirmIt, false);
-        }
-    </script>
   </head>
 
   <body>
@@ -30,9 +21,9 @@
             </div>
             <div class="card-body">
 
-                <!-- PENDING TABLE START -->
-                <h1>Pending (<%= p.length %>)</h1>
-                <% if( p.length > 0) { %>
+                <!-- SUCCESSFUL TABLE START -->
+                <h1>Successful (<%= s.length %>)</h1>
+                <% if( s.length > 0) { %>
                   <table class="table table-striped">
                     <thead>
                         <th scope="col">Transient Name</th>
@@ -41,10 +32,8 @@
                         <th scope="col">Check In</th>
                         <th scope="col">Check Out</th>
                         <th scope="col">Client</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
                     </thead>
-                <% p.forEach(function(list) { %>
+                <% s.forEach(function(list) { %>
                     <tr>
                         <td><%= list.name %></td>
                         <td><%= list.roomid %></td>
@@ -52,19 +41,17 @@
                         <td><%= list.checkin.toDateString() %></td>
                         <td><%= list.checkout.toDateString() %></td>
                         <td><i><%= list.username %></i></td>
-                        <td><a class="btn btn-lg btn-sm btn-success confirmation" href="/ares<%= list.resid %>" onclick="return confirm('Are you sure? You cannot undo this action.')">Accept</a></td>
-                        <td><a class="btn btn-lg btn-sm btn-danger" href="/dres<%= list.resid %>" onclick="return confirm('Are you sure? You cannot undo this action.')">Reject</a></td>
                     </tr>
                 <% }); %>
                 </table>
                 <% } else { %>
-                    <p>No pending reservations right now.</p>
+                    <p>No successful reservations right now.</p>
                 <% } %>
-                <!-- PENDING TABLE END -->
+                <!-- SUCCESSFUL TABLE END -->
                 
-                <!-- APPROVED TABLE START -->
-                <h1>Active (<%= a.length %>)</h1>
-                <% if( a.length > 0) { %>
+                <!-- DENIED TABLE START -->
+                <h1>Denied (<%= d.length %>)</h1>
+                <% if( d.length > 0) { %>
                   <table class="table table-striped">
                     <thead>
                         <th scope="col">Transient Name</th>
@@ -73,9 +60,8 @@
                         <th scope="col">Check In</th>
                         <th scope="col">Check Out</th>
                         <th scope="col">Client</th>
-                        <td scope="col"></td>
                     </thead>
-                <% a.forEach(function(list) { %>
+                <% d.forEach(function(list) { %>
                     <tr>
                         <td><%= list.name %></td>
                         <td><%= list.roomid %></td>
@@ -83,17 +69,42 @@
                         <td><%= list.checkin.toDateString() %></td>
                         <td><%= list.checkout.toDateString() %></td>
                         <td><i><%= list.username %></i></td>
-                        <td><a class="btn btn-lg btn-sm btn-warning" href="/cres<%= list.resid %>" onclick="return confirm('Are you sure? You cannot undo this action.')">Cancel</a></td>
                     </tr>
                 <% }); %>
                 </table>
                 <% } else { %>
-                    <p>No approved reservations right now.</p>
+                    <p>No denied reservations right now.</p>
                 <% } %>
-                <!-- APPROVED TABLE END -->
+                <!-- DENIED TABLE END -->
                 
-                <a class="btn btn-lg btn-sm btn-info" href="/reshist">View History</a>
-                
+                <!-- CANCELLED TABLE START -->
+                <h1>Cancelled (<%= c.length %>)</h1>
+                <% if( c.length > 0) { %>
+                  <table class="table table-striped">
+                    <thead>
+                        <th scope="col">Transient Name</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Date Reserved</th>
+                        <th scope="col">Check In</th>
+                        <th scope="col">Check Out</th>
+                        <th scope="col">Client</th>
+                    </thead>
+                <% c.forEach(function(list) { %>
+                    <tr>
+                        <td><%= list.name %></td>
+                        <td><%= list.roomid %></td>
+                        <td><%= list.dateres.toDateString() %></td>
+                        <td><%= list.checkin.toDateString() %></td>
+                        <td><%= list.checkout.toDateString() %></td>
+                        <td><i><%= list.username %></i></td>
+                    </tr>
+                <% }); %>
+                </table>
+                <% } else { %>
+                    <p>No cancelled reservations right now.</p>
+                <% } %>
+                <!-- CANCELLED TABLE END -->
+
             </div>
         </div>
       </div>

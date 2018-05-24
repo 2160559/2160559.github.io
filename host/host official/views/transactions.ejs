@@ -19,25 +19,26 @@
                 <div class="card-header">
                     <h1><%= title %> (<%= data.length %>)</h1>
                 </div>
+                <% if( data.length > 0) { %>
                 <div class="card-body">
-                    <% if( data.length > 0) { %>
-                        <table class="table table-striped">
-                            <thead>
-                                <th class="col">Listing Address</th>
-                                <th class="col">Amount Paid</th>
-                                <th class="col">Customer</th>
-                            </thead>
-                            <% data.forEach(function(list) { %>
-                            <tr>
-                                <td><%= list.address %></td>
-                                <td><%= list.amount %></td>
-                                <td><%= list.custname %></td>
-                            </tr>
-                            <% }); %>
-                        </table>
-                    <% } else { %>
-                        <p>Hm, you don't have any transactions yet. Don't lose hope; someone probably hasn't found your listing yet!</p>
-                    <% } %>
+                    <table>
+                        <tr>
+                            <td>Date</td>
+                            <td>Price</td>
+                        </tr>
+                        <% data.forEach(function(list) { %>
+                        <tr>
+                            <td><%= list.trandate.toDateString() %></td>
+                            <td><%= list.amount %></td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                </div>
+                <% } else { %>
+                <div class="card-body">
+                    <p>Hm, you don't have any transactions yet. You must be new here! Remember that this is your monthly fee based on all your sucessful listings!</p>
+                </div>
+                <% } %>
             </div>
         </div>
     </div>
