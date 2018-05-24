@@ -40,6 +40,18 @@ if (isset($_POST['phone'])) {
         </div>
     ';
 }
+if (isset($_GET['disable'])){
+        if ($stmt = $mysqli->prepare("UPDATE users set status = 'deactivated' where id = ?")){
+            $stmt->bind_param("i", $current_user['id']);
+            $stmt->execute();
+            $stmt->close();
+        }
+    $mysqli->close();
+    session_destroy();
+}
+if (isset($_SESSION['id'])){
+    header("Location:index.php");
+}
 include 'upload_img.php';
 ?>
 <script>$('#alert').delay(5000).fadeOut(400)</script>
@@ -112,6 +124,11 @@ include 'upload_img.php';
                             </div>
                         </div>
                     </form>
+                    <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <a href="editprofile.php?disable=true" class="btn btn-danger">Disable Account</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

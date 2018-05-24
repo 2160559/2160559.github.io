@@ -50,7 +50,7 @@ include 'includes/db.inc.php';
         </div>
     </div>
     <script type="text/javascript">
-        $(window).on('load', function () {
+        $("#forgot").on('click', function () {
             $('#modal').modal('show');
         });
     </script>
@@ -59,7 +59,7 @@ include 'includes/db.inc.php';
             <div class="card">
                 <div class="card-header"><h1>Recover Password</h1></div>
                 <div class="card-body">
-                    <form action="" method="post" name="forgotPassword">
+                    <form action="provider.abang.com/cforget" method="post" name="forgotPassword">
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email Address</label>
                             <div class="col-lg-9">
@@ -68,7 +68,7 @@ include 'includes/db.inc.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-lg btn-primary" type="submit">Forgot Password</button>
+                            <button class="btn btn-lg btn-primary" type="submit" id="forgot">Forgot Password</button>
                         </div>
                     </form>
                 </div>

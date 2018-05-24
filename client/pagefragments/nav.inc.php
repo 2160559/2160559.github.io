@@ -6,10 +6,7 @@ $current_user = $_SESSION['user'];
                                                    class="d-inline-block align-top" alt="ABANG"/></a>
     <div class="collapse navbar-collapse" id="navb">
         <div class="mr-auto">
-            <form class="form-inline my-2 my-lg-0" method="post">
-                <input class="form-control col-form-label-sm mr-sm-2" type="search" placeholder="Search" name="search">
-                <button class="btn btn-sm btn-outline-info my-2 my-sm-0" type="submit" name="submit">Search</button>
-            </form>
+
         </div>
         <div class="collapse navbar-collapse" id="navb">
             <div class="mr-auto">

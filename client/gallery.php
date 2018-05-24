@@ -31,8 +31,8 @@ if ($stmt = $mysqli->prepare("select image from `house-images` where `house-id` 
                 <?php
                 foreach ($images as $image) {
                     echo "
-                        <div class='col-md-6 col-lg-4 item zoom-on-hover'>
-                            <img class='img-fluid image' src='".'data:image;base64,'. base64_encode($image)."'>
+                        <div class='col-md-4 item zoom-on-hover' style='background: transparent'>
+                            <img class='image img-fluid' src='".'data:image;base64,'. base64_encode($image)."'>
                         </div>
                         ";
                 }

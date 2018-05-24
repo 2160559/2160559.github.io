@@ -9,15 +9,17 @@ include 'includes/db.inc.php';
 <body>
 <?php
 include 'pagefragments/nav.inc.php';
-$bookings = [];
+$reservations = [];
 
-if ($stmt = $mysqli->prepare("SELECT `check-in`, `check-out`, `address`, `amount` FROM bookings join room on 
-    `room-id` = room.id join house on house_id = house.id join payment on payment_id=payment.id WHERE username = ?;")) {
+if ($stmt = $mysqli->prepare("SELECT reservations.id, `check-in`, `check-out`, `address`,reservations.status FROM reservations join room on `room-id` = room
+.id join 
+house on 
+house_id = house.id join users on `customer-id` = users.id WHERE username = ?;")) {
     $stmt->bind_param('s', $current_user['username']);
     $stmt->execute();
-    $stmt->bind_result($check_in, $check_out, $address, $amount);
+    $stmt->bind_result($id, $check_in, $check_out, $address, $status);
     while ($stmt->fetch()) {
-        $bookings[] = array($check_in, $check_out, $address, $amount);
+        $reservations[] = array($check_in, $check_out, $address,$status, $id);
     }
     $stmt->close();
 }
@@ -77,24 +79,33 @@ $mysqli->close();
         <div class="col-md-9">
             <div class="profile-content">
                 <div class="bd-example bd-example-tabs">
-                        <p class="profile-usertitle-name">Booking History</p>
+                        <p class="profile-usertitle-name">Checking History</p>
                     <table class="table table-striped">
                         <thead>
                             <th>Check-in</th>
                             <th>Check-out</th>
                             <th>Place</th>
-                            <th>Amount Paid</th>
+                            <th>Status</th>
+                            <th>Update</th>
                         </thead>
                         <tbody>
                         <?php
-                        if (count($bookings) > 0) {
-                            foreach ($bookings as $booking) {
+                        if (count($reservations) > 0) {
+                            foreach ($reservations as $reservation) {
+                                $status = $reservation[3];
+                                $change = "";
+                                if ($status!="cancelled" && $status != "checked-out"){
+                                    $change = "<a class='btn btn-primary btn-sm' href='cancel.php?reservation="
+                                        .$reservation[4]."'>Cancel</a>";
+                                }
+
                                 echo "
                                 <tr>
-                                    <td>$booking[0]</td>
-                                    <td>$booking[1]</td>
-                                    <td>$booking[2]</td>
-                                    <td>$booking[3]</td>
+                                    <td>$reservation[0]</td>
+                                    <td>$reservation[1]</td>
+                                    <td>$reservation[2]</td>
+                                    <td>$reservation[3]</td>
+                                    <td>$change</td>
                                 </tr>
                                 ";
                             }
@@ -111,6 +122,7 @@ $mysqli->close();
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <?php include 'pagefragments/footer.html' ?>

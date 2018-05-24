@@ -35,7 +35,7 @@ $mysqli->close();
                 <a class="col-sm-12 col-md-5 mainbox alert alert-secondary alert-dismissible fade show "
                    style="background: url(<?php echo 'data:image;base64,' . base64_encode($house['house_image']) ?>) no-repeat;"
                    href="../transient.php?house_id=<?php echo $house['house_id'] ?>">
-                    <h1><?php echo $house['house_name'] ?></h1>
+                    <h1 style="color: white"><?php echo $house['house_name'] ?></h1>
                     <button type="button" class="close" data-dismiss="alert"
                             onclick="location.href = 'removefav.php?house_id=<?php echo $house['house_id'] ?>&user_id=<?php echo $current_user['id']?>'">
                         &times;
