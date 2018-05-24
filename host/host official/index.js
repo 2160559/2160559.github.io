@@ -19,10 +19,10 @@ let userName, queried, num;
 let newSession;
 
 var connection = mysql.createConnection({
-  //host     : '192.168.254.114', //ip address
-  host     : 'localhost', //comment for demo
+  host     : '192.168.254.114', //ip address
+  //host     : 'localhost', //comment for demo
   user     : 'root',
-  //password : '12345678',
+ // password : '12345678',
     password : '',
   database : 'transient'
 });
@@ -120,10 +120,11 @@ app.post('/register', function(req, res){
         if(err) throw err;
         userID = rows[0].id;
         userName = rName+" "+rSurname;
-    });
-    connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
+        connection.query("INSERT INTO `service-provider` (id, address, `business-permit`, `bank-acc-no`) VALUES (?,?,?,?)", [userID, rAddress, rPermit, rBank], function(err, rows){
            if (err) throw err;
+        });
     });
+
     res.render('yesreg', {email: rEmail});
 });
 
