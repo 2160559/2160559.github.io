@@ -18,54 +18,45 @@
         <div class="col-md-8">
           <div class="profile-content">
             <!-- SIDEBAR USERPIC -->
-            <div class="profile-userpic">
-              <img src="<%= house[0].coverimg %>" class="mx-auto img-fluid img-circle d-block" alt="display-photo">
+            <div >
+              <img src="<%= house[0].coverimg %>" class="mx-auto img-fluid img-round d-block" alt="display-photo">
             </div>
             <!-- END SIDEBAR USERPIC -->
             <!-- SIDEBAR USER TITLE -->
-            <div class="gallery-block"><div class="heading"><h2 class="text-center">Transient Name</h2></div></div>
+            <div class="gallery-block"><div class="heading"><h2 class="text-center"><%= house[0].name %></h2></div></div>
 
-              <table class="table table-striped">
-                <tr>
-                  <td style="width:25%" class="font-weight-bold ">Description</td>
-                  <td><%= house[0].description %></td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Address</td>
-                  <td><%= house[0].address %></td>
-                  <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Rules</td>
-                  <td><%= house[0].rules %></td>
-                  <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Amenities</td>
-                  <td><%= house[0].amenities %></td>
-                  <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Cancellations</td>
-                  <td><%= house[0].cancellations %></td>
-                  <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                  <td class="font-weight-bold">Price</td>
-                  <td>PHP <%= house[0].price %></td>
-                  <td><a href="#">Edit</a></td>
-                </tr>
-                <tbody>
+            <table class="table table-striped">
+              <tr>
+                <td style="width:25%" class="font-weight-bold ">Description</td>
+                <td><%= house[0].description %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Address</td>
+                <td><%= house[0].address %></td>
 
-                </tbody>
-              </table>           
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Rules</td>
+                <td><%= house[0].rules %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Amenities</td>
+                <td><%= house[0].amenities %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Cancellations</td>
+                <td><%= house[0].cancellations %></td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">Price</td>
+                <td>PHP <%= house[0].price %></td>
+              </tr>
+              <tbody>
 
-            <!-- END SIDEBAR USER TITLE -->
-            <!-- SIDEBAR BUTTONS
--->
+              </tbody>
+            </table>           
           </div>
         </div>
-        <!-- END SIDE PROFILE -->
         <div class="col-md-4">
           <div class="profile-content">
             <div class="bd-example bd-example-tabs">
@@ -76,7 +67,12 @@
                   <th>Status</th>
                 </thead>
                 <tbody>
-
+                  <% room.forEach (function(list, ind){ %>
+                  <tr>
+                    <td><%= list.id %></td>
+                    <td><%= list.status %></td>
+                  </tr>
+                  <% }); %>
                 </tbody>
               </table>
             </div>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+      Abang - Provider
+    </title>
+    <% include snips/reg-header %>
+  </head>
+
+  <body>
+    <div class="wrapper align-middle">
+      <% include snips/log-nav %>
+      <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+          <div class="card">
+            <div class="card-header">
+              <h1><%= title %></h1>
+            </div>
+            <div class="card-body">
+
+                <!-- SUCCESSFUL TABLE START -->
+                <h1>Successful (<%= s.length %>)</h1>
+                <% if( s.length > 0) { %>
+                  <table class="table table-striped">
+                    <thead>
+                        <th scope="col">Transient Name</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Date Reserved</th>
+                        <th scope="col">Check In</th>
+                        <th scope="col">Check Out</th>
+                        <th scope="col">Client</th>
+                    </thead>
+                <% s.forEach(function(list) { %>
+                    <tr>
+                        <td><%= list.name %></td>
+                        <td><%= list.roomid %></td>
+                        <td><%= list.dateres.toDateString() %></td>
+                        <td><%= list.checkin.toDateString() %></td>
+                        <td><%= list.checkout.toDateString() %></td>
+                        <td><i><%= list.username %></i></td>
+                    </tr>
+                <% }); %>
+                </table>
+                <% } else { %>
+                    <p>No successful reservations right now.</p>
+                <% } %>
+                <!-- SUCCESSFUL TABLE END -->
+                
+                <!-- DENIED TABLE START -->
+                <h1>Denied (<%= d.length %>)</h1>
+                <% if( d.length > 0) { %>
+                  <table class="table table-striped">
+                    <thead>
+                        <th scope="col">Transient Name</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Date Reserved</th>
+                        <th scope="col">Check In</th>
+                        <th scope="col">Check Out</th>
+                        <th scope="col">Client</th>
+                    </thead>
+                <% d.forEach(function(list) { %>
+                    <tr>
+                        <td><%= list.name %></td>
+                        <td><%= list.roomid %></td>
+                        <td><%= list.dateres.toDateString() %></td>
+                        <td><%= list.checkin.toDateString() %></td>
+                        <td><%= list.checkout.toDateString() %></td>
+                        <td><i><%= list.username %></i></td>
+                    </tr>
+                <% }); %>
+                </table>
+                <% } else { %>
+                    <p>No denied reservations right now.</p>
+                <% } %>
+                <!-- DENIED TABLE END -->
+                
+                <!-- CANCELLED TABLE START -->
+                <h1>Cancelled (<%= c.length %>)</h1>
+                <% if( c.length > 0) { %>
+                  <table class="table table-striped">
+                    <thead>
+                        <th scope="col">Transient Name</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Date Reserved</th>
+                        <th scope="col">Check In</th>
+                        <th scope="col">Check Out</th>
+                        <th scope="col">Client</th>
+                    </thead>
+                <% c.forEach(function(list) { %>
+                    <tr>
+                        <td><%= list.name %></td>
+                        <td><%= list.roomid %></td>
+                        <td><%= list.dateres.toDateString() %></td>
+                        <td><%= list.checkin.toDateString() %></td>
+                        <td><%= list.checkout.toDateString() %></td>
+                        <td><i><%= list.username %></i></td>
+                    </tr>
+                <% }); %>
+                </table>
+                <% } else { %>
+                    <p>No cancelled reservations right now.</p>
+                <% } %>
+                <!-- CANCELLED TABLE END -->
+
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>    
+  </body>
+
+</html>
