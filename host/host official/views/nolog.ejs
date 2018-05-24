@@ -1,33 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>
-        Abang - Provider
+      Abang - Provider
     </title>
     <% include snips/reg-header %>
-</head>
+  </head>
 
-<body class="is-loading">
-<div class="wrapper" style="background-image: url(./images/EagleNewsPh.jpg); background-repeat: no-repeat; background-size:cover;">
-    <% include snips/nav %>
-    <div class="row justify-content-center margin-top">
-        <div class="container justify-content-center m-5 pb-5">
-            <div class="card">
-                <div class="card-header">
-                    <h1>Oops! Something went wrong.</h1>
-                </div>
-                <div class="card-body">
-                    <div class="form-group row">
-                        <p>Either your login information is wrong (<a href="http://www.abang.com/login.php">Go Back</a>) or you are not registered (you can do it <a href="/register">here</a>)!</p>
-                    </div>
-                </div>
-            </div>
+  <body class="is-loading">
+    <div class="wrapper">
+      <% include snips/nav %>
+      <div class="row justify-content-center margin-top">
+        <div class="container text-center m-5 pb-5">            
+          <h1 class="display-1">Oops! Something went wrong.</h1>
+          <p>Either your login information is wrong (<a href="http://www.abang.com/login.php">Go Back</a>) or you are not registered (you can do it <a href="/register">here</a>)!</p>
         </div>
+      </div>
+
     </div>
-</div>
-</body>
+  </body>
 
 </html>

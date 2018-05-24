@@ -10,8 +10,8 @@
     <% include snips/reg-header %>
   </head>
 
-  <body class="is-loading">
-    <div class="wrapper">
+  <body>
+    <div class="wrapper align-middle">
       <% include snips/log-nav %>
       <div class="row justify-content-center margin-top">
         <div class="container justify-content-center m-5 pb-5">
@@ -44,7 +44,7 @@
               </table>
             </div>
             <div class="card-body">
-              <a class="btn btn-lg btn-sm btn-info" href="/addlist">Add more!</a>
+              <p><a href="/addlist">Add more!</a></p>
             </div>
             <% } else { %>
             <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
