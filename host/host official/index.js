@@ -124,6 +124,16 @@ app.get('/listings', function(req, res) {
         });
     }
 });
+app.get('/acctdets', function(req, res) {
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        connection.query(" SELECT username,f_name,l_name,email_add,password,phone,birthday FROM users WHERE id = ?", userID, function(err, rows) {
+            if(err) throw err;
+            res.render('profile', {title: "Your Profile", data: rows});
+        });
+    }
+});
 
 app.get('/listings:uid:hid', function(req, res) {
     if (!req.session.userName) {

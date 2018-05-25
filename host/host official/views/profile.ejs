@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+      Abang - Provider - Account Details
+    </title>
+    <% include snips/reg-header %>
+  </head>
+
+  <body class="is-loading">
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
+
+	<a class="navbar-brand " href="/"><img src="../images/logo%20-%20Copy.png" height="35" class="d-inline-block align-top" alt="ABANG"/></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navb">
+        <div class="mr-auto">
+        </div>
+        <ul class="navbar-nav">
+                      <li class="nav-item">
+                <a class="nav-link" href="/" style="color: white">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/listings" style="color: white">Listings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/transactions" style="color: white">Transactions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signout" style="color: white">Sign out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+        
+      <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+          <h1>My Account Details</h1>
+             <div class="card-body">
+                 
+              <% if( data.length > 0) { %>
+              <table class="table table-striped">
+                  <thead>
+                      <th scope="col">Username</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">Email Address</th>
+                      <th scope="col">Password</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">Birthday</th>
+                  </thead>
+                  <% data.forEach(function(list) { %>
+                  <tr>
+                      <td><%= list.username %></td>
+                      <td><%= list.f_name %></td>
+                      <td><%= list.l_name%></td>
+                      <td><%= list.email_add %></td>
+                      <td>*******************</td>
+                      <td><%= list.phone %></td>
+                      <td><%= list.birthday.toDateString() %></td>
+                  </tr>
+                  <% }); %>
+              </table>
+            <% }; %>
+                
+            </div>          
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
