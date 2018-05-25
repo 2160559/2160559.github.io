@@ -134,11 +134,12 @@ app.get('/listings:uid:hid', function(req, res) {
             if(err) throw err;
             connection.query("SELECT room.id, room.status FROM (house CROSS JOIN `service-provider` ON house.`service-provider` = `service-provider`.id) CROSS JOIN room ON house.id = room.house_id WHERE house.id = ? AND `service-provider`.id = ?", [hid, pid], function(err, rows) {
                 if(err) throw err;
-                res.render('listingdes', {house: rowa, room: rows});
+                res.render('listingdes', {house: rowa, room: rows, hid: hid});
             });
         });
     }
 });
+
 
 app.get('/addlist', function(req, res) {
     if (!req.session.userName) {
@@ -177,6 +178,44 @@ app.post('/addlist', function(req, res) {
             });
     });
 });
+
+app.get('/editlist:hid',function(req, res) { 
+    if (!req.session.userName) {
+        res.redirect('/');
+    } else {
+        var hid = req.params.hid;
+        res.render('editlisting', {msg: "", hid: hid});
+    }
+
+});
+
+app.post('/editlist:hid', function(req, res){
+    var hid = req.params.hid;
+    var selectedOption = req.body.option;
+    var editValue = req.body.editshere;
+    var sql, toEdit;
+    switch(selectedOption) {
+    case "1":
+        toEdit = "description"; break;
+    case "2":
+        toEdit = "address"; break;
+    case "3":
+        toEdit = "rules"; break;
+    case "4":
+        toEdit = "amenities"; break;
+    case "5":
+        toEdit = "cancellations"; break;
+    case "6":
+        toEdit = "price"; break;
+        default:
+    }
+    sql = `UPDATE house SET ${toEdit} = ? WHERE id = ?`;
+    connection.query(sql, [editValue, hid], function(err, rows) {
+        if(err) throw err;
+    });
+    res.render('editlisting', {msg: "<script> alert('Edit successful!') </script>"});
+});
+
 
 app.get('/transactions', function(req, res) {
     if (!req.session.userName) {
@@ -312,42 +351,4 @@ app.post('/conmail', function(req, res) { // confirmation (admin > client/provid
             res.redirect('http://www.abang.com/login.php');
         }
     });
-});
-
-/* for front end use */
-
-app.get('/yeslog', function(req, res) {
-    var uName = "username";
-    res.render('yeslog', {
-        name: uName
-    });
-});
-
-app.get('/yesadd', function(req, res) {
-    res.render('yesadd', {
-        title: "Congrats!"
-    });
-});
-
-app.get('/yesreg', function(req, res) {
-    var uMail = "halu@rafi.com";
-    res.render('yesreg', {
-        email: uMail
-    });
-});
-
-app.get('/nolog', function(req, res) {
-    res.render('nolog');
-});
-
-app.get('/yesacc', function(req, res) {
-    res.render('yesacc');
-});
-
-app.get('/yesden', function(req, res) {
-    res.render('yesden');
-});
-
-app.get('/yescan', function(req, res) {
-    res.render('yescan');
 });
