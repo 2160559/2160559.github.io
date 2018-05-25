@@ -12,7 +12,31 @@
 
   <body class="is-loading">
     <div class="wrapper">
-      <% include snips/log-nav %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm  mb-4">
+
+        <a class="navbar-brand " href="/"><img src="../images/logo%20-%20Copy.png" height="35" class="d-inline-block align-top" alt="ABANG"/></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navb">
+          <div class="mr-auto">
+          </div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/" style="color: white">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/reservations" style="color: white">Reservations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/transactions" style="color: white">Transactions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout" style="color: white">Sign out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <div class="row justify-content-center margin-top">
         <div class="container justify-content-center m-5 pb-5">
           <div class="card">
@@ -20,16 +44,16 @@
               <h1><%= title %> (<%= data.length %>)</h1>
             </div>
 
-            <div class="card-body">
+            <div class="card-body mx-auto align-content-center">
               <% if( data.length > 0) { %>
-              <table class="table table-striped">
+              <table class="table table-striped table-responsive text-center" style="font-size:16px;">
                 <thead>
                   <th scope="col">Transient Name</th>
                   <th scope="col">Address</th>
                   <th scope="col">Number of CR</th>
                   <th scope="col">Number of Rooms</th>
                   <th scope="col">Cover Image</th>
-                  <th scope="col"></th>
+                  <th scope="col" style="width:10%"></th>
                 </thead>
                 <% data.forEach(function(list) { %>
                 <tr>
@@ -37,16 +61,14 @@
                   <td><%= list.address %></td>
                   <td><%= list.no_CR %></td>
                   <td><%= list.no_room %></td>
-                  <td><img src="<%= list.coverimg %>" width="200px;"></td>
+                  <td><img src="<%= list.coverimg %>" style="width:200px;" class="img-round"></td>
                   <td><a href="/listings<%= uid %><%= list.id %>">See info</a></td>
                 </tr>
                 <% }); %>
               </table>
-            </div>
-              
-            <div class="card-body">
+
               <a class="btn btn-lg btn-sm btn-info" href="/addlist">Add more!</a>
-            </div>
+            </div>                                 
             <% } else { %>
             <p>Hm, you don't have any listings. Want to <a href="/addlist">add some</a>?</p>
           </div>
