@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>
+      Abang - Provider - Account Details
+    </title>
+    <% include snips/reg-header %>
+  </head>
+
+  <body class="is-loading">
+    <div class="wrapper">
+      <% include snips/log-nav %>
+      <div class="row justify-content-center margin-top">
+        <div class="container justify-content-center m-5 pb-5">
+          <h1>My Account Details</h1>
+             <div class="card-body">
+                 
+              <% if( data.length > 0) { %>
+              <table class="table table-striped">
+                  <thead>
+                      <th scope="col">Username</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">Email Address</th>
+                      <th scope="col">Password</th>
+                      <th scope="col">Phone Number</th>
+                      <th scope="col">Birthday</th>
+                  </thead>
+                  <% data.forEach(function(list) { %>
+                  <tr>
+                      <td><%= list.username %></td>
+                      <td><%= list.f_name %></td>
+                      <td><%= list.l_name%></td>
+                      <td><%= list.email_add %></td>
+                      <td>*******************</td>
+                      <td><%= list.phone %></td>
+                      <td><%= list.birthday %></td>
+                  </tr>
+                  <% }); %>
+              </table>
+            <% }; %>
+                
+            </div>          
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
